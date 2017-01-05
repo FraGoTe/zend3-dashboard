@@ -9,6 +9,8 @@ use Zend\Authentication\Result;
 use Zend\Db\Adapter\Adapter;
 use Zend\Db\Adapter\AdapterInterface;
 use Negocio\Model\UserTable;
+use Zend\Authentication\Adapter\DbTable as AuthAdapter;
+
 
 class LoginController extends AbstractActionController
 {
@@ -33,10 +35,28 @@ class LoginController extends AbstractActionController
         
         if ($request->isPost()) {
             $dataForm = $request->getPost();
-
             if (!empty($dataForm->usuario) && !empty($dataForm->clave)) {
+                error_log(__LINE__);
+                $authAdapter = new AuthAdapter($this->mysqlAdp, 'user', 'username', 'password');
+                                error_log(__LINE__);
+                                try {
+                                                                    error_log(__LINE__);
+$auth->setAdapter($authAdapter);
 
-                $result = $auth->authenticate($this->mysqlAdp);
+                                                                    error_log(__LINE__);
+                                                                    $authAdapter->authenticate();
+                                                                      error_log(__LINE__);
+
+                                                $result = $auth->authenticate();
+                                error_log(__LINE__);
+
+                                } catch (Exception $ex) {
+                                                                    error_log(__LINE__);
+
+                                    error_log($ex->getMessage());
+                                }
+                                error_log(__LINE__);
+
                 var_dump($result);exit;
                 switch ($result->getCode()) {
                     case Result::SUCCESS:
