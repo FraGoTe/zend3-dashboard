@@ -46,7 +46,9 @@ $auth->setAdapter($authAdapter);
                                                                     error_log(__LINE__);
                                                                     $authAdapter->authenticate();
                                                                       error_log(__LINE__);
-
+                                                                      $auth->getAdapter()
+                                       ->setIdentity($dataForm->usuario)
+                                       ->setCredential($dataForm->clave);
                                                 $result = $auth->authenticate();
                                 error_log(__LINE__);
 
