@@ -36,30 +36,16 @@ class LoginController extends AbstractActionController
         if ($request->isPost()) {
             $dataForm = $request->getPost();
             if (!empty($dataForm->usuario) && !empty($dataForm->clave)) {
-                error_log(__LINE__);
-                $authAdapter = new AuthAdapter($this->mysqlAdp, 'user', 'username', 'password');
-                                error_log(__LINE__);
-                                try {
-                                                                    error_log(__LINE__);
-$auth->setAdapter($authAdapter);
+                $authAdapter = new AuthAdapter($this->mysqlAdp, 'user', 'username', 'password', 'sha1(?) AND active = 1');
+              
+                    $auth->setAdapter($authAdapter);
 
-                                                                    error_log(__LINE__);
-                                                                    $authAdapter->authenticate();
-                                                                      error_log(__LINE__);
-                                                                      $auth->getAdapter()
-                                       ->setIdentity($dataForm->usuario)
-                                       ->setCredential($dataForm->clave);
-                                                $result = $auth->authenticate();
-                                error_log(__LINE__);
+                    $auth->getAdapter()
+                            ->setIdentity(strtoupper($dataForm->usuario))
+                            ->setCredential(strtoupper($dataForm->clave));
+                    $result = $auth->authenticate();
+         
 
-                                } catch (Exception $ex) {
-                                                                    error_log(__LINE__);
-
-                                    error_log($ex->getMessage());
-                                }
-                                error_log(__LINE__);
-
-                var_dump($result);exit;
                 switch ($result->getCode()) {
                     case Result::SUCCESS:
                         $storage = $auth->getStorage();
