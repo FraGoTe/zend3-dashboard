@@ -24,13 +24,63 @@ return [
                     ],
                 ],
             ],
-            'login' => [
+            'cobranza-login' => [
                 'type'    => Segment::class,
                 'options' => [
                     'route'    => '/cobranza/login',
                     'defaults' => [
                         'controller' => Controller\LoginController::class,
                         'action'     => 'index',
+                    ],
+                ],
+            ],
+            'cobranza-colegio' => [
+                'type'    => Segment::class,
+                'options' => [
+                    'route'    => '/cobranza/colegio',
+                    'defaults' => [
+                        'controller' => Controller\ColegioController::class,
+                        'action'     => 'index',
+                    ],
+                ],
+            ],
+            'cobranza-colegio-listar' => [
+                'type'    => Segment::class,
+                'options' => [
+                    'route'    => '/cobranza/colegio/listar',
+                    'defaults' => [
+                        'controller' => Controller\ColegioController::class,
+                        'action'     => 'listar',
+                    ],
+                ],
+            ],
+            'cobranza-colegio-agregar' => [
+                'type'    => Segment::class,
+                'options' => [
+                    'route'    => '/cobranza/colegio/agregar',
+                    'defaults' => [
+                        'controller' => Controller\ColegioController::class,
+                        'action'     => 'agregar',
+                    ],
+                ],
+            ],
+            'cobranza-colegio-editar' => [
+                'type'    => Segment::class,
+                'options' => [
+                    'route'    => '/cobranza/colegio/editar',
+                    'defaults' => [
+                        'controller' => Controller\ColegioController::class,
+                        'action'     => 'editar',
+                    ],
+                ],
+            ],
+            'cobranza-colegio-eliminar' => [
+                'type'    => Segment::class,
+                'options' => [
+                    'route'    => '/cobranza/colegio/eliminar',
+                    'defaults' => [
+                        'controller' => Controller\ColegioController::class,
+                        'action'     => 'eliminar',
                     ],
                 ],
             ],

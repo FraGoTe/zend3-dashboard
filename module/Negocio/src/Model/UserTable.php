@@ -2,34 +2,15 @@
 
 namespace Negocio\Model;
 
-use Zend\Db\TableGateway\TableGateway;
-use Zend\Db\Sql\Select;
-use Zend\Db\Sql\Sql;
+use Negocio\Abstraction\Model;
 
 /**
  * Description of UserTable
  *
  * @author Francis Gonzales <fgonzalestello91@gmail.com>
  */
-class UserTable
+class UserTable extends Model
 {
-    protected $tableGateway;
-    
-    public function __construct(TableGateway $tableGateway)
-    {
-        $this->tableGateway = $tableGateway;
-    }
-     
-    public function getTableGateway()
-    {
-        return $this->tableGateway;
-    }
- 
-    public function fetchAll()
-    {
-        $resultSet = $this->tableGateway->select();
-        return $resultSet;
-    }
     
     /**
      * This functions returns a query to get 

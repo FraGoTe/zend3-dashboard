@@ -23,6 +23,11 @@ class Module
     {
         return [
             'factories' => [
+                Controller\ColegioController::class => function($container) {
+                    return new Controller\ColegioController(
+                        $container->get(Model\Colegio::class)
+                    );
+                },
                 Controller\LoginController::class => function($container) {
                     return new Controller\LoginController(
                         $container->get(Adapter::class)

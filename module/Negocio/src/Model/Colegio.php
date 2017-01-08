@@ -3,76 +3,31 @@
 namespace Negocio\Model;
 
 /**
- * Description of Usuario
+ * Description of Colegio
  *
  * @author Francis Gonzales <fgonzalestello91@gmail.com>
  */
-class User
+class Colegio
 {
     public $id;
-    public $username;
-    public $password;
-    public $fullName;
-    public $email;
-    public $roleId;
+    public $nombre;
+    public $direccion;
+    public $pagina_web;
+    public $telefono;
+    public $telefono_2;
+    public $contacto;
+    public $telefono_contacto;
     
-    public function getId()
-    {
-        return $this->id;
-    }
-    public function getUsername()
-    {
-        return $this->username;
-    }
-    public function getPassword()
-    {
-        return $this->password;
-    }
-    public function getFullName()
-    {
-        return $this->fullName;
-    }
-    public function getEmail()
-    {
-        return $this->email;
-    }
-    public function getRoleId()
-    {
-        return $this->roleId;
-    }
-    public function setId($id)
-    {
-        $this->id = $id;
-    }
-    public function setUsername($username)
-    {
-        $this->username = $username;
-    }
-    public function setPassword($password)
-    {
-        $this->password = $password;
-    }
-    public function setFullName($fullName)
-    {
-        $this->fullName = $fullName;
-    }
-    public function setEmail($email)
-    {
-        $this->email = $email;
-    }
-    public function setRoleId($roleId)
-    {
-        $this->roleId = $roleId;
-    }
-        
     public function exchangeArray($data)
     {
         $this->id = (isset($data['id'])) ? $data['id'] : null;
-        $this->username = (isset($data['username'])) ? $data['username'] : null;
-        $this->password = (isset($data['password'])) ? $data['password'] : null;
-        $this->fullName = (isset($data['full_name'])) ? $data['full_name'] : null;
-        $this->email = (isset($data['email'])) ? $data['email'] : null;
-        $this->roleId = (isset($data['role_id'])) ? $data['role_id'] : null;
+        $this->nombre = (isset($data['nombre'])) ? $data['nombre'] : null;
+        $this->direccion = (isset($data['direccion'])) ? $data['direccion'] : null;
+        $this->pagina_web = (isset($data['pagina_web'])) ? $data['pagina_web'] : null;
+        $this->telefono = (isset($data['telefono'])) ? $data['telefono'] : null;
+        $this->telefono_2 = (isset($data['telefono_2'])) ? $data['telefono_2'] : null;
+        $this->contacto = (isset($data['contacto'])) ? $data['contacto'] : null;
+        $this->telefono_contacto = (isset($data['telefono_contacto'])) ? $data['telefono_contacto'] : null;
     }
  
     public function getArrayCopy()

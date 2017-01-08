@@ -22,7 +22,7 @@ return [
              * Expects: bool
              * Default: true
              */
-            'enabled' => false,
+            'enabled' => true,
 
             /**
              * Enables or disables the strict mode. If the strict mode is enabled, any error will throw an exception,
@@ -31,7 +31,7 @@ return [
              * Expects: bool
              * Default: true
              */
-            'strict' => false,
+            'strict' => true,
 
             /**
              * If enabled, the profiler tries to flush the content before the it starts collecting data. This option
@@ -114,7 +114,7 @@ return [
              * Expects: bool
              * Default: false
              */
-            'enabled' => false,
+            'enabled' => true,
 
             /**
              * If enabled, every empty collector will be hidden.
