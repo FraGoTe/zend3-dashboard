@@ -8,6 +8,7 @@ use Zend\Authentication\AuthenticationService;
 use Zend\Authentication\Result;
 use Zend\Db\Adapter\Adapter;
 use Zend\Db\Adapter\AdapterInterface;
+use Zend\Form\Form;
 
 /**
  * Description of Abstraction/Controller
@@ -55,6 +56,20 @@ abstract class ControllerCRUD extends AbstractActionController {
         $viewModel->urlPrefix = $this->getUrlPrefix();
         $viewModel->columnas = $this->columnasListar;
         $viewModel->setTemplate('negocio/crud/listar.phtml');
+
+        return $viewModel;
+    }
+    
+    public function agregarAction()
+    {		
+        
+        $viewModel = new ViewModel();
+        $viewModel->titulo = $this->titulo;
+        $viewModel->form = new Form('agregar');
+        $viewModel->campos = $this->describeColumnas;
+        $viewModel->camposDescripcion = $this->columnasListar;
+
+        $viewModel->setTemplate('negocio/crud/agregar.phtml');
 
         return $viewModel;
     }
