@@ -20,11 +20,11 @@ $this->headTitle($title);
         </div>
     </div>
 
-     <div class="clearfix"></div>
+    <div class="clearfix"></div>
     <div class="col-md-12 col-sm-12 col-xs-12">
         <div class="x_panel">
             <div class="x_title">
-                <h2><?= $this->escapeHtml($title); ?> <small>Listado de <?= $this->escapeHtml($title); ?></small></h2>
+                <h2>Listado</h2>
                 <ul class="nav navbar-right panel_toolbox">
                     <a class="btn btn-success" href="<?= $this->url($this->urlPrefix . 'agregar') ?>"><i class="fa fa-plus-circle">&nbsp;</i>Agregar nuevo</a>
                     <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
@@ -66,7 +66,7 @@ $this->headTitle($title);
                         $this->paginator,
                         'sliding',
                         'negocio/partial/paginator',
-                        ['route' => $this->url($this->urlPrefix . 'listar')]
+                        [$this->url($this->urlPrefix . 'listar')]
                     ) ?>
                 </div>
             </div>

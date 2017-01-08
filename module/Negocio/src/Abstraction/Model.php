@@ -8,6 +8,14 @@ use Zend\Db\ResultSet\ResultSet;
 use Zend\Paginator\Paginator;
 use Zend\Db\Sql\Select;
 use Zend\Db\Sql\Sql;
+use Zend\InputFilter\InputFilter;
+use DomainException;
+use Zend\Filter\StringTrim;
+use Zend\Filter\StripTags;
+use Zend\Filter\ToInt;
+use Zend\InputFilter\InputFilterAwareInterface;
+use Zend\InputFilter\InputFilterInterface;
+use Zend\Validator\StringLength;
 
 /**
  * Description of Abstraction/Model
@@ -64,5 +72,51 @@ abstract class Model {
         $paginator = new Paginator($paginatorAdapter);
         
         return $paginator;
+    }
+    
+    public function insertData($data)
+    {
+        $rs = $this->tableGateway->insert($data);
+       
+        return [
+            'result' => $rs
+        ];
+    }
+    
+    
+    public function getInputFilter($fields)
+    {
+        if (empty($fields)) {
+            return [];
+        }
+
+        $inputFilter = new InputFilter();
+
+        foreach ($fields as $name => $field) {
+            if (empty($field['AI'])) {
+                
+            $inputFilter->add([
+                'name' => $name,
+                'required' => $field['REQUIRED'],
+                'filters' => [
+                    ['name' => StripTags::class],
+                    ['name' => StringTrim::class],
+                ],
+                'validators' => [
+                    [
+                        'name' => StringLength::class,
+                        'options' => [
+                            'encoding' => 'UTF-8',
+                            'min' => $field['MIN_LENGHT'],
+                            'max' => $field['LENGHT'],
+                        ],
+                    ],
+                ],
+            ]);
+            }
+        }
+
+
+        return $inputFilter;
     }
 }

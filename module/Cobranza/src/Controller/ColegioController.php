@@ -27,42 +27,56 @@ class ColegioController extends ControllerCRUD
             'PK' => 0,
             'AI' => 0,
             'TIPO' => 'VARCHAR',
+            'REQUIRED' => true,
+            'MIN_LENGHT' => 1,
             'LENGHT' => 45
         ],
         'direccion' => [
             'PK' => 0,
             'AI' => 0,
             'TIPO' => 'VARCHAR',
+            'REQUIRED' => true,
+            'MIN_LENGHT' => 1,
             'LENGHT' => 45
         ],
         'pagina_web' => [
             'PK' => 0,
             'AI' => 0,
             'TIPO' => 'VARCHAR',
+            'REQUIRED' => true,
+            'MIN_LENGHT' => 1,
             'LENGHT' => 45
         ],
         'telefono' => [
             'PK' => 0,
             'AI' => 0,
             'TIPO' => 'VARCHAR',
+            'REQUIRED' => true,
+            'MIN_LENGHT' => 1,
             'LENGHT' => 45
         ],
         'telefono_2' => [
             'PK' => 0,
             'AI' => 0,
             'TIPO' => 'VARCHAR',
+            'REQUIRED' => true,
+            'MIN_LENGHT' => 1,
             'LENGHT' => 45
         ],
         'contacto' => [
             'PK' => 0,
             'AI' => 0,
             'TIPO' => 'VARCHAR',
+            'REQUIRED' => true,
+            'MIN_LENGHT' => 1,
             'LENGHT' => 45
         ],
         'telefono_contacto' => [
             'PK' => 0,
             'AI' => 0,
             'TIPO' => 'VARCHAR',
+            'REQUIRED' => true,
+            'MIN_LENGHT' => 1,
             'LENGHT' => 45
         ]
     );

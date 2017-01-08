@@ -48,7 +48,7 @@ abstract class ControllerCRUD extends AbstractActionController {
         $page = ($page < 1) ? 1 : $page;
         $paginator->setCurrentPageNumber($page);
 
-        $paginator->setItemCountPerPage(10);
+        $paginator->setItemCountPerPage(7);
         
         $viewModel = new ViewModel();
         $viewModel->titulo = $this->titulo;
@@ -62,16 +62,87 @@ abstract class ControllerCRUD extends AbstractActionController {
     
     public function agregarAction()
     {		
+        $form = new Form('agregar');
         
+        $request   = $this->getRequest();
+
         $viewModel = new ViewModel();
         $viewModel->titulo = $this->titulo;
-        $viewModel->form = new Form('agregar');
+        $viewModel->form = $form;
         $viewModel->campos = $this->describeColumnas;
         $viewModel->camposDescripcion = $this->columnasListar;
 
         $viewModel->setTemplate('negocio/crud/agregar.phtml');
+        
+
+        if (!$request->isPost()) {
+            return $viewModel;
+        }
+
+        $form->setInputFilter($this->table->getInputFilter($this->describeColumnas));
+        $form->setData($request->getPost());
+
+        if (!$form->isValid()) {
+            return $viewModel;
+        }
+
+        try {
+            $data = (array)$request->getPost();
+            unset($data['submit']);
+            unset($data['reset']);
+            $inserted = $this->table->insertData($data);
+            $viewModel->result = $inserted['result'];
+
+        } catch (\Exception $ex) {
+            $viewModel->result = 0;
+            var_dump($ex->getMessage());
+        }
 
         return $viewModel;
+    }
+    
+    public function actualizarAction()
+    {
+        $id = (int) $this->params()->fromRoute('id', 0);
+
+        if (0 === $id) {
+            return $this->redirect()->toRoute('album', ['action' => 'add']);
+        }
+
+        try {
+            $album = $this->table->getAlbum($id);
+        } catch (\Exception $e) {
+            return $this->redirect()->toRoute('album', ['action' => 'index']);
+        }
+
+        $form = new AlbumForm();
+        $form->bind($album);
+        $form->get('submit')->setAttribute('value', 'Edit');
+
+        $request = $this->getRequest();
+        $viewData = ['id' => $id, 'form' => $form];
+
+        if (! $request->isPost()) {
+            return $viewData;
+        }
+
+        $form->setInputFilter($album->getInputFilter());
+        $form->setData($request->getPost());
+
+        if (! $form->isValid()) {
+            return $viewData;
+        }
+
+        $this->table->saveAlbum($album);
+
+        if (!empty($this->indexRedirect)) {
+            $this->redirect()->toRoute($this->indexRedirect);	
+        } else {
+            $viewModel = new ViewModel();
+            $viewModel->setTemplate('negocio/crud/index.phtml');
+            
+            return $viewModel;
+        }
     }
     
     private function getCurrentClass()
