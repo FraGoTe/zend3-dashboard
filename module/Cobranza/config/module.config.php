@@ -44,6 +44,16 @@ return [
                     ],
                 ],
             ],
+            'cobranza-logout' => [
+                'type'    => Segment::class,
+                'options' => [
+                    'route'    => '/cobranza/logout',
+                    'defaults' => [
+                        'controller' => Controller\LoginController::class,
+                        'action'     => 'logout',
+                    ],
+                ],
+            ],
             'cobranza-colegio' => [
                 'type'    => Segment::class,
                 'options' => [

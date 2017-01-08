@@ -9,6 +9,7 @@ use Zend\Authentication\Result;
 use Zend\Db\Adapter\Adapter;
 use Zend\Db\Adapter\AdapterInterface;
 use Negocio\Model\UserTable;
+use Zend\Session\SessionManager;
 use Zend\Authentication\Adapter\DbTable as AuthAdapter;
 
 
@@ -50,7 +51,7 @@ class LoginController extends AbstractActionController
                         $storage = $auth->getStorage();
                         $userData = $authAdapter->getResultRowObject();
                         $storage->write($userData);
-                        var_dump($userData);exit;
+                        //var_dump($userData);exit;
                         /*
                         $objMenu = $sm->get('Panel\Model\GePrivilegioTable');
                         $objRol = $sm->get('Panel\Model\GeRolTable');
@@ -103,6 +104,6 @@ class LoginController extends AbstractActionController
             $sessionManager->forgetMe();
 	}			
 
-        $this->redirect()->toRoute('dash_login');		
+        $this->redirect()->toRoute('cobranza-login');		
     }
 }
