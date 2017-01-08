@@ -30,7 +30,7 @@ class LoginController extends AbstractActionController
         $message = ''; //Message
         
         if ($auth->hasIdentity()) {
-            return $this->redirect()->toRoute('dash_index');
+            return $this->redirect()->toRoute('cobranza-index');
         }
         
         if ($request->isPost()) {
@@ -44,14 +44,14 @@ class LoginController extends AbstractActionController
                             ->setIdentity(strtoupper($dataForm->usuario))
                             ->setCredential(strtoupper($dataForm->clave));
                     $result = $auth->authenticate();
-         
 
                 switch ($result->getCode()) {
                     case Result::SUCCESS:
                         $storage = $auth->getStorage();
                         $userData = $authAdapter->getResultRowObject();
                         $storage->write($userData);
-                        
+                        var_dump($userData);exit;
+                        /*
                         $objMenu = $sm->get('Panel\Model\GePrivilegioTable');
                         $objRol = $sm->get('Panel\Model\GeRolTable');
                         $objLogAcceso = $sm->get('Application\Model\AudAccesoTable');
@@ -74,8 +74,8 @@ class LoginController extends AbstractActionController
                         $userMenu->data = serialize($dataMenu);
                         $userMenuAcceso->data = serialize($objRol->obtenerAccesosPorRol($userSession->rolId));
                         $objLogAcceso->logAcceso();
-                        
-                       return $this->redirect()->toRoute('dash_index');
+                        */
+                       return $this->redirect()->toRoute('cobranza-index');
                        break;
                     case Result::FAILURE_UNCATEGORIZED:
                         $message = "El usuario ingresado no tiene acceso.";

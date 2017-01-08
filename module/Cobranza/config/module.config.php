@@ -24,6 +24,16 @@ return [
                     ],
                 ],
             ],
+            'cobranza-index' => [
+                'type'    => Segment::class,
+                'options' => [
+                    'route'    => '/cobranza',
+                    'defaults' => [
+                        'controller' => Controller\IndexController::class,
+                        'action'     => 'index',
+                    ],
+                ],
+            ],
             'cobranza-login' => [
                 'type'    => Segment::class,
                 'options' => [

@@ -7,13 +7,84 @@
 
 namespace Negocio;
 
+use Zend\Mvc\MvcEvent;
 use Zend\Db\Adapter\AdapterInterface;
 use Zend\Db\ResultSet\ResultSet;
 use Zend\Db\TableGateway\TableGateway;
+use Zend\Mvc\ModuleRouteListener;
 use Zend\ModuleManager\Feature\ConfigProviderInterface;
+use Zend\ModuleManager\Feature\AutoloaderProviderInterface;
 
-class Module implements ConfigProviderInterface
+
+class Module implements AutoloaderProviderInterface, ConfigProviderInterface
 {
+    public function onBootstrap(MvcEvent $e)
+    {
+        $eventManager = $e->getApplication()->getEventManager();
+        $moduleRouteListener = new ModuleRouteListener();
+        $moduleRouteListener->attach($eventManager);
+
+        $application = $e->getApplication();
+        $sm = $application->getServiceManager();
+        $sharedManager = $eventManager->getSharedManager();
+        //Setting layouts
+        $sharedManager->attach('Zend\Mvc\Controller\AbstractController', 'dispatch', function($e) {
+            
+            
+            $controller = $e->getTarget();
+            $controllerClass = get_class($controller);
+            $moduleNamespace = substr($controllerClass, 0, strpos($controllerClass, '\\'));
+            $config = $e->getApplication()->getServiceManager()->get('config');
+
+            if (isset($config['module_layouts'][$moduleNamespace])) {
+                $controller->layout($config['module_layouts'][$moduleNamespace]);
+            }
+        }, 100);
+        
+        $router = $sm->get('router');
+        $request = $sm->get('request');
+        $matchedRoute = $router->match($request);
+        if (null !== $matchedRoute) {
+            //Check the Authentication in every controller different with Login
+            //If there is no identity this will redirect to Login
+            $sharedManager->attach('Zend\Mvc\Controller\AbstractActionController', 'dispatch', function() use ($sm) {
+                $sm->get('ControllerPluginManager')->get('ModuleConditionalLoader')->isModuleAllowed();
+            }, 2);
+            $sharedManager->attach('Zend\Mvc\Controller\AbstractActionController', 'dispatch', function() use ($sm) {
+                $sm->get('ControllerPluginManager')->get('Authentication')->isAuthtenticated();
+            }, 2);
+        }
+    }
+    
+    public function getControllerPluginConfig() 
+    {
+        return [
+            'factories' => [
+                'ModuleConditionalLoader' => function($serviceManager) {
+                    $config = $serviceManager->get('Config');
+                    $appPlugin = new \Negocio\Plugin\ModuleConditionalLoader($config);
+                    return $appPlugin;
+                },
+                'Authentication' => function($serviceManager) {
+                    $config = $serviceManager->get('Config');
+                    $appPlugin = new \Negocio\Plugin\Authentication($config);
+                    return $appPlugin;
+                },
+            ]
+        ];
+    }
+    
+    public function getAutoloaderConfig()
+    {
+        return array(
+            'Zend\Loader\StandardAutoloader' => array(
+                'namespaces' => array(
+                    __NAMESPACE__ => __DIR__ . '/src/' . __NAMESPACE__,
+                ),
+            ),
+        );
+    }
+    
     public function getConfig()
     {
         return include __DIR__ . '/../config/module.config.php';

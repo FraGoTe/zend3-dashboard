@@ -16,5 +16,8 @@ return [
         'factories' => [            
             'Zend\Db\Adapter\Mysql' => 'Zend\Db\Adapter\AdapterServiceFactory',
         ]
-    ]
+    ],
+    'module_layouts' => [
+        'Cobranza' => 'layout/cobranza',
+   ],
 ];
