@@ -2,33 +2,74 @@
 $title = $this->titulo;
 $this->headTitle($title);
 ?>
-<h1><?= $this->escapeHtml($title); ?></h1>
-<p>
-    <a href="<?= $this->url($this->urlPrefix . 'agregar') ?>">Agregar nuevo</a>
-</p>
+<div class="row">
+    <div class="page-title col-md-12 col-sm-12 col-xs-12">
+        <div class="title_left">
+            <h3><?= $this->escapeHtml($title); ?></h3>
+        </div>
 
-<table class="table">
-    <tr>
-        <?php foreach ($this->columnas as $id => $cabecera) { ?>
-            <th><?= $cabecera; ?></th>
-        <?php } ?>
-        <th>&nbsp;</th>
-    </tr>
-    <?php if ($this->paginator->getTotalItemCount() > 0) { ?>
-        <?php foreach ($this->paginator as $fila) : // <-- change here! ?>
-            <tr>
-                <?php foreach ($this->columnas as $id => $cabecera) { ?>
-                    <td><?= $this->escapeHtml($fila->$id) ?></td>
-                <?php } ?>
-                <td>
-                    <a href="<?= $this->url($this->urlPrefix . 'editar', ['id' => $fila->id]) ?>">Edit</a>
-                    <a href="<?= $this->url($this->urlPrefix . 'eliminar', ['id' => $fila->id]) ?>">Delete</a>
-                </td>
-            </tr>
-        <?php endforeach; ?>
-    <?php } else { ?>
-            <tr>
-                <td colspan="<?= count($this->columnas) + 1 ?>">No se encontró información</td>
-            </tr>
-    <?php } ?>
-</table>
+        <div class="title_right">
+            <div class="col-md-5 col-sm-5 col-xs-12 form-group pull-right top_search">
+                <div class="input-group">
+                    <input type="text" class="form-control" placeholder="Buscar ...">
+                    <span class="input-group-btn">
+                        <button class="btn btn-default" type="button">Ir!</button>
+                    </span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+     <div class="clearfix"></div>
+    <div class="col-md-12 col-sm-12 col-xs-12">
+        <div class="x_panel">
+            <div class="x_title">
+                <h2><?= $this->escapeHtml($title); ?> <small>Listado de <?= $this->escapeHtml($title); ?></small></h2>
+                <ul class="nav navbar-right panel_toolbox">
+                    <a class="btn btn-success" href="<?= $this->url($this->urlPrefix . 'agregar') ?>"><i class="fa fa-plus-circle">&nbsp;</i>Agregar nuevo</a>
+                    <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
+                    </li>
+                </ul>
+                <div class="clearfix"></div>
+            </div>
+
+            <div class="x_content">
+                <div class="table-responsive">
+                    <table class="table table-striped jambo_table bulk_action">
+                        <thead>
+                            <tr class="headings">
+                                <?php foreach ($this->columnas as $id => $cabecera) { ?>
+                                    <th><?= $cabecera; ?></th>
+                                <?php } ?>
+                                <th>&nbsp;</th>
+                            </tr>
+                        </thead>
+                        <?php if ($this->paginator->getTotalItemCount() > 0) { ?>
+                            <?php foreach ($this->paginator as $fila) : ?>
+                                <tr>
+                                    <?php foreach ($this->columnas as $id => $cabecera) { ?>
+                                        <td><?= $this->escapeHtml($fila->$id) ?></td>
+                                    <?php } ?>
+                                    <td>
+                                        <a class="btn btn-warning btn-sm" href="<?= $this->url($this->urlPrefix . 'editar', ['id' => $fila->id]) ?>"><i class="fa fa-edit">&nbsp;</i>Editar</a>
+                                        <a class="btn btn-danger btn-sm" href="<?= $this->url($this->urlPrefix . 'eliminar', ['id' => $fila->id]) ?>"><i class="fa fa-times-circle">&nbsp;</i>Eliminar</a>
+                                    </td>
+                                </tr>
+                            <?php endforeach; ?>
+                        <?php } else { ?>
+                                <tr>
+                                    <td colspan="<?= count($this->columnas) + 1 ?>">No se encontró información</td>
+                                </tr>
+                        <?php } ?>
+                    </table>
+                    <?= $this->paginationControl(
+                        $this->paginator,
+                        'sliding',
+                        'negocio/partial/paginator',
+                        ['route' => $this->url($this->urlPrefix . 'listar')]
+                    ) ?>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

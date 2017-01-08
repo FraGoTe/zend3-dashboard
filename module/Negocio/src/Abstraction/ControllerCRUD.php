@@ -19,6 +19,7 @@ abstract class ControllerCRUD extends AbstractActionController {
     private $table; 
     protected $titulo;
     protected $columnasListar;
+    protected $describeColumnas;
     protected $indexRedirect;
     
     public function __construct($table)
