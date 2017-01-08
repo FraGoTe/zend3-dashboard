@@ -101,10 +101,10 @@ abstract class ControllerCRUD extends AbstractActionController {
         return $viewModel;
     }
     
-    public function actualizarAction()
+    public function editarAction()
     {
-        $id = (int) $this->params()->fromRoute('id', 0);
-
+        $params = $this->params()->fromQuery();
+        var_dump($params);exit;
         if (0 === $id) {
             return $this->redirect()->toRoute('album', ['action' => 'add']);
         }
