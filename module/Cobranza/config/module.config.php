@@ -87,7 +87,7 @@ return [
             'cobranza-colegio-editar' => [
                 'type'    => Segment::class,
                 'options' => [
-                    'route'    => '/cobranza/colegio/editar',
+                    'route'    => '/cobranza/colegio/editar/id/:id',
                     'defaults' => [
                         'controller' => Controller\ColegioController::class,
                         'action'     => 'editar',
@@ -97,7 +97,7 @@ return [
             'cobranza-colegio-eliminar' => [
                 'type'    => Segment::class,
                 'options' => [
-                    'route'    => '/cobranza/colegio/eliminar',
+                    'route'    => '/cobranza/colegio/eliminar/id/:id',
                     'defaults' => [
                         'controller' => Controller\ColegioController::class,
                         'action'     => 'eliminar',

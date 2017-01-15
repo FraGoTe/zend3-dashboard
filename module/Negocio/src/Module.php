@@ -29,8 +29,6 @@ class Module implements AutoloaderProviderInterface, ConfigProviderInterface
         $sharedManager = $eventManager->getSharedManager();
         //Setting layouts
         $sharedManager->attach('Zend\Mvc\Controller\AbstractController', 'dispatch', function($e) {
-            
-            
             $controller = $e->getTarget();
             $controllerClass = get_class($controller);
             $moduleNamespace = substr($controllerClass, 0, strpos($controllerClass, '\\'));

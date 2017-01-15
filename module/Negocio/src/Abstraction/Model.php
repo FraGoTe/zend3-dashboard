@@ -83,6 +83,14 @@ abstract class Model {
         ];
     }
     
+    public function updateData($updateKeys, $setData)
+    {
+        $rs = $this->tableGateway->update($setData, $updateKeys);
+       
+        return [
+            'result' => $rs
+        ];
+    }
     
     public function getInputFilter($fields)
     {

@@ -19,9 +19,65 @@ abstract class ControllerCRUD extends AbstractActionController {
     
     private $table; 
     protected $titulo;
+    protected $tableIds;
     protected $columnasListar;
     protected $describeColumnas;
     protected $indexRedirect;
+    
+    public function getTableIds()
+    {
+        return $this->tableIds;
+    }
+
+    public function setTableIds($tableIds)
+    {
+        $this->tableIds = $tableIds;
+        return $this;
+    }
+    
+    public function getTitulo()
+    {
+        return $this->titulo;
+    }
+
+    public function getColumnasListar()
+    {
+        return $this->columnasListar;
+    }
+
+    public function getDescribeColumnas()
+    {
+        return $this->describeColumnas;
+    }
+
+    public function getIndexRedirect()
+    {
+        return $this->indexRedirect;
+    }
+
+    public function setTitulo($titulo)
+    {
+        $this->titulo = $titulo;
+        return $this;
+    }
+
+    public function setColumnasListar($columnasListar)
+    {
+        $this->columnasListar = $columnasListar;
+        return $this;
+    }
+
+    public function setDescribeColumnas($describeColumnas)
+    {
+        $this->describeColumnas = $describeColumnas;
+        return $this;
+    }
+
+    public function setIndexRedirect($indexRedirect)
+    {
+        $this->indexRedirect = $indexRedirect;
+        return $this;
+    }
     
     public function __construct($table)
     {
@@ -30,8 +86,8 @@ abstract class ControllerCRUD extends AbstractActionController {
     
     public function indexAction()
     {   
-        if (!empty($this->indexRedirect)) {
-            $this->redirect()->toRoute($this->indexRedirect);	
+        if (!empty($this->getIndexRedirect())) {
+            $this->redirect()->toRoute($this->getIndexRedirect());	
         } else {
             $viewModel = new ViewModel();
             $viewModel->setTemplate('negocio/crud/index.phtml');
@@ -51,10 +107,10 @@ abstract class ControllerCRUD extends AbstractActionController {
         $paginator->setItemCountPerPage(7);
         
         $viewModel = new ViewModel();
-        $viewModel->titulo = $this->titulo;
+        $viewModel->titulo = $this->getTitulo();
         $viewModel->paginator = $paginator;
         $viewModel->urlPrefix = $this->getUrlPrefix();
-        $viewModel->columnas = $this->columnasListar;
+        $viewModel->columnas = $this->getColumnasListar();
         $viewModel->setTemplate('negocio/crud/listar.phtml');
 
         return $viewModel;
@@ -67,10 +123,10 @@ abstract class ControllerCRUD extends AbstractActionController {
         $request   = $this->getRequest();
 
         $viewModel = new ViewModel();
-        $viewModel->titulo = $this->titulo;
+        $viewModel->titulo = $this->getTitulo();
         $viewModel->form = $form;
-        $viewModel->campos = $this->describeColumnas;
-        $viewModel->camposDescripcion = $this->columnasListar;
+        $viewModel->campos = $this->getDescribeColumnas();
+        $viewModel->camposDescripcion = $this->getColumnasListar();
 
         $viewModel->setTemplate('negocio/crud/agregar.phtml');
         
@@ -79,7 +135,7 @@ abstract class ControllerCRUD extends AbstractActionController {
             return $viewModel;
         }
 
-        $form->setInputFilter($this->table->getInputFilter($this->describeColumnas));
+        $form->setInputFilter($this->table->getInputFilter($this->getDescribeColumnas()));
         $form->setData($request->getPost());
 
         if (!$form->isValid()) {
@@ -103,10 +159,14 @@ abstract class ControllerCRUD extends AbstractActionController {
     
     public function editarAction()
     {
-        $params = $this->params()->fromQuery();
-        var_dump($params);exit;
-        if (0 === $id) {
-            return $this->redirect()->toRoute('album', ['action' => 'add']);
+        $paramsId = $this->getTableIds();
+        
+        foreach ($paramsId as $tableId) {
+            $id[$tableId] = $this->params($tableId);
+        }
+                
+        if (empty($id)) {
+            return $this->redirect()->toRoute($this->getIndexRedirect());
         }
 
         try {
@@ -136,7 +196,7 @@ abstract class ControllerCRUD extends AbstractActionController {
         $this->table->saveAlbum($album);
 
         if (!empty($this->indexRedirect)) {
-            $this->redirect()->toRoute($this->indexRedirect);	
+            $this->redirect()->toRoute($this->getIndexRedirect());	
         } else {
             $viewModel = new ViewModel();
             $viewModel->setTemplate('negocio/crud/index.phtml');
