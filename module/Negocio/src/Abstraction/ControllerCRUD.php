@@ -151,14 +151,16 @@ abstract class ControllerCRUD extends AbstractActionController {
 
         } catch (\Exception $ex) {
             $viewModel->result = 0;
-            var_dump($ex->getMessage());
         }
-
+        
         return $viewModel;
     }
     
     public function editarAction()
     {
+        $viewModel = new ViewModel();
+        $request = $this->getRequest();
+
         $paramsId = $this->getTableIds();
         
         foreach ($paramsId as $tableId) {
@@ -169,40 +171,82 @@ abstract class ControllerCRUD extends AbstractActionController {
             return $this->redirect()->toRoute($this->getIndexRedirect());
         }
 
-        try {
-            $album = $this->table->getAlbum($id);
-        } catch (\Exception $e) {
-            return $this->redirect()->toRoute('album', ['action' => 'index']);
+        $data = $this->table->getData($id);
+
+        $form = new Form('agregar');
+
+        $viewModel->titulo = $this->getTitulo();
+        $viewModel->form = $form;
+        $viewModel->campos = $this->getDescribeColumnas();
+        $viewModel->defaultValue = $data['data']->toArray()[0];
+        $viewModel->camposDescripcion = $this->getColumnasListar();
+        $viewModel->isEdit = true;
+        $viewModel->setTemplate('negocio/crud/agregar.phtml');
+        
+        if (!$request->isPost()) {
+            return $viewModel;
         }
-
-        $form = new AlbumForm();
-        $form->bind($album);
-        $form->get('submit')->setAttribute('value', 'Edit');
-
-        $request = $this->getRequest();
-        $viewData = ['id' => $id, 'form' => $form];
-
-        if (! $request->isPost()) {
-            return $viewData;
-        }
-
-        $form->setInputFilter($album->getInputFilter());
+       
+        $form->setInputFilter($this->table->getInputFilter($this->getDescribeColumnas()));
         $form->setData($request->getPost());
 
         if (! $form->isValid()) {
             return $viewData;
         }
 
-        $this->table->saveAlbum($album);
+        $setValues = $request->getPost()->toArray();
+        $intersec = array_intersect_key($setValues, $id);
+        
+        foreach ($setValues as $key => $value) {
+            if (array_key_exists($key, $intersec)) {
+                unset($setValues[$key]);
+            }
+        }
+        
+        unset($setValues['submit']);
+
+        $this->table->updateData($id, $setValues);
 
         if (!empty($this->indexRedirect)) {
             $this->redirect()->toRoute($this->getIndexRedirect());	
         } else {
-            $viewModel = new ViewModel();
             $viewModel->setTemplate('negocio/crud/index.phtml');
             
             return $viewModel;
         }
+    }
+    
+    public function eliminarAction()
+    {
+        $viewModel = new ViewModel();
+        $paramsId = $this->getTableIds();
+        
+        foreach ($paramsId as $tableId) {
+            $id[$tableId] = $this->params($tableId);
+        }        
+        
+        if (empty($id)) {
+            return $this->redirect()->toRoute($this->getIndexRedirect());
+        }
+
+        $request = $this->getRequest();
+        if ($request->isPost()) {
+            $del = $request->getPost('del', 'No');
+
+            if ($del == 'Yes') {
+                $id = (int) $request->getPost('id');
+                $this->table->deleteAlbum($id);
+            }
+
+            $this->redirect()->toRoute($this->getIndexRedirect());	
+        }
+
+        $viewModel->setTemplate('negocio/crud/eliminar.phtml');
+        
+        $viewModel->ids = $id;
+        $viewModel->data = $this->table->getData($id);
+
+        return $viewModel;
     }
     
     private function getCurrentClass()

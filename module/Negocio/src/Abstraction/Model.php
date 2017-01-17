@@ -74,6 +74,15 @@ abstract class Model {
         return $paginator;
     }
     
+    public function getData($dataKey)
+    {
+        $dataRow = $this->tableGateway->select($dataKey);
+       
+        return [
+            'data' => $dataRow
+        ];
+    }
+    
     public function insertData($data)
     {
         $rs = $this->tableGateway->insert($data);

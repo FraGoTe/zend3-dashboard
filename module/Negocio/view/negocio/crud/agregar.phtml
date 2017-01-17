@@ -4,21 +4,25 @@ $title = $this->titulo;
 $this->headTitle($title);
 
 $form = $this->form;
-$form->setAttribute('action', $this->url());
+//$form->setAttribute('action', $this->url());
 $form->setAttribute('class', 'form-horizontal form-label-left');
 
+$isEdit = (!empty($this->isEdit) ? true : false);
+$btnDsc = (!empty($isEdit) ? 'Editar' : 'Agregar');
 $campos = $this->campos;
 $descripciones = $this->camposDescripcion;
 foreach ($campos as $keyField => $field) {
-    if (empty($field['AI']) || $field['AI'] == 0) {
+    if (((empty($field['AI']) || $field['AI'] == 0) && !$isEdit) || $isEdit) {
         
         $form->add([
             'name' => $keyField,
             'type' => 'text',
             'attributes' => [
                'class' => 'form-control col-md-7 col-xs-12',
-                'maxlength' => $field['LENGHT'],
+                'maxlength' => (!empty($field['LENGHT']) ? $field['LENGHT'] : null),
                 'required' => 'required',
+                'value' => (!empty($this->defaultValue[$keyField])? $this->defaultValue[$keyField]: ''),
+                'readonly' => (!empty($field['PK'])? $field['PK']: ''),
             ],
             'options' => [
                 'label' => $descripciones[$keyField],
@@ -43,7 +47,7 @@ $form->add([
     'name' => 'submit',
     'attributes' => [
         'class' => 'btn btn-success',
-        'value' => 'Agregar',
+        'value' => $btnDsc,
     ],
 ]);
 $submit = $form->get('submit');
