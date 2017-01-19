@@ -354,6 +354,56 @@ return [
                     ],
                 ],
             ],
+            'cobranza-pasajero' => [
+                'type'    => Segment::class,
+                'options' => [
+                    'route'    => '/cobranza/pasajero',
+                    'defaults' => [
+                        'controller' => Controller\PasajeroController::class,
+                        'action'     => 'index',
+                    ],
+                ],
+            ],
+            'cobranza-pasajero-listar' => [
+                'type'    => Segment::class,
+                'options' => [
+                    'route'    => '/cobranza/pasajero/listar',
+                    'defaults' => [
+                        'controller' => Controller\PasajeroController::class,
+                        'action'     => 'listar',
+                    ],
+                ],
+            ],
+            'cobranza-pasajero-agregar' => [
+                'type'    => Segment::class,
+                'options' => [
+                    'route'    => '/cobranza/pasajero/agregar',
+                    'defaults' => [
+                        'controller' => Controller\PasajeroController::class,
+                        'action'     => 'agregar',
+                    ],
+                ],
+            ],
+            'cobranza-pasajero-editar' => [
+                'type'    => Segment::class,
+                'options' => [
+                    'route'    => '/cobranza/pasajero/editar/id/:id',
+                    'defaults' => [
+                        'controller' => Controller\PasajeroController::class,
+                        'action'     => 'editar',
+                    ],
+                ],
+            ],
+            'cobranza-pasajero-eliminar' => [
+                'type'    => Segment::class,
+                'options' => [
+                    'route'    => '/cobranza/pasajero/eliminar/id/:id',
+                    'defaults' => [
+                        'controller' => Controller\PasajeroController::class,
+                        'action'     => 'eliminar',
+                    ],
+                ],
+            ],
         ],
     ],
     /*'controllers' => [
