@@ -23,6 +23,11 @@ class Module
     {
         return [
             'factories' => [
+                Controller\TipoDocumentoController::class => function($container) {
+                    return new Controller\TipoDocumentoController(
+                        $container->get(Model\TipoDocumento::class)
+                    );
+                },
                 Controller\CtaBancariaController::class => function($container) {
                     return new Controller\CtaBancariaController(
                         $container->get(Model\CtaBancaria::class)
