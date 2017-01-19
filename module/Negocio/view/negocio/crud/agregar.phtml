@@ -11,9 +11,11 @@ $isEdit = (!empty($this->isEdit) ? true : false);
 $btnDsc = (!empty($isEdit) ? 'Editar' : 'Agregar');
 $campos = $this->campos;
 $descripciones = $this->camposDescripcion;
+
 foreach ($campos as $keyField => $field) {
-    if (((empty($field['AI']) || $field['AI'] == 0) && !$isEdit) || $isEdit) {
-        
+    $showField = false;
+    
+    if ((((empty($field['AI']) || $field['AI'] == 0) && !$isEdit) || $isEdit) && empty($field['FK'])) {
         $form->add([
             'name' => $keyField,
             'type' => 'text',
@@ -32,8 +34,32 @@ foreach ($campos as $keyField => $field) {
             ],
         ]);
         
-        $formFields[] = $form->get($keyField);
+        $showField = true;
+    }
+                
+    if (!empty($field['FK'])) {
+        $form->add([
+            'name' => $keyField,
+            'type' => 'select',
+            'attributes' => [
+               'class' => 'form-control col-md-7 col-xs-12',
+                'required' => 'required',
+                'value' => (!empty($this->defaultValue[$keyField])? $this->defaultValue[$keyField]: ''),
+            ],
+            'options' => [
+                'label' => $descripciones[$keyField],
+                'label_attributes' => array(
+                    'class' => 'control-label col-md-3 col-sm-3 col-xs-12',
+                ),
+                'value_options' => $this->fk[$field['FUNC']]
+            ],
+        ]);
         
+        $showField = true;
+    }
+    
+    if ($showField) {
+        $formFields[] = $form->get($keyField);
     }
 }
 

@@ -124,6 +124,9 @@ abstract class ControllerCRUD extends AbstractActionController {
         $viewModel->paginator = $paginator;
         $viewModel->urlPrefix = $this->getUrlPrefix();
         $viewModel->columnas = $this->getColumnasListar();
+        $viewModel->dscColumn = $this->getDescribeColumnas();
+        $viewModel->fk = $this->getDataFk($this->getDescribeColumnas());
+
         $viewModel->setTemplate('negocio/crud/listar.phtml');
 
         return $viewModel;
@@ -134,16 +137,20 @@ abstract class ControllerCRUD extends AbstractActionController {
         $form = new Form('agregar');
         
         $request   = $this->getRequest();
+        
+        $columnasDetalle = $this->getDescribeColumnas();
 
         $viewModel = new ViewModel();
         $viewModel->titulo = $this->getTitulo();
         $viewModel->form = $form;
-        $viewModel->campos = $this->getDescribeColumnas();
+        $viewModel->campos = $columnasDetalle;
         $viewModel->camposDescripcion = $this->getColumnasListar();
 
         $viewModel->setTemplate('negocio/crud/agregar.phtml');
         
         if (!$request->isPost()) {
+            $viewModel->fk = $this->getDataFk($columnasDetalle);
+            
             return $viewModel;
         }
 
@@ -196,6 +203,8 @@ abstract class ControllerCRUD extends AbstractActionController {
         $viewModel->setTemplate('negocio/crud/agregar.phtml');
         
         if (!$request->isPost()) {
+            $viewModel->fk = $this->getDataFk($this->getDescribeColumnas());
+
             return $viewModel;
         }
        
@@ -269,6 +278,21 @@ abstract class ControllerCRUD extends AbstractActionController {
         $viewModel->dscItemEliminar = $dscItemEliminar;
         
         return $viewModel;
+    }
+    
+    private function getDataFk($columnasDetalle)
+    {
+        $data = [];
+        foreach ($columnasDetalle as $value) {
+            if (!empty($value['FK'])) {
+                $fn = $value['FUNC'];
+                $data = [
+                    $fn => $this->table->$fn()
+                ];
+            }
+        }
+        
+        return $data;
     }
     
     private function getCurrentClass()

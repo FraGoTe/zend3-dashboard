@@ -23,6 +23,11 @@ class Module
     {
         return [
             'factories' => [
+                Controller\CtaBancariaController::class => function($container) {
+                    return new Controller\CtaBancariaController(
+                        $container->get(Model\CtaBancaria::class)
+                    );
+                },
                 Controller\CategoriaController::class => function($container) {
                     return new Controller\CategoriaController(
                         $container->get(Model\Categoria::class)

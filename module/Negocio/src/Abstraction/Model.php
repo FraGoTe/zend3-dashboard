@@ -25,10 +25,12 @@ use Zend\Validator\StringLength;
 abstract class Model {
     
     protected $tableGateway;
+    protected $fkTable;
     
-    public function __construct(TableGateway $tableGateway)
+    public function __construct(TableGateway $tableGateway, $fkTable = array())
     {
         $this->tableGateway = $tableGateway;
+        $this->fkTable = $fkTable;
     }
     
     public function getClassName()
@@ -76,7 +78,12 @@ abstract class Model {
     
     public function getData($dataKey)
     {
-        $dataRow = $this->tableGateway->select($dataKey);
+        try {
+            $dataRow = $this->tableGateway->select($dataKey);
+        } catch (\Exception $e) {
+            error_log($e->getMessage());
+            $rs = false;
+        }
        
         return [
             'data' => $dataRow
@@ -85,8 +92,13 @@ abstract class Model {
     
     public function insertData($data)
     {
-        $rs = $this->tableGateway->insert($data);
-       
+        try {
+            $rs = $this->tableGateway->insert($data);
+        } catch (\Exception $e) {
+            error_log($e->getMessage());
+            $rs = false;
+        }
+        
         return [
             'result' => $rs
         ];
@@ -94,8 +106,14 @@ abstract class Model {
     
     public function updateData($updateKeys, $setData)
     {
-        $rs = $this->tableGateway->update($setData, $updateKeys);
-       
+        try {
+            $rs = $this->tableGateway->update($setData, $updateKeys);
+        } catch (\Exception $e) {
+            error_log($e->getMessage());
+            $rs = false;
+        }
+
+        
         return [
             'result' => $rs
         ];
@@ -103,8 +121,13 @@ abstract class Model {
     
     public function deleteData($keyInfo)
     {
-        $rs = $this->tableGateway->delete($keyInfo);
-       
+        try {
+            $rs = $this->tableGateway->delete($keyInfo);
+        } catch (\Exception $e) {
+            error_log($e->getMessage());
+            $rs = false;
+        }
+
         return $rs;
     }
     
@@ -117,26 +140,44 @@ abstract class Model {
         $inputFilter = new InputFilter();
 
         foreach ($fields as $name => $field) {
-            if (empty($field['AI'])) {
-                
-            $inputFilter->add([
-                'name' => $name,
-                'required' => $field['REQUIRED'],
-                'filters' => [
-                    ['name' => StripTags::class],
-                    ['name' => StringTrim::class],
-                ],
-                'validators' => [
-                    [
-                        'name' => StringLength::class,
-                        'options' => [
-                            'encoding' => 'UTF-8',
-                            'min' => $field['MIN_LENGHT'],
-                            'max' => $field['LENGHT'],
+            if (empty($field['AI']) && empty($field['FK'])) {
+                $inputFilter->add([
+                    'name' => $name,
+                    'required' => $field['REQUIRED'],
+                    'filters' => [
+                        ['name' => StripTags::class],
+                        ['name' => StringTrim::class],
+                    ],
+                    'validators' => [
+                        [
+                            'name' => StringLength::class,
+                            'options' => [
+                                'encoding' => 'UTF-8',
+                                'min' => $field['MIN_LENGHT'],
+                                'max' => $field['LENGHT'],
+                            ],
                         ],
                     ],
-                ],
-            ]);
+                ]);
+            }
+            
+            if (!empty($field['FK'])) {
+                $inputFilter->add([
+                    'name' => $name,
+                    'required' => $field['REQUIRED'],
+                    'filters' => [
+                        ['name' => StripTags::class],
+                        ['name' => StringTrim::class],
+                    ],
+                    'validators' => [
+                        [
+                            'name' => StringLength::class,
+                            'options' => [
+                                'encoding' => 'UTF-8',
+                            ],
+                        ],
+                    ],
+                ]);
             }
         }
 

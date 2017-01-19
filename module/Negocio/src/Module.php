@@ -92,6 +92,20 @@ class Module implements AutoloaderProviderInterface, ConfigProviderInterface
     {
         return [
             'factories' => [
+                Model\CtaBancaria::class => function($container) {
+                    $tableGateway = $container->get(Model\CtaBancariaTable::class);
+                    $fk = array (
+                        'banco' => $container->get(Model\BancoTable::class)
+                    );
+                    
+                    return new Model\CtaBancariaTable($tableGateway, $fk);
+                },
+                Model\CtaBancariaTable::class => function ($container) {
+                    $dbAdapter = $container->get(AdapterInterface::class);
+                    $resultSetPrototype = new ResultSet();
+                    $resultSetPrototype->setArrayObjectPrototype(new Model\CtaBancaria());
+                    return new TableGateway('cta_bancaria', $dbAdapter, null, $resultSetPrototype);
+                },
                 Model\User::class => function($container) {
                     $tableGateway = $container->get(Model\UserTable::class);
                     return new Model\UserTable($tableGateway);

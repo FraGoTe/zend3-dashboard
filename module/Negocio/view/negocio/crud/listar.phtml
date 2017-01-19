@@ -48,7 +48,18 @@ $this->headTitle($title);
                             <?php foreach ($this->paginator as $fila) : ?>
                                 <tr>
                                     <?php foreach ($this->columnas as $id => $cabecera) { ?>
-                                        <td><?= $this->escapeHtml($fila->$id) ?></td>
+                                        <td>
+                                            <?php 
+                                            
+                                            if (!empty($this->dscColumn[$id]['FK'])) {
+                                                $fn = $this->dscColumn[$id]['FUNC'];
+                                                echo $this->escapeHtml($this->fk[$fn][$fila->$id]);
+                                            } else {
+                                                echo $this->escapeHtml($fila->$id);
+                                            } 
+                                            
+                                            ?>
+                                        </td>
                                     <?php } ?>
                                     <td>
                                         <a class="btn btn-warning btn-sm" href="<?= $this->url($this->urlPrefix . 'editar', ['id' => $fila->id]) ?>"><i class="fa fa-edit">&nbsp;</i>Editar</a>

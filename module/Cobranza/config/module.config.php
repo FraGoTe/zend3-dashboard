@@ -204,7 +204,6 @@ return [
                     ],
                 ],
             ],
-            
             'cobranza-categoria' => [
                 'type'    => Segment::class,
                 'options' => [
@@ -251,6 +250,56 @@ return [
                     'route'    => '/cobranza/tipo-pax/eliminar/id/:id',
                     'defaults' => [
                         'controller' => Controller\CategoriaController::class,
+                        'action'     => 'eliminar',
+                    ],
+                ],
+            ],
+            'cobranza-ctabancaria' => [
+                'type'    => Segment::class,
+                'options' => [
+                    'route'    => '/cobranza/cta-bancaria',
+                    'defaults' => [
+                        'controller' => Controller\CtaBancariaController::class,
+                        'action'     => 'index',
+                    ],
+                ],
+            ],
+            'cobranza-ctabancaria-listar' => [
+                'type'    => Segment::class,
+                'options' => [
+                    'route'    => '/cobranza/cta-bancaria/listar',
+                    'defaults' => [
+                        'controller' => Controller\CtaBancariaController::class,
+                        'action'     => 'listar',
+                    ],
+                ],
+            ],
+            'cobranza-ctabancaria-agregar' => [
+                'type'    => Segment::class,
+                'options' => [
+                    'route'    => '/cobranza/cta-bancaria/agregar',
+                    'defaults' => [
+                        'controller' => Controller\CtaBancariaController::class,
+                        'action'     => 'agregar',
+                    ],
+                ],
+            ],
+            'cobranza-ctabancaria-editar' => [
+                'type'    => Segment::class,
+                'options' => [
+                    'route'    => '/cobranza/cta-bancaria/editar/id/:id',
+                    'defaults' => [
+                        'controller' => Controller\CtaBancariaController::class,
+                        'action'     => 'editar',
+                    ],
+                ],
+            ],
+            'cobranza-ctabancaria-eliminar' => [
+                'type'    => Segment::class,
+                'options' => [
+                    'route'    => '/cobranza/cta-bancaria/eliminar/id/:id',
+                    'defaults' => [
+                        'controller' => Controller\CtaBancariaController::class,
                         'action'     => 'eliminar',
                     ],
                 ],
