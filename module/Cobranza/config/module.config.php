@@ -304,52 +304,52 @@ return [
                     ],
                 ],
             ],
-            'cobranza-tipodocumento' => [
+            'cobranza-nacionalidad' => [
                 'type'    => Segment::class,
                 'options' => [
-                    'route'    => '/cobranza/tipo-documento',
+                    'route'    => '/cobranza/nacionalidad',
                     'defaults' => [
-                        'controller' => Controller\TipoDocumentoController::class,
+                        'controller' => Controller\NacionalidadController::class,
                         'action'     => 'index',
                     ],
                 ],
             ],
-            'cobranza-tipodocumento-listar' => [
+            'cobranza-nacionalidad-listar' => [
                 'type'    => Segment::class,
                 'options' => [
-                    'route'    => '/cobranza/tipo-documento/listar',
+                    'route'    => '/cobranza/nacionalidad/listar',
                     'defaults' => [
-                        'controller' => Controller\TipoDocumentoController::class,
+                        'controller' => Controller\NacionalidadController::class,
                         'action'     => 'listar',
                     ],
                 ],
             ],
-            'cobranza-tipodocumento-agregar' => [
+            'cobranza-nacionalidad-agregar' => [
                 'type'    => Segment::class,
                 'options' => [
-                    'route'    => '/cobranza/tipo-documento/agregar',
+                    'route'    => '/cobranza/nacionalidad/agregar',
                     'defaults' => [
-                        'controller' => Controller\TipoDocumentoController::class,
+                        'controller' => Controller\NacionalidadController::class,
                         'action'     => 'agregar',
                     ],
                 ],
             ],
-            'cobranza-tipodocumento-editar' => [
+            'cobranza-nacionalidad-editar' => [
                 'type'    => Segment::class,
                 'options' => [
-                    'route'    => '/cobranza/tipo-documento/editar/id/:id',
+                    'route'    => '/cobranza/nacionalidad/editar/id/:id',
                     'defaults' => [
-                        'controller' => Controller\TipoDocumentoController::class,
+                        'controller' => Controller\NacionalidadController::class,
                         'action'     => 'editar',
                     ],
                 ],
             ],
-            'cobranza-tipodocumento-eliminar' => [
+            'cobranza-nacionalidad-eliminar' => [
                 'type'    => Segment::class,
                 'options' => [
-                    'route'    => '/cobranza/tipo-documento/eliminar/id/:id',
+                    'route'    => '/cobranza/nacionalidad/eliminar/id/:id',
                     'defaults' => [
-                        'controller' => Controller\TipoDocumentoController::class,
+                        'controller' => Controller\NacionalidadController::class,
                         'action'     => 'eliminar',
                     ],
                 ],

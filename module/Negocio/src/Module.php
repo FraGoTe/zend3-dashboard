@@ -92,6 +92,17 @@ class Module implements AutoloaderProviderInterface, ConfigProviderInterface
     {
         return [
             'factories' => [
+                Model\Nacionalidad::class => function($container) {
+                    $tableGateway = $container->get(Model\NacionalidadTable::class);
+                    
+                    return new Model\NacionalidadTable($tableGateway);
+                },
+                Model\NacionalidadTable::class => function ($container) {
+                    $dbAdapter = $container->get(AdapterInterface::class);
+                    $resultSetPrototype = new ResultSet();
+                    $resultSetPrototype->setArrayObjectPrototype(new Model\Nacionalidad());
+                    return new TableGateway('nacionalidad', $dbAdapter, null, $resultSetPrototype);
+                },
                 Model\TipoDocumento::class => function($container) {
                     $tableGateway = $container->get(Model\TipoDocumentoTable::class);
                     

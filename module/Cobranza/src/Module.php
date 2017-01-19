@@ -23,6 +23,11 @@ class Module
     {
         return [
             'factories' => [
+                Controller\NacionalidadController::class => function($container) {
+                    return new Controller\NacionalidadController(
+                        $container->get(Model\Nacionalidad::class)
+                    );
+                },
                 Controller\TipoDocumentoController::class => function($container) {
                     return new Controller\TipoDocumentoController(
                         $container->get(Model\TipoDocumento::class)
