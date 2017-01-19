@@ -101,6 +101,13 @@ abstract class Model {
         ];
     }
     
+    public function deleteData($keyInfo)
+    {
+        $rs = $this->tableGateway->delete($keyInfo);
+       
+        return $rs;
+    }
+    
     public function getInputFilter($fields)
     {
         if (empty($fields)) {

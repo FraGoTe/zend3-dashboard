@@ -112,6 +112,36 @@ class Module implements AutoloaderProviderInterface, ConfigProviderInterface
                     $resultSetPrototype->setArrayObjectPrototype(new Model\Colegio());
                     return new TableGateway('colegio', $dbAdapter, null, $resultSetPrototype);
                 },
+                Model\Moneda::class => function($container) {
+                    $tableGateway = $container->get(Model\MonedaTable::class);
+                    return new Model\MonedaTable($tableGateway);
+                },
+                Model\MonedaTable::class => function ($container) {
+                    $dbAdapter = $container->get(AdapterInterface::class);
+                    $resultSetPrototype = new ResultSet();
+                    $resultSetPrototype->setArrayObjectPrototype(new Model\Moneda());
+                    return new TableGateway('moneda', $dbAdapter, null, $resultSetPrototype);
+                },
+                Model\Banco::class => function($container) {
+                    $tableGateway = $container->get(Model\BancoTable::class);
+                    return new Model\BancoTable($tableGateway);
+                },
+                Model\BancoTable::class => function ($container) {
+                    $dbAdapter = $container->get(AdapterInterface::class);
+                    $resultSetPrototype = new ResultSet();
+                    $resultSetPrototype->setArrayObjectPrototype(new Model\Banco());
+                    return new TableGateway('banco', $dbAdapter, null, $resultSetPrototype);
+                },
+                Model\Categoria::class => function($container) {
+                    $tableGateway = $container->get(Model\CategoriaTable::class);
+                    return new Model\CategoriaTable($tableGateway);
+                },
+                Model\CategoriaTable::class => function ($container) {
+                    $dbAdapter = $container->get(AdapterInterface::class);
+                    $resultSetPrototype = new ResultSet();
+                    $resultSetPrototype->setArrayObjectPrototype(new Model\Categoria());
+                    return new TableGateway('categoria', $dbAdapter, null, $resultSetPrototype);
+                },
             ],
         ];
     }

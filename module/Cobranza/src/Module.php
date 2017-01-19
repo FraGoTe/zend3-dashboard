@@ -23,6 +23,21 @@ class Module
     {
         return [
             'factories' => [
+                Controller\CategoriaController::class => function($container) {
+                    return new Controller\CategoriaController(
+                        $container->get(Model\Categoria::class)
+                    );
+                },
+                Controller\BancoController::class => function($container) {
+                    return new Controller\BancoController(
+                        $container->get(Model\Banco::class)
+                    );
+                },
+                Controller\MonedaController::class => function($container) {
+                    return new Controller\MonedaController(
+                        $container->get(Model\Moneda::class)
+                    );
+                },
                 Controller\ColegioController::class => function($container) {
                     return new Controller\ColegioController(
                         $container->get(Model\Colegio::class)

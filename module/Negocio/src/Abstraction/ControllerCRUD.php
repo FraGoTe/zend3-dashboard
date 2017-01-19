@@ -23,7 +23,20 @@ abstract class ControllerCRUD extends AbstractActionController {
     protected $columnasListar;
     protected $describeColumnas;
     protected $indexRedirect;
-    
+    protected $dscEliminar;
+
+    public function getDscEliminar()
+    {
+        return $this->dscEliminar;
+    }
+
+    public function setDscEliminar($dscEliminar)
+    {
+        $this->dscEliminar = $dscEliminar;
+        return $this;
+    }
+
+            
     public function getTableIds()
     {
         return $this->tableIds;
@@ -130,7 +143,6 @@ abstract class ControllerCRUD extends AbstractActionController {
 
         $viewModel->setTemplate('negocio/crud/agregar.phtml');
         
-
         if (!$request->isPost()) {
             return $viewModel;
         }
@@ -233,9 +245,8 @@ abstract class ControllerCRUD extends AbstractActionController {
         if ($request->isPost()) {
             $del = $request->getPost('del', 'No');
 
-            if ($del == 'Yes') {
-                $id = (int) $request->getPost('id');
-                $this->table->deleteAlbum($id);
+            if ($del == 'Si') {
+                $this->table->deleteData($id);
             }
 
             $this->redirect()->toRoute($this->getIndexRedirect());	
@@ -243,9 +254,20 @@ abstract class ControllerCRUD extends AbstractActionController {
 
         $viewModel->setTemplate('negocio/crud/eliminar.phtml');
         
-        $viewModel->ids = $id;
-        $viewModel->data = $this->table->getData($id);
+        $dscItemEliminar = '';
+        $dataDelete = $this->table->getData($id);
+        $dataDelete = $dataDelete['data'];
+        $dataDeleDesc = $dataDelete->toArray();
 
+        foreach ($this->getDscEliminar() as $desDel) {
+            $dscItemEliminar .= $dataDeleDesc[0][$desDel] . ' ';
+        }
+        
+        $viewModel->ids = $id;
+        $viewModel->titulo = 'Eliminar ' . $this->getTitulo();
+        $viewModel->data = $dataDelete;
+        $viewModel->dscItemEliminar = $dscItemEliminar;
+        
         return $viewModel;
     }
     

@@ -87,11 +87,16 @@ class ColegioController extends ControllerCRUD
         
         $tableId = array('id');
         
+        $dscEliminar = array(
+            'id', 'nombre'
+        );
+        
         $this->setTitulo('Colegios');
         $this->setColumnasListar($columnasListar);
         $this->setIndexRedirect($indexRedirect);
         $this->setDescribeColumnas($describeColumnas);
         $this->setTableIds($tableId);
+        $this->setDscEliminar($dscEliminar);
     }
 
 }

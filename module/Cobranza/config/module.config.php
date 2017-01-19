@@ -104,6 +104,157 @@ return [
                     ],
                 ],
             ],
+            'cobranza-moneda' => [
+                'type'    => Segment::class,
+                'options' => [
+                    'route'    => '/cobranza/moneda',
+                    'defaults' => [
+                        'controller' => Controller\MonedaController::class,
+                        'action'     => 'index',
+                    ],
+                ],
+            ],
+            'cobranza-moneda-listar' => [
+                'type'    => Segment::class,
+                'options' => [
+                    'route'    => '/cobranza/moneda/listar',
+                    'defaults' => [
+                        'controller' => Controller\MonedaController::class,
+                        'action'     => 'listar',
+                    ],
+                ],
+            ],
+            'cobranza-moneda-agregar' => [
+                'type'    => Segment::class,
+                'options' => [
+                    'route'    => '/cobranza/moneda/agregar',
+                    'defaults' => [
+                        'controller' => Controller\MonedaController::class,
+                        'action'     => 'agregar',
+                    ],
+                ],
+            ],
+            'cobranza-moneda-editar' => [
+                'type'    => Segment::class,
+                'options' => [
+                    'route'    => '/cobranza/moneda/editar/id/:id',
+                    'defaults' => [
+                        'controller' => Controller\MonedaController::class,
+                        'action'     => 'editar',
+                    ],
+                ],
+            ],
+            'cobranza-moneda-eliminar' => [
+                'type'    => Segment::class,
+                'options' => [
+                    'route'    => '/cobranza/moneda/eliminar/id/:id',
+                    'defaults' => [
+                        'controller' => Controller\MonedaController::class,
+                        'action'     => 'eliminar',
+                    ],
+                ],
+            ],
+            'cobranza-banco' => [
+                'type'    => Segment::class,
+                'options' => [
+                    'route'    => '/cobranza/banco',
+                    'defaults' => [
+                        'controller' => Controller\BancoController::class,
+                        'action'     => 'index',
+                    ],
+                ],
+            ],
+            'cobranza-banco-listar' => [
+                'type'    => Segment::class,
+                'options' => [
+                    'route'    => '/cobranza/banco/listar',
+                    'defaults' => [
+                        'controller' => Controller\BancoController::class,
+                        'action'     => 'listar',
+                    ],
+                ],
+            ],
+            'cobranza-banco-agregar' => [
+                'type'    => Segment::class,
+                'options' => [
+                    'route'    => '/cobranza/banco/agregar',
+                    'defaults' => [
+                        'controller' => Controller\BancoController::class,
+                        'action'     => 'agregar',
+                    ],
+                ],
+            ],
+            'cobranza-banco-editar' => [
+                'type'    => Segment::class,
+                'options' => [
+                    'route'    => '/cobranza/banco/editar/id/:id',
+                    'defaults' => [
+                        'controller' => Controller\BancoController::class,
+                        'action'     => 'editar',
+                    ],
+                ],
+            ],
+            'cobranza-banco-eliminar' => [
+                'type'    => Segment::class,
+                'options' => [
+                    'route'    => '/cobranza/banco/eliminar/id/:id',
+                    'defaults' => [
+                        'controller' => Controller\BancoController::class,
+                        'action'     => 'eliminar',
+                    ],
+                ],
+            ],
+            
+            'cobranza-categoria' => [
+                'type'    => Segment::class,
+                'options' => [
+                    'route'    => '/cobranza/tipo-pax',
+                    'defaults' => [
+                        'controller' => Controller\CategoriaController::class,
+                        'action'     => 'index',
+                    ],
+                ],
+            ],
+            'cobranza-categoria-listar' => [
+                'type'    => Segment::class,
+                'options' => [
+                    'route'    => '/cobranza/tipo-pax/listar',
+                    'defaults' => [
+                        'controller' => Controller\CategoriaController::class,
+                        'action'     => 'listar',
+                    ],
+                ],
+            ],
+            'cobranza-categoria-agregar' => [
+                'type'    => Segment::class,
+                'options' => [
+                    'route'    => '/cobranza/tipo-pax/agregar',
+                    'defaults' => [
+                        'controller' => Controller\CategoriaController::class,
+                        'action'     => 'agregar',
+                    ],
+                ],
+            ],
+            'cobranza-categoria-editar' => [
+                'type'    => Segment::class,
+                'options' => [
+                    'route'    => '/cobranza/tipo-pax/editar/id/:id',
+                    'defaults' => [
+                        'controller' => Controller\CategoriaController::class,
+                        'action'     => 'editar',
+                    ],
+                ],
+            ],
+            'cobranza-categoria-eliminar' => [
+                'type'    => Segment::class,
+                'options' => [
+                    'route'    => '/cobranza/tipo-pax/eliminar/id/:id',
+                    'defaults' => [
+                        'controller' => Controller\CategoriaController::class,
+                        'action'     => 'eliminar',
+                    ],
+                ],
+            ],
         ],
     ],
     /*'controllers' => [
