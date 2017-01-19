@@ -304,6 +304,56 @@ return [
                     ],
                 ],
             ],
+            'cobranza-tipodocumento' => [
+                'type'    => Segment::class,
+                'options' => [
+                    'route'    => '/cobranza/tipo-documento',
+                    'defaults' => [
+                        'controller' => Controller\TipoDocumentoController::class,
+                        'action'     => 'index',
+                    ],
+                ],
+            ],
+            'cobranza-tipodocumento-listar' => [
+                'type'    => Segment::class,
+                'options' => [
+                    'route'    => '/cobranza/tipo-documento/listar',
+                    'defaults' => [
+                        'controller' => Controller\TipoDocumentoController::class,
+                        'action'     => 'listar',
+                    ],
+                ],
+            ],
+            'cobranza-tipodocumento-agregar' => [
+                'type'    => Segment::class,
+                'options' => [
+                    'route'    => '/cobranza/tipo-documento/agregar',
+                    'defaults' => [
+                        'controller' => Controller\TipoDocumentoController::class,
+                        'action'     => 'agregar',
+                    ],
+                ],
+            ],
+            'cobranza-tipodocumento-editar' => [
+                'type'    => Segment::class,
+                'options' => [
+                    'route'    => '/cobranza/tipo-documento/editar/id/:id',
+                    'defaults' => [
+                        'controller' => Controller\TipoDocumentoController::class,
+                        'action'     => 'editar',
+                    ],
+                ],
+            ],
+            'cobranza-tipodocumento-eliminar' => [
+                'type'    => Segment::class,
+                'options' => [
+                    'route'    => '/cobranza/tipo-documento/eliminar/id/:id',
+                    'defaults' => [
+                        'controller' => Controller\TipoDocumentoController::class,
+                        'action'     => 'eliminar',
+                    ],
+                ],
+            ],
         ],
     ],
     /*'controllers' => [
