@@ -15,6 +15,7 @@ return [
     'service_manager' => [
         'factories' => [            
             'Zend\Db\Adapter\Mysql' => 'Zend\Db\Adapter\AdapterServiceFactory',
+            \Zend\I18n\Translator\TranslatorInterface::class => \Zend\I18n\Translator\TranslatorServiceFactory::class,
         ]
     ],
     'module_layouts' => [
