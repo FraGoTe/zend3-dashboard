@@ -167,6 +167,7 @@ abstract class ControllerCRUD extends AbstractActionController {
             unset($data['reset']);
             $inserted = $this->table->insertData($data);
             $viewModel->result = $inserted['result'];
+            $this->redirect()->toRoute($this->getIndexRedirect());	
 
         } catch (\Exception $ex) {
             $viewModel->result = 0;
