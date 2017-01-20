@@ -95,12 +95,12 @@ class Module implements AutoloaderProviderInterface, ConfigProviderInterface
                 Model\Pasajero::class => function($container) {
                     $tableGateway = $container->get(Model\PasajeroTable::class);
                     $fk = [
-                        'nacionalidad' => $container->get(Model\Nacionalidad::class),
-                        'tipo_documento' => $container->get(Model\TipoDocumento::class),
-                        'categoria' => $container->get(Model\Categoria::class),
+                        'nacionalidad' => $container->get(Model\NacionalidadTable::class),
+                        'tipo_documento' => $container->get(Model\TipoDocumentoTable::class),
+                        'categoria' => $container->get(Model\CategoriaTable::class),
                     ];
                     
-                    return new Model\PasajeroTable($tableGateway);
+                    return new Model\PasajeroTable($tableGateway, $fk);
                 },
                 Model\PasajeroTable::class => function ($container) {
                     $dbAdapter = $container->get(AdapterInterface::class);

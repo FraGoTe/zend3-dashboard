@@ -79,7 +79,7 @@ class PasajeroController extends ControllerCRUD
                 'MIN_LENGHT' => 1,
                 'LENGHT' => 12
             ],
-            'fecha' => [
+            'fecha_nacimiento' => [
                 'PK' => 0,
                 'AI' => 0,
                 'TIPO' => 'VARCHAR',
@@ -103,8 +103,18 @@ class PasajeroController extends ControllerCRUD
             'id' => 'ID',
             'nombre' => 'Nombre',
             'apellidos' => 'Apellidos',
+            'tipo_documento_id' => 'Tipo Documento',
+            'numero_documento' => 'Número Documento',
+            'nombre' => 'Nombre',
+            'apellidos' => 'Apellidos',
+            'correo' => 'Correo',
+            'telefono' => 'Teléfono',
+            'celular' => 'Celular',
+            'direccion' => 'Dirección',
+            'fecha_nacimiento' => 'Fecha Nacimiento',
+            'nacionalidad_id' => 'Nacionalidad',
         );
-        
+
         $indexRedirect = 'cobranza-pasajero-listar';
         
         $tableId = array('id');
@@ -113,7 +123,7 @@ class PasajeroController extends ControllerCRUD
             'id', 'nombre', 'apellidos'
         );
         
-        $this->setTitulo('Documento de Identidad');
+        $this->setTitulo('Pasajeros');
         $this->setColumnasListar($columnasListar);
         $this->setIndexRedirect($indexRedirect);
         $this->setDescribeColumnas($describeColumnas);

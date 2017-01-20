@@ -284,12 +284,11 @@ abstract class ControllerCRUD extends AbstractActionController {
     private function getDataFk($columnasDetalle)
     {
         $data = [];
+
         foreach ($columnasDetalle as $value) {
             if (!empty($value['FK'])) {
                 $fn = $value['FUNC'];
-                $data = [
-                    $fn => $this->table->$fn()
-                ];
+                $data[$fn] = $this->table->$fn();
             }
         }
         

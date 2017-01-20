@@ -14,4 +14,27 @@ use Negocio\Abstraction\Model;
  */
 class PasajeroTable extends Model
 {
+    public function getNacionalidad()
+    {
+        $dataNacionalidad = $this->fkTable['nacionalidad']->select()->toArray();
+
+        $nacionalidad = [];
+        foreach ($dataNacionalidad as $nacionalidadTmp) {
+            $nacionalidad[$nacionalidadTmp['id']] = $nacionalidadTmp['descripcion'];
+        }
+        
+        return $nacionalidad;
+    }
+   
+    public function getTipoDocumento()
+    {
+        $dataTipoDocumento = $this->fkTable['tipo_documento']->select()->toArray();
+
+        $tipoDocumento = [];
+        foreach ($dataTipoDocumento as $dataTipoDocumentoTmp) {
+            $tipoDocumento[$dataTipoDocumentoTmp['id']] = $dataTipoDocumentoTmp['abreviacion'] . ' | ' . $dataTipoDocumentoTmp['descripcion'];
+        }
+
+        return $tipoDocumento;
+    }
 }
