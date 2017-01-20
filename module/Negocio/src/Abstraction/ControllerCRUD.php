@@ -128,7 +128,7 @@ abstract class ControllerCRUD extends AbstractActionController {
         $viewModel->fk = $this->getDataFk($this->getDescribeColumnas());
 
         $viewModel->setTemplate('negocio/crud/listar.phtml');
-
+        
         return $viewModel;
     }
     
@@ -158,6 +158,15 @@ abstract class ControllerCRUD extends AbstractActionController {
         $form->setData($request->getPost());
 
         if (!$form->isValid()) {
+            $mensajeValidacion = '';
+            foreach ($form->getInputFilter()->getInvalidInput() as $error) {
+                foreach ($error->getMessages() as $keyId => $detalle) {
+                    $mensajeValidacion .= $detalle;
+                }
+            }
+            
+            $this->flashMessenger()->addWarningMessage(['El formulario no es válido', $mensajeValidacion]);
+            
             return $viewModel;
         }
 
@@ -167,9 +176,13 @@ abstract class ControllerCRUD extends AbstractActionController {
             unset($data['reset']);
             $inserted = $this->table->insertData($data);
             $viewModel->result = $inserted['result'];
-            $this->redirect()->toRoute($this->getIndexRedirect());	
-
+            
+            $dscItem = $this->obtenerDatosImportantes($this->getDscEliminar(), [$data]);
+            $this->flashMessenger()->addSuccessMessage(['Agregado Correctamente', 'Se agregó correctamente el registro ' . $dscItem]);
+            
+            $this->redirect()->toRoute($this->getIndexRedirect());
         } catch (\Exception $ex) {
+            $this->flashMessenger()->addErrorMessage(['Hemos Detectado Problemas', 'Detalle del error: ' . $ex->getMessage()]);
             $viewModel->result = 0;
         }
         
@@ -213,6 +226,15 @@ abstract class ControllerCRUD extends AbstractActionController {
         $form->setData($request->getPost());
 
         if (! $form->isValid()) {
+            $mensajeValidacion = '';
+            foreach ($form->getInputFilter()->getInvalidInput() as $error) {
+                foreach ($error->getMessages() as $keyId => $detalle) {
+                    $mensajeValidacion .= $detalle;
+                }
+            }
+            
+            $this->flashMessenger()->addWarningMessage(['El formulario no es válido', $mensajeValidacion]);
+            
             return $viewData;
         }
 
@@ -230,6 +252,8 @@ abstract class ControllerCRUD extends AbstractActionController {
         $this->table->updateData($id, $setValues);
 
         if (!empty($this->indexRedirect)) {
+            $dscItem = $this->obtenerDatosImportantes($this->getDscEliminar(), [array_merge($setValues, $id)]);
+            $this->flashMessenger()->addInfoMessage(['Actualizado Correctamente', 'Se actualizó correctamente el registro ' . $dscItem]);
             $this->redirect()->toRoute($this->getIndexRedirect());	
         } else {
             $viewModel->setTemplate('negocio/crud/index.phtml');
@@ -252,26 +276,23 @@ abstract class ControllerCRUD extends AbstractActionController {
         }
 
         $request = $this->getRequest();
+        
+        $dataDelete = $this->table->getData($id);
+        $dataDelete = $dataDelete['data'];
+        $dataDeleDesc = $dataDelete->toArray();
+        $dscItemEliminar = $this->obtenerDatosImportantes($this->getDscEliminar(), $dataDeleDesc);
+        
         if ($request->isPost()) {
             $del = $request->getPost('del', 'No');
 
             if ($del == 'Si') {
                 $this->table->deleteData($id);
             }
-
+            $this->flashMessenger()->addInfoMessage(['Eliminado Correctamente', 'Se eliminó correctamente el registro ' . $dscItemEliminar]);
             $this->redirect()->toRoute($this->getIndexRedirect());	
         }
 
         $viewModel->setTemplate('negocio/crud/eliminar.phtml');
-        
-        $dscItemEliminar = '';
-        $dataDelete = $this->table->getData($id);
-        $dataDelete = $dataDelete['data'];
-        $dataDeleDesc = $dataDelete->toArray();
-
-        foreach ($this->getDscEliminar() as $desDel) {
-            $dscItemEliminar .= $dataDeleDesc[0][$desDel] . ' ';
-        }
         
         $viewModel->ids = $id;
         $viewModel->titulo = 'Eliminar ' . $this->getTitulo();
@@ -279,6 +300,16 @@ abstract class ControllerCRUD extends AbstractActionController {
         $viewModel->dscItemEliminar = $dscItemEliminar;
         
         return $viewModel;
+    }
+    
+    private function obtenerDatosImportantes($descripcionImportant, $dataDeleDesc)
+    {
+        $dscItemEliminar = '';
+        foreach ($descripcionImportant as $desDel) {
+            $dscItemEliminar .= $dataDeleDesc[0][$desDel] . ' ';
+        }
+        
+        return $dscItemEliminar;
     }
     
     private function getDataFk($columnasDetalle)

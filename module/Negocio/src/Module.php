@@ -27,6 +27,20 @@ class Module implements AutoloaderProviderInterface, ConfigProviderInterface
         $application = $e->getApplication();
         $sm = $application->getServiceManager();
         $sharedManager = $eventManager->getSharedManager();
+        
+        //Setting View Helper
+        $viewHelperManager = $e->getApplication()->getServiceManager()->get('ViewHelperManager');
+        $e->getApplication()->getServiceManager()->get('ViewHelperManager')->setFactory('FlashMsg', function() use ($viewHelperManager) {
+            $viewHelper = new View\Helper\FlashMsg(
+                $viewHelperManager->get('FlashMessenger'),
+                $viewHelperManager->get('inlinescript'),
+                $viewHelperManager->get('HeadLink'),
+                $viewHelperManager->get('url')
+            );
+                
+            return $viewHelper;
+        });
+        
         //Setting layouts
         $sharedManager->attach('Zend\Mvc\Controller\AbstractController', 'dispatch', function($e) {
             $controller = $e->getTarget();

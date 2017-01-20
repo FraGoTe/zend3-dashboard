@@ -295,3 +295,47 @@ if (typeof NProgress != 'undefined') {
         NProgress.done();
     });
 }
+
+function showStackContext(type, title, text, modal, stack_context) {
+        if (typeof stack_context === "undefined") stack_context = {
+        "dir1": "down",
+                "dir2": "left",
+                "context": $("body")
+        };
+                if (typeof stack_context_modal === "undefined") stack_context_modal = {
+        "dir1": "down",
+                "dir2": "left",
+                "context": $("body"),
+                "modal": true,
+                "overlay_close": true
+        };
+    var opts = {
+    title: title,
+            text: text,
+            stack: modal ? stack_context_modal : stack_context,
+            addclass: modal ? "stack-modal" : ""
+    };
+    switch (type) {
+        case 'error':
+            opts.title = title;
+            opts.text = text;
+            opts.type = "error";
+        break;
+        case 'info':
+            opts.title = title;
+            opts.text = text;
+            opts.type = "info";
+        break;
+        case 'success':
+            opts.title = title;
+            opts.text = text;
+            opts.type = "success";
+        break;
+        case 'warning':
+            opts.title = title;
+            opts.text = text;
+            opts.type = "notice";
+        break;
+    }
+    new PNotify(opts);
+}

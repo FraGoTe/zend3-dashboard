@@ -19,9 +19,12 @@
                         ->prependStylesheet($this->basePath('vendors/font-awesome/css/font-awesome.min.css'))
                         ->prependStylesheet($this->basePath('vendors/nprogress/nprogress.css'))
                         ->prependStylesheet($this->basePath('vendors/bootstrap-daterangepicker/daterangepicker.css'))
+                        ->prependStylesheet($this->basePath('vendors/pnotify/dist/pnotify.css'))
+                        ->prependStylesheet($this->basePath('vendors/pnotify/dist/pnotify.buttons.css'))
+                        ->prependStylesheet($this->basePath('vendors/pnotify/dist/pnotify.nonblock.css'))
+                        ->prependStylesheet($this->basePath('vendors/pnotify/dist/pnotify.brighttheme.css'))
                         ->prependStylesheet($this->basePath('build/css/custom.min.css'))
                         ->prependStylesheet($this->basePath('vendors/bootstrap/dist/css/bootstrap.min.css'))
-
         ?>
     </head>
 
@@ -229,8 +232,12 @@
                 ->appendFile($this->basePath('vendors/DateJS/build/date.js'))
                 ->appendFile($this->basePath('vendors/moment/min/moment.min.js'))
                 ->appendFile($this->basePath('vendors/bootstrap-daterangepicker/daterangepicker.js'))
+                ->appendFile($this->basePath('vendors/pnotify/dist/pnotify.js'))
+                ->appendFile($this->basePath('vendors/pnotify/dist/pnotify.buttons.js'))
+                ->appendFile($this->basePath('vendors/pnotify/dist/pnotify.nonblock.js'))
                 ->appendFile($this->basePath('build/js/custom.min.js'))
         ?>
+        <?php $this->FlashMsg(); ?>
         <?= $this->inlineScript() ?>
 
     </body>

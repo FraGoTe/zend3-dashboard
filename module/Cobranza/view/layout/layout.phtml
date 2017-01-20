@@ -231,6 +231,7 @@
                 ->appendFile($this->basePath('vendors/bootstrap-daterangepicker/daterangepicker.js'))
                 ->appendFile($this->basePath('build/js/custom.min.js'))
         ?>
+        <?php $this->FlashMsg(); ?>
         <?= $this->inlineScript() ?>
 
     </body>
