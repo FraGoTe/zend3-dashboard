@@ -46,7 +46,7 @@ class CtaBancariaController extends ControllerCRUD
             'id', 'nro_cta', 'banco_id'
         );
         
-        $this->setTitulo('Cta Bancaris');
+        $this->setTitulo('Cuenta Bancaria');
         $this->setColumnasListar($columnasListar);
         $this->setIndexRedirect($indexRedirect);
         $this->setDescribeColumnas($describeColumnas);
