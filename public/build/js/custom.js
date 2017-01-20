@@ -265,6 +265,24 @@ $(document).ready(function() {
             $expand.text("+");
         }
     });
+    
+     //moment.locale('es');
+
+    $('.date-picker').daterangepicker({
+        singleDatePicker: true,
+        calender_style: "picker_4",
+        locale: {
+            direction: 'ltr',
+            format: moment.localeData().longDateFormat('L'),
+            separator: ' - ',
+            applyLabel: 'Apply',
+            cancelLabel: 'Cancel',
+            weekLabel: 'W',
+            customRangeLabel: 'Custom Range',
+            daysOfWeek: moment.weekdaysMin(),
+            monthNames: moment.monthsShort(),
+            firstDay: moment.localeData().firstDayOfWeek()
+        }    });
 });
 
 // NProgress
