@@ -14,6 +14,24 @@ use Negocio\Abstraction\Model;
  */
 class PasajeroTable extends Model
 {
+    public function insertData($data)
+    {
+        if (!empty($data['fecha_nacimiento'])) {
+            $data['fecha_nacimiento'] = new \Zend\Db\Sql\Expression("str_to_date('" . $data['fecha_nacimiento'] . "', '%d/%m/%Y')");
+        }
+        
+        try {
+            $rs = $this->tableGateway->insert($data);
+        } catch (\Exception $e) {
+            error_log($e->getMessage());
+            $rs = false;
+        }
+        
+        return [
+            'result' => $rs
+        ];
+    }
+    
     public function getNacionalidad()
     {
         $dataNacionalidad = $this->fkTable['nacionalidad']->select()->toArray();
