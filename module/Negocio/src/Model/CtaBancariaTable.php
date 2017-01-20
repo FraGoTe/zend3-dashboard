@@ -25,4 +25,17 @@ class CtaBancariaTable extends Model
         
         return $banco;
     }
+    
+    
+    public function getMoneda()
+    {
+        $dataMoneda = $this->fkTable['moneda']->select()->toArray();
+
+        $moneda = [];
+        foreach ($dataMoneda as $dataMonedaTmp) {
+            $moneda[$dataMonedaTmp['id']] = $dataMonedaTmp['descripcion'] . ' | ' . $dataMonedaTmp['simbolo'];
+        }
+                
+        return $moneda;
+    }
 }

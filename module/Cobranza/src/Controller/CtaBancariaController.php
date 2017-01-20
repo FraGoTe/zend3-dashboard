@@ -30,12 +30,21 @@ class CtaBancariaController extends ControllerCRUD
                 'FK' => 1,
                 'FUNC' => 'getBanco'
             ],
+            'moneda_id' => [
+                'PK' => 0,
+                'AI' => 0,
+                'TIPO' => 'INT',
+                'REQUIRED' => true,
+                'FK' => 1,
+                'FUNC' => 'getMoneda'
+            ],
         );
             
         $columnasListar = array(
             'id' => 'ID',
             'nro_cta' => 'Nro. Cuenta',
-            'banco_id' => 'Banco'
+            'banco_id' => 'Banco',
+            'moneda_id' => 'Tipo Moneda'
         );
         
         $indexRedirect = 'cobranza-ctabancaria-listar';

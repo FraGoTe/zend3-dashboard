@@ -144,7 +144,8 @@ class Module implements AutoloaderProviderInterface, ConfigProviderInterface
                 Model\CtaBancaria::class => function($container) {
                     $tableGateway = $container->get(Model\CtaBancariaTable::class);
                     $fk = array (
-                        'banco' => $container->get(Model\BancoTable::class)
+                        'banco' => $container->get(Model\BancoTable::class),
+                        'moneda' => $container->get(Model\MonedaTable::class)
                     );
                     
                     return new Model\CtaBancariaTable($tableGateway, $fk);
