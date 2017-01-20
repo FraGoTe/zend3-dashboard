@@ -28,7 +28,7 @@ class ColegioController extends ControllerCRUD
                 'TIPO' => 'VARCHAR',
                 'REQUIRED' => true,
                 'MIN_LENGHT' => 1,
-                'LENGHT' => 45
+                'LENGHT' => 200
             ],
             'pagina_web' => [
                 'PK' => 0,
