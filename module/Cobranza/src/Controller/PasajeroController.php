@@ -79,36 +79,38 @@ class PasajeroController extends ControllerCRUD
                 'MIN_LENGHT' => 1,
                 'LENGHT' => 12
             ],
-            'direccion' => [
+            'fecha' => [
                 'PK' => 0,
                 'AI' => 0,
                 'TIPO' => 'VARCHAR',
                 'REQUIRED' => true,
                 'MIN_LENGHT' => 1,
-                'LENGHT' => 12
+                'LENGHT' => 10
             ],
             'nacionalidad_id' => [
                 'PK' => 0,
                 'AI' => 0,
+                'FK' => 1,
+                'FUNC' => 'getNacionalidad',
                 'TIPO' => 'VARCHAR',
                 'REQUIRED' => true,
                 'MIN_LENGHT' => 1,
-                'LENGHT' => 12
+                'LENGHT' => 5
             ],
         );
             
         $columnasListar = array(
             'id' => 'ID',
-            'descripcion' => 'Descripción',
-            'abreviacion' => 'Abreviación',
+            'nombre' => 'Nombre',
+            'apellidos' => 'Apellidos',
         );
         
-        $indexRedirect = 'cobranza-tipodocumento-listar';
+        $indexRedirect = 'cobranza-pasajero-listar';
         
         $tableId = array('id');
         
         $dscEliminar = array(
-            'id', 'abreviacion', 'descripcion'
+            'id', 'nombre', 'apellidos'
         );
         
         $this->setTitulo('Documento de Identidad');
