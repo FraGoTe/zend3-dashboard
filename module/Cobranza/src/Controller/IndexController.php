@@ -12,8 +12,18 @@ use Zend\View\Model\ViewModel;
 
 class IndexController extends AbstractActionController
 {
+    public $colegio;
+
+
+    public function __construct($colegio)
+    {
+        $this->colegio = $colegio;
+    }
+    
     public function indexAction()
     {
-        return new ViewModel();
+        $datosColegio = $this->colegio->fetchAll();
+        
+        return new ViewModel(['colegio' => $datosColegio]);
     }
 }

@@ -73,8 +73,10 @@ class Module
                         $container->get(Adapter::class)
                     );
                 },
-                Controller\IndexController::class => function() {
-                    return new Controller\IndexController();
+                Controller\IndexController::class => function($container) {
+                    return new Controller\IndexController(
+                        $container->get(Model\Colegio::class)
+                    );
                 },
             ],
         ];
