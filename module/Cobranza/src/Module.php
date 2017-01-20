@@ -23,6 +23,11 @@ class Module
     {
         return [
             'factories' => [
+                Controller\RolController::class => function($container) {
+                    return new Controller\RolController(
+                        $container->get(Model\Rol::class)
+                    );
+                },
                 Controller\NacionalidadController::class => function($container) {
                     return new Controller\NacionalidadController(
                         $container->get(Model\Nacionalidad::class)

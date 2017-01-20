@@ -92,6 +92,17 @@ class Module implements AutoloaderProviderInterface, ConfigProviderInterface
     {
         return [
             'factories' => [
+                Model\Rol::class => function($container) {
+                    $tableGateway = $container->get(Model\RolTable::class);
+                    
+                    return new Model\RolTable($tableGateway);
+                },
+                Model\RolTable::class => function ($container) {
+                    $dbAdapter = $container->get(AdapterInterface::class);
+                    $resultSetPrototype = new ResultSet();
+                    $resultSetPrototype->setArrayObjectPrototype(new Model\Rol());
+                    return new TableGateway('role', $dbAdapter, null, $resultSetPrototype);
+                },
                 Model\Nacionalidad::class => function($container) {
                     $tableGateway = $container->get(Model\NacionalidadTable::class);
                     

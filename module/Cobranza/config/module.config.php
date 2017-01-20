@@ -354,6 +354,56 @@ return [
                     ],
                 ],
             ],
+            'cobranza-rol' => [
+                'type'    => Segment::class,
+                'options' => [
+                    'route'    => '/cobranza/rol',
+                    'defaults' => [
+                        'controller' => Controller\RolController::class,
+                        'action'     => 'index',
+                    ],
+                ],
+            ],
+            'cobranza-rol-listar' => [
+                'type'    => Segment::class,
+                'options' => [
+                    'route'    => '/cobranza/rol/listar',
+                    'defaults' => [
+                        'controller' => Controller\RolController::class,
+                        'action'     => 'listar',
+                    ],
+                ],
+            ],
+            'cobranza-rol-agregar' => [
+                'type'    => Segment::class,
+                'options' => [
+                    'route'    => '/cobranza/rol/agregar',
+                    'defaults' => [
+                        'controller' => Controller\RolController::class,
+                        'action'     => 'agregar',
+                    ],
+                ],
+            ],
+            'cobranza-rol-editar' => [
+                'type'    => Segment::class,
+                'options' => [
+                    'route'    => '/cobranza/rol/editar/id/:id',
+                    'defaults' => [
+                        'controller' => Controller\RolController::class,
+                        'action'     => 'editar',
+                    ],
+                ],
+            ],
+            'cobranza-rol-eliminar' => [
+                'type'    => Segment::class,
+                'options' => [
+                    'route'    => '/cobranza/rol/eliminar/id/:id',
+                    'defaults' => [
+                        'controller' => Controller\RolController::class,
+                        'action'     => 'eliminar',
+                    ],
+                ],
+            ],
             'cobranza-pasajero' => [
                 'type'    => Segment::class,
                 'options' => [

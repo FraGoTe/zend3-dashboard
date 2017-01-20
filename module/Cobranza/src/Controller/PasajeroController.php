@@ -79,6 +79,14 @@ class PasajeroController extends ControllerCRUD
                 'MIN_LENGHT' => 1,
                 'LENGHT' => 12
             ],
+            'direccion' => [
+                'PK' => 0,
+                'AI' => 0,
+                'TIPO' => 'VARCHAR',
+                'REQUIRED' => true,
+                'MIN_LENGHT' => 1,
+                'LENGHT' => 12
+            ],
             'nacionalidad_id' => [
                 'PK' => 0,
                 'AI' => 0,
