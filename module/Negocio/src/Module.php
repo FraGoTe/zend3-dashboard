@@ -106,12 +106,38 @@ class Module implements AutoloaderProviderInterface, ConfigProviderInterface
     {
         return [
             'factories' => [
+                Model\Salon::class => function($container) {
+                    $tableGateway = $container->get(Model\SalonTable::class);
+                    $fk = [
+                        'colegio' => $container->get(Model\ColegioTable::class),
+                    ];
+                    
+                    return new Model\SalonTable($tableGateway, $fk);
+                },
+                Model\SalonTable::class => function ($container) {
+                    $dbAdapter = $container->get(AdapterInterface::class);
+                    $resultSetPrototype = new ResultSet();
+                    $resultSetPrototype->setArrayObjectPrototype(new Model\Salon());
+                    return new TableGateway('salon', $dbAdapter, null, $resultSetPrototype);
+                },
+                Model\TipoViaje::class => function($container) {
+                    $tableGateway = $container->get(Model\TipoViajeTable::class);
+                    
+                    return new Model\TipoViajeTable($tableGateway);
+                },
+                Model\TipoViajeTable::class => function ($container) {
+                    $dbAdapter = $container->get(AdapterInterface::class);
+                    $resultSetPrototype = new ResultSet();
+                    $resultSetPrototype->setArrayObjectPrototype(new Model\TipoViaje());
+                    return new TableGateway('tipo_viaje', $dbAdapter, null, $resultSetPrototype);
+                },
                 Model\PaqueteTuristico::class => function($container) {
                     $tableGateway = $container->get(Model\PaqueteTuristicoTable::class);
                     $fk = [
                         'nacionalidad' => $container->get(Model\NacionalidadTable::class),
                         'tipo_documento' => $container->get(Model\TipoDocumentoTable::class),
                         'categoria' => $container->get(Model\CategoriaTable::class),
+                        'tipo_viaje' => $container->get(Model\TipoViajeTable::class),
                     ];
                     
                     return new Model\PaqueteTuristicoTable($tableGateway, $fk);

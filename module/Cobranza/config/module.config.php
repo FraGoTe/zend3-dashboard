@@ -554,6 +554,106 @@ return [
                     ],
                 ],
             ],
+            'cobranza-tipoviaje' => [
+                'type'    => Segment::class,
+                'options' => [
+                    'route'    => '/cobranza/tipo-viaje',
+                    'defaults' => [
+                        'controller' => Controller\TipoViajeController::class,
+                        'action'     => 'index',
+                    ],
+                ],
+            ],
+            'cobranza-tipoviaje-listar' => [
+                'type'    => Segment::class,
+                'options' => [
+                    'route'    => '/cobranza/tipo-viaje/listar',
+                    'defaults' => [
+                        'controller' => Controller\TipoViajeController::class,
+                        'action'     => 'listar',
+                    ],
+                ],
+            ],
+            'cobranza-tipoviaje-agregar' => [
+                'type'    => Segment::class,
+                'options' => [
+                    'route'    => '/cobranza/tipo-viaje/agregar',
+                    'defaults' => [
+                        'controller' => Controller\TipoViajeController::class,
+                        'action'     => 'agregar',
+                    ],
+                ],
+            ],
+            'cobranza-tipoviaje-editar' => [
+                'type'    => Segment::class,
+                'options' => [
+                    'route'    => '/cobranza/tipo-viaje/editar/id/:id',
+                    'defaults' => [
+                        'controller' => Controller\TipoViajeController::class,
+                        'action'     => 'editar',
+                    ],
+                ],
+            ],
+            'cobranza-tipoviaje-eliminar' => [
+                'type'    => Segment::class,
+                'options' => [
+                    'route'    => '/cobranza/tipo-viaje/eliminar/id/:id',
+                    'defaults' => [
+                        'controller' => Controller\TipoViajeController::class,
+                        'action'     => 'eliminar',
+                    ],
+                ],
+            ],
+            'cobranza-salon' => [
+                'type'    => Segment::class,
+                'options' => [
+                    'route'    => '/cobranza/salon',
+                    'defaults' => [
+                        'controller' => Controller\SalonController::class,
+                        'action'     => 'index',
+                    ],
+                ],
+            ],
+            'cobranza-salon-listar' => [
+                'type'    => Segment::class,
+                'options' => [
+                    'route'    => '/cobranza/salon/listar',
+                    'defaults' => [
+                        'controller' => Controller\SalonController::class,
+                        'action'     => 'listar',
+                    ],
+                ],
+            ],
+            'cobranza-salon-agregar' => [
+                'type'    => Segment::class,
+                'options' => [
+                    'route'    => '/cobranza/salon/agregar',
+                    'defaults' => [
+                        'controller' => Controller\SalonController::class,
+                        'action'     => 'agregar',
+                    ],
+                ],
+            ],
+            'cobranza-salon-editar' => [
+                'type'    => Segment::class,
+                'options' => [
+                    'route'    => '/cobranza/salon/editar/id/:id',
+                    'defaults' => [
+                        'controller' => Controller\SalonController::class,
+                        'action'     => 'editar',
+                    ],
+                ],
+            ],
+            'cobranza-salon-eliminar' => [
+                'type'    => Segment::class,
+                'options' => [
+                    'route'    => '/cobranza/salon/eliminar/id/:id',
+                    'defaults' => [
+                        'controller' => Controller\SalonController::class,
+                        'action'     => 'eliminar',
+                    ],
+                ],
+            ],
         ],
     ],
     /*'controllers' => [
