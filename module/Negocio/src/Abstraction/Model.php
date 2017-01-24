@@ -22,7 +22,8 @@ use Zend\Validator\StringLength;
  *
  * @author Francis Gonzales <fgonzalestello91@gmail.com>
  */
-abstract class Model {
+abstract class Model 
+{
     
     protected $tableGateway;
     protected $fkTable;

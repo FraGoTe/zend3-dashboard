@@ -2,12 +2,14 @@
 
 namespace Negocio\Model;
 
+use Negocio\Abstraction\ModelTable;
+
 /**
  * Description of Pasajero
  *
  * @author Francis Gonzales <fgonzalestello91@gmail.com>
  */
-class Pasajero
+class Pasajero extends ModelTable
 {
     public $id;
     public $tipo_documento_id;
@@ -33,7 +35,7 @@ class Pasajero
         $this->telefono = (isset($data['telefono'])) ? $data['telefono'] : null;
         $this->celular = (isset($data['celular'])) ? $data['celular'] : null;
         $this->direccion = (isset($data['direccion'])) ? $data['direccion'] : null;
-        $this->fecha_nacimiento = (isset($data['fecha_nacimiento'])) ? $data['fecha_nacimiento'] : null;
+        $this->fecha_nacimiento = (isset($data['fecha_nacimiento'])) ? $this->obtenerFecha($data['fecha_nacimiento']) : null;
         $this->nacionalidad_id = (isset($data['nacionalidad_id'])) ? $data['nacionalidad_id'] : null;
     }
  

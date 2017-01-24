@@ -15,7 +15,8 @@ use Zend\Form\Form;
  *
  * @author Francis Gonzales <fgonzalestello91@gmail.com>
  */
-abstract class ControllerCRUD extends AbstractActionController {
+abstract class ControllerCRUD extends AbstractActionController 
+{
     
     private $table; 
     protected $titulo;

@@ -77,7 +77,7 @@ class PasajeroController extends ControllerCRUD
                 'TIPO' => 'VARCHAR',
                 'REQUIRED' => true,
                 'MIN_LENGHT' => 1,
-                'LENGHT' => 12
+                'LENGHT' => 45
             ],
             'fecha_nacimiento' => [
                 'PK' => 0,
