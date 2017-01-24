@@ -22,6 +22,14 @@ class CtaBancariaController extends ControllerCRUD
                 'MIN_LENGHT' => 1,
                 'LENGHT' => 100
             ],
+            'titular' => [
+                'PK' => 0,
+                'AI' => 0,
+                'TIPO' => 'VARCHAR',
+                'REQUIRED' => true,
+                'MIN_LENGHT' => 1,
+                'LENGHT' => 100
+            ],
             'banco_id' => [
                 'PK' => 0,
                 'AI' => 0,
@@ -30,6 +38,14 @@ class CtaBancariaController extends ControllerCRUD
                 'FK' => 1,
                 'FUNC' => 'getBanco'
             ],
+            'cci' => [
+                'PK' => 0,
+                'AI' => 0,
+                'TIPO' => 'VARCHAR',
+                'REQUIRED' => true,
+                'MIN_LENGHT' => 1,
+                'LENGHT' => 45
+            ],
             'moneda_id' => [
                 'PK' => 0,
                 'AI' => 0,
@@ -37,14 +53,6 @@ class CtaBancariaController extends ControllerCRUD
                 'REQUIRED' => true,
                 'FK' => 1,
                 'FUNC' => 'getMoneda'
-            ],
-            'titular' => [
-                'PK' => 0,
-                'AI' => 0,
-                'TIPO' => 'VARCHAR',
-                'REQUIRED' => true,
-                'MIN_LENGHT' => 1,
-                'LENGHT' => 100
             ],
         );
             

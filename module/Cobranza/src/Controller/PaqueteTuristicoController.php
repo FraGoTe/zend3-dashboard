@@ -28,7 +28,8 @@ class PaqueteTuristicoController extends ControllerCRUD
                 'TIPO' => 'VARCHAR',
                 'REQUIRED' => true,
                 'MIN_LENGHT' => 1,
-                'LENGHT' => 200
+                'LENGHT' => 200,
+                'DATE' => 1
             ],
             'destino' => [
                 'PK' => 0,

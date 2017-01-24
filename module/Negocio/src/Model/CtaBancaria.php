@@ -14,6 +14,7 @@ class CtaBancaria
     public $banco_id;
     public $moneda_id;
     public $titular;
+    public $cci;
     
     public function exchangeArray($data)
     {
@@ -22,6 +23,7 @@ class CtaBancaria
         $this->banco_id = (isset($data['banco_id'])) ? $data['banco_id'] : null;
         $this->moneda_id = (isset($data['moneda_id'])) ? $data['moneda_id'] : null;
         $this->titular = (isset($data['titular'])) ? $data['titular'] : null;
+        $this->cci = (isset($data['cci'])) ? $data['cci'] : null;
     }
  
     public function getArrayCopy()
