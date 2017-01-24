@@ -284,12 +284,20 @@ abstract class ControllerCRUD extends AbstractActionController {
         
         if ($request->isPost()) {
             $del = $request->getPost('del', 'No');
-
+            $eliminadoCorrectamente = false;
             if ($del == 'Si') {
-                $this->table->deleteData($id);
+                try {
+                    $this->table->deleteData($id);
+                    $eliminadoCorrectamente = true;
+                } catch (\Exception $e) {
+                    $this->flashMessenger()->addErrorMessage(['Hemos Detectado Problemas', 'Detalle del error: ' . $e->getMessage()]);
+                }
             }
-            $this->flashMessenger()->addInfoMessage(['Eliminado Correctamente', 'Se eliminó correctamente el registro ' . $dscItemEliminar]);
-            $this->redirect()->toRoute($this->getIndexRedirect());	
+            
+            if ($eliminadoCorrectamente) {
+                $this->flashMessenger()->addInfoMessage(['Eliminado Correctamente', 'Se eliminó correctamente el registro ' . $dscItemEliminar]);
+                $this->redirect()->toRoute($this->getIndexRedirect());
+            }	
         }
 
         $viewModel->setTemplate('negocio/crud/eliminar.phtml');

@@ -106,6 +106,22 @@ class Module implements AutoloaderProviderInterface, ConfigProviderInterface
     {
         return [
             'factories' => [
+                Model\PaqueteTuristico::class => function($container) {
+                    $tableGateway = $container->get(Model\PaqueteTuristicoTable::class);
+                    $fk = [
+                        'nacionalidad' => $container->get(Model\NacionalidadTable::class),
+                        'tipo_documento' => $container->get(Model\TipoDocumentoTable::class),
+                        'categoria' => $container->get(Model\CategoriaTable::class),
+                    ];
+                    
+                    return new Model\PaqueteTuristicoTable($tableGateway, $fk);
+                },
+                Model\PaqueteTuristicoTable::class => function ($container) {
+                    $dbAdapter = $container->get(AdapterInterface::class);
+                    $resultSetPrototype = new ResultSet();
+                    $resultSetPrototype->setArrayObjectPrototype(new Model\PaqueteTuristico());
+                    return new TableGateway('paquete_turistico', $dbAdapter, null, $resultSetPrototype);
+                },
                 Model\Pasajero::class => function($container) {
                     $tableGateway = $container->get(Model\PasajeroTable::class);
                     $fk = [

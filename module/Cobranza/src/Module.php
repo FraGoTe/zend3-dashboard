@@ -23,6 +23,11 @@ class Module
     {
         return [
             'factories' => [
+                Controller\PaqueteTuristicoController::class => function($container) {
+                    return new Controller\PaqueteTuristicoController(
+                        $container->get(Model\PaqueteTuristico::class)
+                    );
+                },
                 Controller\PasajeroController::class => function($container) {
                     return new Controller\PasajeroController(
                         $container->get(Model\Pasajero::class)

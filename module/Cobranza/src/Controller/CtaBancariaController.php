@@ -38,13 +38,20 @@ class CtaBancariaController extends ControllerCRUD
                 'FK' => 1,
                 'FUNC' => 'getMoneda'
             ],
+            'titular' => [
+                'PK' => 0,
+                'AI' => 0,
+                'TIPO' => 'VARCHAR',
+                'REQUIRED' => true,
+            ],
         );
             
         $columnasListar = array(
             'id' => 'ID',
             'nro_cta' => 'Nro. Cuenta',
             'banco_id' => 'Banco',
-            'moneda_id' => 'Tipo Moneda'
+            'moneda_id' => 'Tipo Moneda',
+            'titular' => 'Titular'
         );
         
         $indexRedirect = 'cobranza-ctabancaria-listar';
@@ -52,7 +59,7 @@ class CtaBancariaController extends ControllerCRUD
         $tableId = array('id');
         
         $dscEliminar = array(
-            'id', 'nro_cta', 'banco_id'
+            'id', 'nro_cta', 'banco_id', 'titular'
         );
         
         $this->setTitulo('Cuenta Bancaria');

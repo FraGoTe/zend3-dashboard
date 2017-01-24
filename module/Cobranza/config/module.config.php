@@ -504,6 +504,56 @@ return [
                     ],
                 ],
             ],
+            'cobranza-paqueteturistico' => [
+                'type'    => Segment::class,
+                'options' => [
+                    'route'    => '/cobranza/paquete-turistico',
+                    'defaults' => [
+                        'controller' => Controller\PaqueteTuristicoController::class,
+                        'action'     => 'index',
+                    ],
+                ],
+            ],
+            'cobranza-paqueteturistico-listar' => [
+                'type'    => Segment::class,
+                'options' => [
+                    'route'    => '/cobranza/paquete-turistico/listar',
+                    'defaults' => [
+                        'controller' => Controller\PaqueteTuristicoController::class,
+                        'action'     => 'listar',
+                    ],
+                ],
+            ],
+            'cobranza-paqueteturistico-agregar' => [
+                'type'    => Segment::class,
+                'options' => [
+                    'route'    => '/cobranza/paquete-turistico/agregar',
+                    'defaults' => [
+                        'controller' => Controller\PaqueteTuristicoController::class,
+                        'action'     => 'agregar',
+                    ],
+                ],
+            ],
+            'cobranza-paqueteturistico-editar' => [
+                'type'    => Segment::class,
+                'options' => [
+                    'route'    => '/cobranza/paquete-turistico/editar/id/:id',
+                    'defaults' => [
+                        'controller' => Controller\PaqueteTuristicoController::class,
+                        'action'     => 'editar',
+                    ],
+                ],
+            ],
+            'cobranza-paqueteturistico-eliminar' => [
+                'type'    => Segment::class,
+                'options' => [
+                    'route'    => '/cobranza/paquete-turistico/eliminar/id/:id',
+                    'defaults' => [
+                        'controller' => Controller\PaqueteTuristicoController::class,
+                        'action'     => 'eliminar',
+                    ],
+                ],
+            ],
         ],
     ],
     /*'controllers' => [
