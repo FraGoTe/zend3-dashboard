@@ -61,6 +61,7 @@ class CtaBancariaController extends ControllerCRUD
             'titular' => 'Titular',
             'nro_cta' => 'Nro. Cuenta',
             'banco_id' => 'Banco',
+            'cci' => 'Código Interbancario',
             'moneda_id' => 'Tipo Moneda'
         );
         
