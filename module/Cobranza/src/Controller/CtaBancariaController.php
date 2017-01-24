@@ -43,6 +43,8 @@ class CtaBancariaController extends ControllerCRUD
                 'AI' => 0,
                 'TIPO' => 'VARCHAR',
                 'REQUIRED' => true,
+                'MIN_LENGHT' => 1,
+                'LENGHT' => 100
             ],
         );
             
