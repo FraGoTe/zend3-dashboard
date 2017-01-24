@@ -287,8 +287,11 @@ abstract class ControllerCRUD extends AbstractActionController {
             $eliminadoCorrectamente = false;
             if ($del == 'Si') {
                 try {
-                    $this->table->deleteData($id);
-                    $eliminadoCorrectamente = true;
+                    $eliminadoCorrectamente = $this->table->deleteData($id);
+                    
+                    if (!$eliminadoCorrectamente) {
+                        $this->flashMessenger()->addErrorMessage(['Hemos Detectado Problemas', 'No se pudo elimnar el registro, revise que no hayan datos relacionados.']);
+                    }
                 } catch (\Exception $e) {
                     $this->flashMessenger()->addErrorMessage(['Hemos Detectado Problemas', 'Detalle del error: ' . $e->getMessage()]);
                 }
