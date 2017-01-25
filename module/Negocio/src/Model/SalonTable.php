@@ -14,6 +14,41 @@ use Negocio\Abstraction\Model;
  */
 class SalonTable extends Model
 {
+    public function getNivel()
+    {
+        $dataAll = $this->fkTable['nivel']->select()->toArray();
+        $dataRtn = [];
+        foreach ($dataAll as $dataTmp) {
+            $dataRtn[$dataTmp['id']] = $dataTmp['descripcion'];
+        }
+        
+        return $dataRtn;
+    }
+    
+    public function getGrado()
+    {
+        $dataAll = $this->fkTable['grado']->select()->toArray();
+
+        $dataRtn = [];
+        foreach ($dataAll as $dataTmp) {
+            $dataRtn[$dataTmp['id']] = $dataTmp['descripcion'];
+        }
+        
+        return $dataRtn;
+    }
+    
+    public function getSeccion()
+    {
+        $dataAll = $this->fkTable['seccion']->select()->toArray();
+
+        $dataRtn = [];
+        foreach ($dataAll as $dataTmp) {
+            $dataRtn[$dataTmp['id']] = $dataTmp['descripcion'];
+        }
+        
+        return $dataRtn;
+    }
+    
     public function getColegio()
     {
         $dataColegio = $this->fkTable['colegio']->select()->toArray();

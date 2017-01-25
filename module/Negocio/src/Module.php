@@ -142,6 +142,9 @@ class Module implements AutoloaderProviderInterface, ConfigProviderInterface
                 Model\Salon::class => function($container) {
                     $tableGateway = $container->get(Model\SalonTable::class);
                     $fk = [
+                        'nivel' => $container->get(Model\NivelTable::class),
+                        'grado' => $container->get(Model\GradoTable::class),
+                        'seccion' => $container->get(Model\SeccionTable::class),
                         'colegio' => $container->get(Model\ColegioTable::class),
                     ];
                     

@@ -10,9 +10,9 @@ namespace Negocio\Model;
 class Salon
 {
     public $id;
-    public $nivel;
-    public $grado;
-    public $seccion;
+    public $nivel_id;
+    public $grado_id;
+    public $seccion_id;
     public $descripcion;
     public $colegio_id;
 
@@ -20,9 +20,9 @@ class Salon
     public function exchangeArray($data)
     {
         $this->id = (isset($data['id'])) ? $data['id'] : null;
-        $this->nivel = (isset($data['nivel'])) ? $data['nivel'] : null;
-        $this->grado = (isset($data['grado'])) ? $data['grado'] : null;
-        $this->seccion = (isset($data['seccion'])) ? $data['seccion'] : null;
+        $this->nivel_id = (isset($data['nivel_id'])) ? $data['nivel_id'] : null;
+        $this->grado_id = (isset($data['grado_id'])) ? $data['grado_id'] : null;
+        $this->seccion_id = (isset($data['seccion_id'])) ? $data['seccion_id'] : null;
         $this->descripcion = (isset($data['descripcion'])) ? $data['descripcion'] : null;
         $this->colegio_id = (isset($data['colegio_id'])) ? $data['colegio_id'] : null;
     }

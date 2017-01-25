@@ -14,29 +14,35 @@ class SalonController extends ControllerCRUD
                 'PK' => 1,
                 'AI' => 1
             ],
-            'nivel' => [
+            'nivel_id' => [
                 'PK' => 0,
                 'AI' => 0,
                 'TIPO' => 'VARCHAR',
                 'REQUIRED' => true,
                 'MIN_LENGHT' => 1,
-                'LENGHT' => 1
+                'LENGHT' => 5,
+                'FK' => 1,
+                'FUNC' => 'getNivel',
             ],
-            'grado' => [
+            'grado_id' => [
                 'PK' => 0,
                 'AI' => 0,
                 'TIPO' => 'VARCHAR',
                 'REQUIRED' => true,
                 'MIN_LENGHT' => 1,
-                'LENGHT' => 1
+                'LENGHT' => 5,
+                'FK' => 1,
+                'FUNC' => 'getGrado',
             ],
-            'seccion' => [
+            'seccion_id' => [
                 'PK' => 0,
                 'AI' => 0,
                 'TIPO' => 'VARCHAR',
                 'REQUIRED' => true,
-               'MIN_LENGHT' => 1,
-                'LENGHT' => 1
+                'MIN_LENGHT' => 1,
+                'LENGHT' => 5,
+                'FK' => 1,
+                'FUNC' => 'getSeccion',
             ],
             'descripcion' => [
                 'PK' => 0,
@@ -60,9 +66,9 @@ class SalonController extends ControllerCRUD
             
         $columnasListar = array(
             'id' => 'ID',
-            'nivel' => 'Nivel',
-            'grado' => 'Grado',
-            'seccion' => 'Sección',
+            'nivel_id' => 'Nivel',
+            'grado_id' => 'Grado',
+            'seccion_id' => 'Sección',
             'descripcion' => 'Descripción',
             'colegio_id' => 'Colegio',
 
