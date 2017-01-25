@@ -51,7 +51,7 @@ foreach ($campos as $keyField => $field) {
                 'label_attributes' => array(
                     'class' => 'control-label col-md-3 col-sm-3 col-xs-12',
                 ),
-                'value_options' => !empty($field['FUNC']) ? $this->fk[$field['FUNC']] : []
+                'value_options' => (!empty($field['FUNC']) && !empty($this->fk[$field['FUNC']]) ? $this->fk[$field['FUNC']] : [])
             ],
         ]);
         
@@ -137,3 +137,11 @@ $form->prepare();
     </div>
   </div>
 </div>
+<?php    
+    $this->inlineScript()->captureStart();
+    echo "
+        var dataSecondary = " . json_encode($this->salones) . ";
+        loadNestedSelect($(\"input[name='colegio_id']\"), $(\"input[name='salon_id']\"), dataSecondary);
+    ";
+    $this->inlineScript()->captureEnd();
+?>

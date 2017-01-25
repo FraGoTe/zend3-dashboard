@@ -3,6 +3,12 @@
 namespace Cobranza\Controller;
 
 use Negocio\Abstraction\ControllerCRUD;
+use Zend\View\Model\ViewModel;
+use Zend\Authentication\AuthenticationService;
+use Zend\Authentication\Result;
+use Zend\Db\Adapter\Adapter;
+use Zend\Db\Adapter\AdapterInterface;
+use Zend\Form\Form;
 
 class PaqueteTuristicoController extends ControllerCRUD
 {   
@@ -13,6 +19,26 @@ class PaqueteTuristicoController extends ControllerCRUD
             'id' => [
                 'PK' => 1,
                 'AI' => 1
+            ],
+            'colegio_id' => [
+                'PK' => 0,
+                'AI' => 0,
+                'TIPO' => 'VARCHAR',
+                'REQUIRED' => true,
+                'MIN_LENGHT' => 1,
+                'LENGHT' => 5,
+                'FK' => 1,
+                'FUNC' => 'getColegio',
+            ],
+            'salon_id' => [
+                'PK' => 0,
+                'AI' => 0,
+                'TIPO' => 'VARCHAR',
+                'REQUIRED' => true,
+                'MIN_LENGHT' => 1,
+                'LENGHT' => 200,
+                'FK' => 1,
+
             ],
             'titulo' => [
                 'PK' => 0,
@@ -25,7 +51,7 @@ class PaqueteTuristicoController extends ControllerCRUD
             'fecha_viaje' => [
                 'PK' => 0,
                 'AI' => 0,
-                'TIPO' => 'VARCHAR',
+                'TIPO' => 'DATE',
                 'REQUIRED' => true,
                 'MIN_LENGHT' => 1,
                 'LENGHT' => 200,
@@ -39,15 +65,17 @@ class PaqueteTuristicoController extends ControllerCRUD
                 'MIN_LENGHT' => 1,
                 'LENGHT' => 200
             ],
-            'precio_viaje' => [
+            'moneda_id' => [
                 'PK' => 0,
                 'AI' => 0,
                 'TIPO' => 'VARCHAR',
                 'REQUIRED' => true,
                 'MIN_LENGHT' => 1,
-                'LENGHT' => 200
+                'LENGHT' => 5,
+                'FK' => 1,
+                'FUNC' => 'getMoneda',
             ],
-            'salon_id' => [
+            'precio_viaje' => [
                 'PK' => 0,
                 'AI' => 0,
                 'TIPO' => 'VARCHAR',
@@ -69,15 +97,9 @@ class PaqueteTuristicoController extends ControllerCRUD
                 'TIPO' => 'VARCHAR',
                 'REQUIRED' => true,
                 'MIN_LENGHT' => 1,
-                'LENGHT' => 200
-            ],
-            'moneda_id' => [
-                'PK' => 0,
-                'AI' => 0,
-                'TIPO' => 'VARCHAR',
-                'REQUIRED' => true,
-                'MIN_LENGHT' => 1,
-                'LENGHT' => 200
+                'LENGHT' => 5,
+                'FK' => 1,
+                'FUNC' => 'getCtaBancaria',
             ],
         );
             
@@ -86,12 +108,13 @@ class PaqueteTuristicoController extends ControllerCRUD
             'titulo' => 'Titulo',
             'fecha_viaje' => 'Fecha Viaje',
             'destino' => 'Destino',
+            'moneda_id' => 'Moneda',
             'precio_viaje' => 'Precio',
-           
             'salon_id' => 'Salón',
             'documento_adicional' => 'Documento Adicional',
             'cta_bancaria_id' => 'Cta Bancaria',
-            'moneda_id' => 'Moneda',
+            'colegio_id' => 'Colegio',
+            'tipo_viaje_id' => 'Salón',
         );
         
         $indexRedirect = 'cobranza-paqueteturistico-listar';
@@ -108,6 +131,84 @@ class PaqueteTuristicoController extends ControllerCRUD
         $this->setDescribeColumnas($describeColumnas);
         $this->setTableIds($tableId);
         $this->setDscEliminar($dscEliminar);
+        $this->table = $table;
     }
 
+    
+    public function listarAction()
+    {		
+        $paginator = $this->table->fetchAll(true);
+
+        $page = (int) $this->params()->fromQuery('page', 1);
+        $page = ($page < 1) ? 1 : $page;
+        $paginator->setCurrentPageNumber($page);
+
+        $paginator->setItemCountPerPage(7);
+
+        $viewModel = new ViewModel();
+        $viewModel->titulo = $this->getTitulo();
+        $viewModel->paginator = $paginator;
+        $viewModel->urlPrefix = $this->getUrlPrefix();
+        $viewModel->columnas = $this->getColumnasListar();
+        $viewModel->dscColumn = $this->getDescribeColumnas();
+        $viewModel->fk = $this->getDataFk($this->getDescribeColumnas());
+        
+        return $viewModel;
+    }
+    
+    public function agregarAction()
+    {		
+        $form = new Form('agregar');
+        
+        $request   = $this->getRequest();
+        
+        $columnasDetalle = $this->getDescribeColumnas();
+
+        $viewModel = new ViewModel();
+        $viewModel->titulo = $this->getTitulo();
+        $viewModel->form = $form;
+        $viewModel->campos = $columnasDetalle;
+        $viewModel->camposDescripcion = $this->getColumnasListar();
+        
+        if (!$request->isPost()) {
+            $viewModel->fk = $this->getDataFk($columnasDetalle);
+            $viewModel->salones = $this->table->getSalon();
+
+            return $viewModel;
+        }
+
+        $form->setInputFilter($this->table->getInputFilter($this->getDescribeColumnas()));
+        $form->setData($request->getPost());
+
+        if (!$form->isValid()) {
+            $mensajeValidacion = '';
+            foreach ($form->getInputFilter()->getInvalidInput() as $error) {
+                foreach ($error->getMessages() as $keyId => $detalle) {
+                    $mensajeValidacion .= $detalle;
+                }
+            }
+            
+            $this->flashMessenger()->addWarningMessage(['El formulario no es válido', $mensajeValidacion]);
+            
+            return $viewModel;
+        }
+
+        try {
+            $data = (array)$request->getPost();
+            unset($data['submit']);
+            unset($data['reset']);
+            $inserted = $this->table->insertData($data);
+            $viewModel->result = $inserted['result'];
+            
+            $dscItem = $this->obtenerDatosImportantes($this->getDscEliminar(), [$data]);
+            $this->flashMessenger()->addSuccessMessage(['Agregado Correctamente', 'Se agregó correctamente el registro ' . $dscItem]);
+            
+            $this->redirect()->toRoute($this->getIndexRedirect());
+        } catch (\Exception $ex) {
+            $this->flashMessenger()->addErrorMessage(['Hemos Detectado Problemas', 'Detalle del error: ' . $ex->getMessage()]);
+            $viewModel->result = 0;
+        }
+        
+        return $viewModel;
+    }
 }

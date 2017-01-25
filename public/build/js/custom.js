@@ -339,3 +339,16 @@ function showStackContext(type, title, text, modal, stack_context) {
     }
     new PNotify(opts);
 }
+
+function loadNestedSelect(principalId, secondaryId, dataSecondary)
+{
+    principalId.change(function(){
+        var prinId = $(this).val();
+        var data = dataSecondary[prinId];
+        
+        secondaryId.html('');
+        $.each(data, function(item) {
+            secondaryId.append($("<option />").val(item.id).text(item.descripcion));
+        });
+    });
+}

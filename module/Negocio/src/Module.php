@@ -174,6 +174,10 @@ class Module implements AutoloaderProviderInterface, ConfigProviderInterface
                         'tipo_documento' => $container->get(Model\TipoDocumentoTable::class),
                         'categoria' => $container->get(Model\CategoriaTable::class),
                         'tipo_viaje' => $container->get(Model\TipoViajeTable::class),
+                        'colegio' => $container->get(Model\ColegioTable::class),
+                        'salon' => $container->get(Model\SalonTable::class),
+                        'cta_bancaria' => $container->get(Model\CtaBancariaTable::class),
+                        'moneda' => $container->get(Model\MonedaTable::class),
                     ];
                     
                     return new Model\PaqueteTuristicoTable($tableGateway, $fk);

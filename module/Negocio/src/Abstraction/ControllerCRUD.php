@@ -324,12 +324,12 @@ abstract class ControllerCRUD extends AbstractActionController
         return $dscItemEliminar;
     }
     
-    private function getDataFk($columnasDetalle)
+    public function getDataFk($columnasDetalle)
     {
         $data = [];
 
         foreach ($columnasDetalle as $value) {
-            if (!empty($value['FK'])) {
+            if (!empty($value['FK']) && !empty($value['FUNC'])) {
                 $fn = $value['FUNC'];
                 $data[$fn] = $this->table->$fn();
             }
@@ -343,7 +343,7 @@ abstract class ControllerCRUD extends AbstractActionController
         return get_called_class();
     }
     
-    private function getUrlPrefix()
+    public function getUrlPrefix()
     {
         return strtolower(str_replace(array('\Controller\\', 'Controller'), array('-', ''), $this->getCurrentClass())) . '-';
     }
