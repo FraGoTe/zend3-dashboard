@@ -23,6 +23,21 @@ class Module
     {
         return [
             'factories' => [
+                Controller\NivelController::class => function($container) {
+                    return new Controller\NivelController(
+                        $container->get(Model\Nivel::class)
+                    );
+                },
+                Controller\GradoController::class => function($container) {
+                    return new Controller\GradoController(
+                        $container->get(Model\Grado::class)
+                    );
+                },
+                Controller\SeccionController::class => function($container) {
+                    return new Controller\SeccionController(
+                        $container->get(Model\Seccion::class)
+                    );
+                },
                 Controller\SalonController::class => function($container) {
                     return new Controller\SalonController(
                         $container->get(Model\Salon::class)

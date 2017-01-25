@@ -106,6 +106,39 @@ class Module implements AutoloaderProviderInterface, ConfigProviderInterface
     {
         return [
             'factories' => [
+                Model\Nivel::class => function($container) {
+                    $tableGateway = $container->get(Model\NivelTable::class);
+                    
+                    return new Model\NivelTable($tableGateway);
+                },
+                Model\NivelTable::class => function ($container) {
+                    $dbAdapter = $container->get(AdapterInterface::class);
+                    $resultSetPrototype = new ResultSet();
+                    $resultSetPrototype->setArrayObjectPrototype(new Model\Nivel());
+                    return new TableGateway('nivel', $dbAdapter, null, $resultSetPrototype);
+                },
+                Model\Grado::class => function($container) {
+                    $tableGateway = $container->get(Model\GradoTable::class);
+                    
+                    return new Model\GradoTable($tableGateway);
+                },
+                Model\GradoTable::class => function ($container) {
+                    $dbAdapter = $container->get(AdapterInterface::class);
+                    $resultSetPrototype = new ResultSet();
+                    $resultSetPrototype->setArrayObjectPrototype(new Model\Grado());
+                    return new TableGateway('grado', $dbAdapter, null, $resultSetPrototype);
+                },
+                Model\Seccion::class => function($container) {
+                    $tableGateway = $container->get(Model\SeccionTable::class);
+                    
+                    return new Model\SeccionTable($tableGateway);
+                },
+                Model\SeccionTable::class => function ($container) {
+                    $dbAdapter = $container->get(AdapterInterface::class);
+                    $resultSetPrototype = new ResultSet();
+                    $resultSetPrototype->setArrayObjectPrototype(new Model\Seccion());
+                    return new TableGateway('seccion', $dbAdapter, null, $resultSetPrototype);
+                },
                 Model\Salon::class => function($container) {
                     $tableGateway = $container->get(Model\SalonTable::class);
                     $fk = [

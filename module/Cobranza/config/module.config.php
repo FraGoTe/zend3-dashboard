@@ -654,6 +654,156 @@ return [
                     ],
                 ],
             ],
+            'cobranza-seccion' => [
+                'type'    => Segment::class,
+                'options' => [
+                    'route'    => '/cobranza/seccion',
+                    'defaults' => [
+                        'controller' => Controller\SeccionController::class,
+                        'action'     => 'index',
+                    ],
+                ],
+            ],
+            'cobranza-seccion-listar' => [
+                'type'    => Segment::class,
+                'options' => [
+                    'route'    => '/cobranza/seccion/listar',
+                    'defaults' => [
+                        'controller' => Controller\SeccionController::class,
+                        'action'     => 'listar',
+                    ],
+                ],
+            ],
+            'cobranza-seccion-agregar' => [
+                'type'    => Segment::class,
+                'options' => [
+                    'route'    => '/cobranza/seccion/agregar',
+                    'defaults' => [
+                        'controller' => Controller\SeccionController::class,
+                        'action'     => 'agregar',
+                    ],
+                ],
+            ],
+            'cobranza-seccion-editar' => [
+                'type'    => Segment::class,
+                'options' => [
+                    'route'    => '/cobranza/seccion/editar/id/:id',
+                    'defaults' => [
+                        'controller' => Controller\SeccionController::class,
+                        'action'     => 'editar',
+                    ],
+                ],
+            ],
+            'cobranza-seccion-eliminar' => [
+                'type'    => Segment::class,
+                'options' => [
+                    'route'    => '/cobranza/seccion/eliminar/id/:id',
+                    'defaults' => [
+                        'controller' => Controller\SeccionController::class,
+                        'action'     => 'eliminar',
+                    ],
+                ],
+            ],
+            'cobranza-grado' => [
+                'type'    => Segment::class,
+                'options' => [
+                    'route'    => '/cobranza/grado',
+                    'defaults' => [
+                        'controller' => Controller\GradoController::class,
+                        'action'     => 'index',
+                    ],
+                ],
+            ],
+            'cobranza-grado-listar' => [
+                'type'    => Segment::class,
+                'options' => [
+                    'route'    => '/cobranza/grado/listar',
+                    'defaults' => [
+                        'controller' => Controller\GradoController::class,
+                        'action'     => 'listar',
+                    ],
+                ],
+            ],
+            'cobranza-grado-agregar' => [
+                'type'    => Segment::class,
+                'options' => [
+                    'route'    => '/cobranza/grado/agregar',
+                    'defaults' => [
+                        'controller' => Controller\GradoController::class,
+                        'action'     => 'agregar',
+                    ],
+                ],
+            ],
+            'cobranza-grado-editar' => [
+                'type'    => Segment::class,
+                'options' => [
+                    'route'    => '/cobranza/grado/editar/id/:id',
+                    'defaults' => [
+                        'controller' => Controller\GradoController::class,
+                        'action'     => 'editar',
+                    ],
+                ],
+            ],
+            'cobranza-grado-eliminar' => [
+                'type'    => Segment::class,
+                'options' => [
+                    'route'    => '/cobranza/grado/eliminar/id/:id',
+                    'defaults' => [
+                        'controller' => Controller\GradoController::class,
+                        'action'     => 'eliminar',
+                    ],
+                ],
+            ],
+            'cobranza-nivel' => [
+                'type'    => Segment::class,
+                'options' => [
+                    'route'    => '/cobranza/nivel',
+                    'defaults' => [
+                        'controller' => Controller\NivelController::class,
+                        'action'     => 'index',
+                    ],
+                ],
+            ],
+            'cobranza-nivel-listar' => [
+                'type'    => Segment::class,
+                'options' => [
+                    'route'    => '/cobranza/nivel/listar',
+                    'defaults' => [
+                        'controller' => Controller\NivelController::class,
+                        'action'     => 'listar',
+                    ],
+                ],
+            ],
+            'cobranza-nivel-agregar' => [
+                'type'    => Segment::class,
+                'options' => [
+                    'route'    => '/cobranza/nivel/agregar',
+                    'defaults' => [
+                        'controller' => Controller\NivelController::class,
+                        'action'     => 'agregar',
+                    ],
+                ],
+            ],
+            'cobranza-nivel-editar' => [
+                'type'    => Segment::class,
+                'options' => [
+                    'route'    => '/cobranza/nivel/editar/id/:id',
+                    'defaults' => [
+                        'controller' => Controller\NivelController::class,
+                        'action'     => 'editar',
+                    ],
+                ],
+            ],
+            'cobranza-nivel-eliminar' => [
+                'type'    => Segment::class,
+                'options' => [
+                    'route'    => '/cobranza/nivel/eliminar/id/:id',
+                    'defaults' => [
+                        'controller' => Controller\NivelController::class,
+                        'action'     => 'eliminar',
+                    ],
+                ],
+            ],
         ],
     ],
     /*'controllers' => [
