@@ -160,7 +160,7 @@ $form->prepare();
             var prinId = $(this).val();
             $(\"select[name='cta_bancaria_id']\").html('');
 
-            if (typeof (salones[prinId]) !== 'undefined') {
+            if (typeof (ctas_bancarias[prinId]) !== 'undefined') {
                 var data = ctas_bancarias[prinId];
                 $.each(data, function(id, value) {
                     $(\"select[name='cta_bancaria_id']\").append($(\"<option />\").val(id).text(value));
