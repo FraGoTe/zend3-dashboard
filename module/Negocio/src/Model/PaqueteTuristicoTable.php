@@ -14,6 +14,47 @@ use Negocio\Abstraction\Model;
  */
 class PaqueteTuristicoTable extends Model
 {
+    public function obtenerRegistros()
+    {
+        $select = new Select($this->tableGateway->getTable());
+        $select->columns(['id', 'titulo', 'fecha_viaje', 'destino', 'precio_viaje', 'documento_adicional'])
+               ->join(array('s' => 'salon'), 's.id = paquete_turistico.salon_id', array('salon_id' => 'descripcion'))
+               ->join(array('c' => 'colegio'), 's.colegio_id = c.id', array('colegio_id' => 'nombre'))
+               ->join(array('t' => 'tipo_viaje'), 'paquete_turistico.tipo_viaje_id = t.id', array('tipo_viaje_id' => 'descripcion'))
+               ->join(array('cta' => 'cta_bancaria'), 'paquete_turistico.cta_bancaria_id = cta.id', array('cta_bancaria_id' => new \Zend\Db\Sql\Expression('CONCAT(cta.nro_cta, \' | \', cta.titular)')));
+
+        return $select;
+    }
+    
+    public function fetchAll($paginated = false)
+    {
+        if ($paginated) {
+            return $this->fetchPaginatedResults();
+        }
+
+        return $this->obtenerRegistros();
+    }
+
+    private function fetchPaginatedResults()
+    {
+        $prototypeClass = $this->getPrototypeClass();
+        
+        $select = $this->obtenerRegistros();
+
+        $resultSetPrototype = new \Zend\Db\ResultSet\ResultSet();
+        $resultSetPrototype->setArrayObjectPrototype(new $prototypeClass);
+
+        $paginatorAdapter = new \Zend\Paginator\Adapter\DbSelect(
+            $select,
+            $this->tableGateway->getAdapter(),
+            $resultSetPrototype
+        );
+
+        $paginator = new \Zend\Paginator\Paginator($paginatorAdapter);
+        
+        return $paginator;
+    }
+    
     public function insertData($data)
     {
         if (!empty($data['fecha_viaje'])) {

@@ -51,12 +51,7 @@ $this->headTitle($title);
                                         <td>
                                             <?php 
                                             
-                                            if (!empty($this->dscColumn[$id]['FK'])) {
-                                                $fn = $this->dscColumn[$id]['FUNC'];
-                                                echo $this->escapeHtml($this->fk[$fn][$fila->$id]);
-                                            } else {
                                                 echo $this->escapeHtml($fila->$id);
-                                            } 
                                             
                                             ?>
                                         </td>

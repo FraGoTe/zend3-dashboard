@@ -19,6 +19,8 @@ class PaqueteTuristico extends ModelTable
     public $documento_adicional;
     public $cta_bancaria_id;
     public $moneda_id;
+    public $tipo_viaje_id;
+    public $colegio_id;
     
     public function exchangeArray($data)
     {
@@ -31,6 +33,8 @@ class PaqueteTuristico extends ModelTable
         $this->documento_adicional = (isset($data['documento_adicional'])) ? $data['documento_adicional'] : null;
         $this->cta_bancaria_id = (isset($data['cta_bancaria_id'])) ? $data['cta_bancaria_id'] : null;
         $this->moneda_id = (isset($data['moneda_id'])) ? $data['moneda_id'] : null;
+        $this->tipo_viaje_id = (isset($data['tipo_viaje_id'])) ? $data['tipo_viaje_id'] : null;
+        $this->colegio_id = (isset($data['colegio_id'])) ? $data['colegio_id'] : null;
     }
  
     public function getArrayCopy()

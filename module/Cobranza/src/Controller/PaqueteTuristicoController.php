@@ -123,7 +123,7 @@ class PaqueteTuristicoController extends ControllerCRUD
             'documento_adicional' => 'Documento Adicional',
             'cta_bancaria_id' => 'Cta Bancaria',
             'colegio_id' => 'Colegio',
-            'tipo_viaje_id' => 'Salón',
+            'tipo_viaje_id' => 'Tipo Viaje',
         );
         
         $indexRedirect = 'cobranza-paqueteturistico-listar';
