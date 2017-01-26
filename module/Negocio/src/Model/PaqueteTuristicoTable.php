@@ -56,7 +56,7 @@ class PaqueteTuristicoTable extends Model
 
         $ctaBancaria = [];
         foreach ($dataCta as $ctaBancariaTmp) {
-            $ctaBancaria[$ctaBancariaTmp['id']] = $ctaBancariaTmp['nro_cta'] . ' | ' . $ctaBancariaTmp['titular'];
+            $ctaBancaria[$ctaBancariaTmp['moneda_id']][$ctaBancariaTmp['id']] = $ctaBancariaTmp['nro_cta'] . ' | ' . $ctaBancariaTmp['titular'];
         }
         
         return $ctaBancaria;

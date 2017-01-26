@@ -99,7 +99,6 @@ class PaqueteTuristicoController extends ControllerCRUD
                 'MIN_LENGHT' => 1,
                 'LENGHT' => 5,
                 'FK' => 1,
-                'FUNC' => 'getCtaBancaria',
             ],
         );
             
@@ -173,6 +172,7 @@ class PaqueteTuristicoController extends ControllerCRUD
         if (!$request->isPost()) {
             $viewModel->fk = $this->getDataFk($columnasDetalle);
             $viewModel->salones = $this->table->getSalon();
+            $viewModel->ctasbancarias = $this->table->getCtaBancaria();
 
             return $viewModel;
         }

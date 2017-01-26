@@ -140,8 +140,31 @@ $form->prepare();
 <?php    
     $this->inlineScript()->captureStart();
     echo "
-        var dataSecondary = " . json_encode($this->salones) . ";
-        loadNestedSelect($(\"input[name='colegio_id']\"), $(\"input[name='salon_id']\"), dataSecondary);
+        var salones = " . json_encode($this->salones) . ";
+        var ctas_bancarias = " . json_encode($this->ctasbancarias) . ";
+            
+        $(\"select[name='colegio_id']\").change(function(){
+            var prinId = $(this).val();
+            var data = salones[prinId];
+          
+            $(\"select[name='salon_id']\").html('');
+            $.each(data, function(id, value) {
+                $(\"select[name='salon_id']\").append($(\"<option />\").val(id).text(value));
+            });
+        });
+        
+        $(\"select[name='moneda_id']\").change(function(){
+            var prinId = $(this).val();
+            var data = ctas_bancarias[prinId];
+          
+            $(\"select[name='cta_bancaria_id']\").html('');
+            $.each(data, function(id, value) {
+                $(\"select[name='cta_bancaria_id']\").append($(\"<option />\").val(id).text(value));
+            });
+        });
+        
+        $(\"select[name='colegio_id']\").change();
+        $(\"select[name='moneda_id']\").change();
     ";
     $this->inlineScript()->captureEnd();
 ?>
