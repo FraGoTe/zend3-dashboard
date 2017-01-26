@@ -2,12 +2,13 @@
 
 namespace Negocio\Model;
 
+use Negocio\Abstraction\ModelTable;
 /**
  * Description of PaqueteTuristico
  *
  * @author Francis Gonzales <fgonzalestello91@gmail.com>
  */
-class PaqueteTuristico
+class PaqueteTuristico extends ModelTable
 {
     public $id;
     public $titulo;
@@ -23,7 +24,7 @@ class PaqueteTuristico
     {
         $this->id = (isset($data['id'])) ? $data['id'] : null;
         $this->titulo = (isset($data['titulo'])) ? $data['titulo'] : null;
-        $this->fecha_viaje = (isset($data['fecha_viaje'])) ? $data['fecha_viaje'] : null;
+        $this->fecha_viaje = (isset($data['fecha_viaje'])) ? $this->obtenerFecha($data['fecha_viaje']) : null;
         $this->destino = (isset($data['destino'])) ? $data['destino'] : null;
         $this->precio_viaje = (isset($data['precio_viaje'])) ? $data['precio_viaje'] : null;
         $this->salon_id = (isset($data['salon_id'])) ? $data['salon_id'] : null;

@@ -14,6 +14,24 @@ use Negocio\Abstraction\Model;
  */
 class PaqueteTuristicoTable extends Model
 {
+    public function insertData($data)
+    {
+        if (!empty($data['fecha_viaje'])) {
+            $data['fecha_viaje'] = new \Zend\Db\Sql\Expression("str_to_date('" . $data['fecha_viaje'] . "', '%d/%m/%Y')");
+        }
+        
+        try {
+            $rs = $this->tableGateway->insert($data);
+        } catch (\Exception $e) {
+            error_log($e->getMessage());
+            $rs = false;
+        }
+        
+        return [
+            'result' => $rs
+        ];
+    }
+    
     public function getColegio()
     {
         $dataColegio = $this->fkTable['colegio']->select()->toArray();
@@ -60,5 +78,17 @@ class PaqueteTuristicoTable extends Model
         }
         
         return $ctaBancaria;
+    }
+    
+    public function getTipoViaje()
+    {
+        $dataTipoViaje = $this->fkTable['tipo_viaje']->select()->toArray();
+
+        $tipoViaje = [];
+        foreach ($dataTipoViaje as $tipoTmp) {
+            $tipoViaje[$tipoTmp['id']] = $tipoTmp['descripcion'];
+        }
+        
+        return $tipoViaje;
     }
 }

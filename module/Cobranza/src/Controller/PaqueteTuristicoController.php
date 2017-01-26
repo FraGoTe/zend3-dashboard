@@ -40,6 +40,16 @@ class PaqueteTuristicoController extends ControllerCRUD
                 'FK' => 1,
 
             ],
+            'tipo_viaje_id' => [
+                'PK' => 0,
+                'AI' => 0,
+                'TIPO' => 'VARCHAR',
+                'REQUIRED' => true,
+                'MIN_LENGHT' => 1,
+                'LENGHT' => 200,
+                'FK' => 1,
+                'FUNC' => 'getTipoViaje',
+            ],
             'titulo' => [
                 'PK' => 0,
                 'AI' => 0,
@@ -89,7 +99,7 @@ class PaqueteTuristicoController extends ControllerCRUD
                 'TIPO' => 'VARCHAR',
                 'REQUIRED' => true,
                 'MIN_LENGHT' => 1,
-                'LENGHT' => 200
+                'LENGHT' => 1
             ],
             'cta_bancaria_id' => [
                 'PK' => 0,
