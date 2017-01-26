@@ -314,7 +314,7 @@ abstract class ControllerCRUD extends AbstractActionController
         return $viewModel;
     }
     
-    private function obtenerDatosImportantes($descripcionImportant, $dataDeleDesc)
+    public function obtenerDatosImportantes($descripcionImportant, $dataDeleDesc)
     {
         $dscItemEliminar = '';
         foreach ($descripcionImportant as $desDel) {

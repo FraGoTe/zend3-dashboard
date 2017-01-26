@@ -145,22 +145,27 @@ $form->prepare();
             
         $(\"select[name='colegio_id']\").change(function(){
             var prinId = $(this).val();
-            var data = salones[prinId];
-          
             $(\"select[name='salon_id']\").html('');
-            $.each(data, function(id, value) {
-                $(\"select[name='salon_id']\").append($(\"<option />\").val(id).text(value));
-            });
+            
+            if (typeof (salones[prinId]) !== 'undefined') {
+                var data = salones[prinId];
+
+                $.each(data, function(id, value) {
+                    $(\"select[name='salon_id']\").append($(\"<option />\").val(id).text(value));
+                });
+            }
         });
         
         $(\"select[name='moneda_id']\").change(function(){
             var prinId = $(this).val();
-            var data = ctas_bancarias[prinId];
-          
             $(\"select[name='cta_bancaria_id']\").html('');
-            $.each(data, function(id, value) {
-                $(\"select[name='cta_bancaria_id']\").append($(\"<option />\").val(id).text(value));
-            });
+
+            if (typeof (salones[prinId]) !== 'undefined') {
+                var data = ctas_bancarias[prinId];
+                $.each(data, function(id, value) {
+                    $(\"select[name='cta_bancaria_id']\").append($(\"<option />\").val(id).text(value));
+                });
+            }
         });
         
         $(\"select[name='colegio_id']\").change();

@@ -197,6 +197,7 @@ class PaqueteTuristicoController extends ControllerCRUD
             $data = (array)$request->getPost();
             unset($data['submit']);
             unset($data['reset']);
+            unset($data['colegio_id']);
             $inserted = $this->table->insertData($data);
             $viewModel->result = $inserted['result'];
             
