@@ -57,6 +57,7 @@ $this->headTitle($title);
                                         </td>
                                     <?php } ?>
                                     <td>
+                                        <a class="btn btn-primary btn-sm" href="<?= $this->url($this->urlPrefix . 'listar-pasajeros', ['id' => $fila->id]) ?>"><i class="fa fa-edit">&nbsp;</i>Pasajeros</a>
                                         <a class="btn btn-warning btn-sm" href="<?= $this->url($this->urlPrefix . 'editar', ['id' => $fila->id]) ?>"><i class="fa fa-edit">&nbsp;</i>Editar</a>
                                         <a class="btn btn-danger btn-sm" href="<?= $this->url($this->urlPrefix . 'eliminar', ['id' => $fila->id]) ?>"><i class="fa fa-times-circle">&nbsp;</i>Eliminar</a>
                                     </td>

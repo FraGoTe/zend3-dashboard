@@ -142,7 +142,6 @@ class PaqueteTuristicoController extends ControllerCRUD
         $this->setDscEliminar($dscEliminar);
         $this->table = $table;
     }
-
     
     public function listarAction()
     {		
@@ -221,5 +220,9 @@ class PaqueteTuristicoController extends ControllerCRUD
         }
         
         return $viewModel;
+    }
+    
+    public function listarPasajerosAction()
+    {
     }
 }

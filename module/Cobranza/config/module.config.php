@@ -554,6 +554,16 @@ return [
                     ],
                 ],
             ],
+            'cobranza-paqueteturistico-listar-pasajeros' => [
+                'type'    => Segment::class,
+                'options' => [
+                    'route'    => '/cobranza/paquete-turistico/listar-pasajeros/id/:id',
+                    'defaults' => [
+                        'controller' => Controller\PaqueteTuristicoController::class,
+                        'action'     => 'listar-pasajeros',
+                    ],
+                ],
+            ],
             'cobranza-tipoviaje' => [
                 'type'    => Segment::class,
                 'options' => [
