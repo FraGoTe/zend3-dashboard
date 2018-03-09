@@ -19,7 +19,7 @@ class LoginController extends AbstractActionController
       $this->mysqlAdp = $mysqlAdp;
    }
 
-   public function loginAction()
+   public function indexAction()
    {
       $this->layout('layout/login');
       $auth = new AuthenticationService();

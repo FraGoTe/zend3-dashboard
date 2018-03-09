@@ -19,6 +19,6 @@ return [
         ]
     ],
     'module_layouts' => [
-        'Cobranza' => 'layout/cobranza',
+        'Dashboard' => 'layout/dashboard',
    ],
 ];

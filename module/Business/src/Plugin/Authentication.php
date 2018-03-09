@@ -29,8 +29,8 @@ class Authentication extends AbstractPlugin
         $controller = $this->getController();
         $controllerClass = get_class($controller);
         $namespace = substr($controllerClass, 0, strpos($controllerClass, '\\'));
-        $moduleName = 'Cobranza';
-        
+        $moduleName = 'Dashboard';
+
         if ($controllerClass !== $namespace . "\Controller\LoginController" && $namespace === $moduleName){
             $auth = new AuthenticationService();
             if (!$auth->hasIdentity()) {

@@ -19,7 +19,17 @@ return [
                'route'    => '/',
                'defaults' => [
                   'controller' => Dcontroller\LoginController::class,
-                  'action'     => 'login',
+                  'action'     => 'index',
+               ],
+            ],
+         ],
+         'dashboard-index' => [
+            'type' => Literal::class,
+            'options' => [
+               'route'    => '/dashboard',
+               'defaults' => [
+                  'controller' => Dcontroller\IndexController::class,
+                  'action'     => 'index',
                ],
             ],
          ],

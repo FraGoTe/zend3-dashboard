@@ -27,9 +27,14 @@ class Module
                     );
                 },
                 Controller\LoginController::class => function($container) {
-                    return new Controller\LoginController(
-                        $container->get(Adapter::class)
-                    );
+                   return new Controller\LoginController(
+                      $container->get(Adapter::class)
+                   );
+                },
+                Controller\IndexController::class => function($container) {
+                   return new Controller\IndexController(
+                      $container->get(Adapter::class)
+                   );
                 },
             ],
         ];
