@@ -34,6 +34,5 @@ return [
     'ZendDeveloperTools',
     'Zend\Router',
     'Zend\Validator',
-    'Cobranza',
-    'Negocio',
+    'Business',
 ];

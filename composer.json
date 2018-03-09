@@ -33,7 +33,7 @@
     "autoload": {
         "psr-4": {
             "Cobranza\\": "module/Cobranza/src/",
-            "Negocio\\": "module/Negocio/src/"
+            "Business\\": "module/Business/src/"
         }
     },
     "autoload-dev": {
