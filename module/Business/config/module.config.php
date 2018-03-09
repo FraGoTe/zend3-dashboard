@@ -10,30 +10,44 @@ namespace Business;
 use Dashboard\Controller as Dcontroller;
 use Zend\Router\Http\Literal;
 
-return [
-   'router' => [
-      'routes' => [
-         'dashboard-login' => [
-            'type' => Literal::class,
-            'options' => [
-               'route'    => '/',
-               'defaults' => [
-                  'controller' => Dcontroller\LoginController::class,
-                  'action'     => 'index',
-               ],
-            ],
-         ],
-         'dashboard-index' => [
-            'type' => Literal::class,
-            'options' => [
-               'route'    => '/dashboard',
-               'defaults' => [
-                  'controller' => Dcontroller\IndexController::class,
-                  'action'     => 'index',
-               ],
-            ],
+$routes = [
+   'dashboard-login' => [
+      'route' => '/',
+      'controller' => Dcontroller\LoginController::class,
+      'action'     => 'index',
+   ],
+   'dashboard-logout' => [
+      'route' => '/dashboard/logout',
+      'controller' => Dcontroller\LoginController::class,
+      'action'     => 'logout',
+   ],
+   'dashboard-index' => [
+      'route' => '/dashboard',
+      'controller' => Dcontroller\IndexController::class,
+      'action'     => 'index',
+   ],
+
+];
+$arrRoutes = [];
+
+foreach ($routes as $key => $route) {
+   $arrRoutes[$key] = [
+      'type' => Literal::class,
+      'options' => [
+         'route'    => $route['route'],
+         'defaults' => [
+            'controller' => $route['controller'],
+            'action'     => $route['action'],
          ],
       ],
+   ];
+}
+
+
+
+return [
+   'router' => [
+      'routes' => $arrRoutes,
    ],
     'view_manager' => [
         'template_path_stack' => [
