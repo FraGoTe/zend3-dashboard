@@ -1,0 +1,81 @@
+    <?php 
+    $i = 1;
+    foreach ($this->colegio as $colegio) { 
+    ?>
+    <div class="col-md-4">
+            <div class="x_panel">
+                <div class="x_title">
+                    <h2><?= strtoupper($colegio->nombre) ?></h2>
+                        <ul class="nav navbar-right panel_toolbox">
+                            <li><span style="color: white; margin-top: 5px;" class="badge bg-green"><?= rand(1, 20) ?></span></li>
+                            <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
+                            </li>
+                            <li><a class="close-link"><i class="fa fa-close"></i></a>
+                            </li>
+                        </ul>
+                    <div class="clearfix"></div>
+                </div>
+                <div class="x_content">
+                    <article class="media event">
+                        <a class="pull-left date">
+                            <p class="month">April</p>
+                            <p class="day">23</p>
+                        </a>
+                        <div class="media-body">
+                            <a class="title" href="#">Item One Title</a>
+                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+                        </div>
+                    </article>
+                    <article class="media event">
+                        <a class="pull-left date">
+                            <p class="month">April</p>
+                            <p class="day">23</p>
+                        </a>
+                        <div class="media-body">
+                            <a class="title" href="#">Item Two Title</a>
+                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+                        </div>
+                    </article>
+                    <article class="media event">
+                        <a class="pull-left date">
+                            <p class="month">April</p>
+                            <p class="day">23</p>
+                        </a>
+                        <div class="media-body">
+                            <a class="title" href="#">Item Two Title</a>
+                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+                        </div>
+                    </article>
+                    <article class="media event">
+                        <a class="pull-left date">
+                            <p class="month">April</p>
+                            <p class="day">23</p>
+                        </a>
+                        <div class="media-body">
+                            <a class="title" href="#">Item Two Title</a>
+                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+                        </div>
+                    </article>
+                    <article class="media event">
+                        <a class="pull-left date">
+                            <p class="month">April</p>
+                            <p class="day">23</p>
+                        </a>
+                        <div class="media-body">
+                            <a class="title" href="#">Item Three Title</a>
+                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+                        </div>
+                    </article>
+                </div>
+            </div>
+        </div>
+    <?php } ?>
+</div>
+
+<?php $this->inlineScript()->captureStart();
+echo <<<JS
+     $(document).ready(function() {
+        $('.collapse-link').click();
+    });
+JS;
+$this->inlineScript()->captureEnd(); ?>

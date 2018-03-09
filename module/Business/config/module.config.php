@@ -7,10 +7,24 @@
 
 namespace Business;
 
+use Dashboard\Controller as Dcontroller;
 use Zend\Router\Http\Literal;
-use Zend\Router\Http\Segment;
 
 return [
+   'router' => [
+      'routes' => [
+         'login' => [
+            'type' => Literal::class,
+            'options' => [
+               'route'    => '/',
+               'defaults' => [
+                  'controller' => Dcontroller\LoginController::class,
+                  'action'     => 'index',
+               ],
+            ],
+         ],
+      ],
+   ],
     'view_manager' => [
         'template_path_stack' => [
             __DIR__ . '/../view',

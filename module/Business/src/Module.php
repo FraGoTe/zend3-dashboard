@@ -106,104 +106,6 @@ class Module implements AutoloaderProviderInterface, ConfigProviderInterface
     {
         return [
             'factories' => [
-                Model\Nivel::class => function($container) {
-                    $tableGateway = $container->get(Model\NivelTable::class);
-                    
-                    return new Model\NivelTable($tableGateway);
-                },
-                Model\NivelTable::class => function ($container) {
-                    $dbAdapter = $container->get(AdapterInterface::class);
-                    $resultSetPrototype = new ResultSet();
-                    $resultSetPrototype->setArrayObjectPrototype(new Model\Nivel());
-                    return new TableGateway('nivel', $dbAdapter, null, $resultSetPrototype);
-                },
-                Model\Grado::class => function($container) {
-                    $tableGateway = $container->get(Model\GradoTable::class);
-                    
-                    return new Model\GradoTable($tableGateway);
-                },
-                Model\GradoTable::class => function ($container) {
-                    $dbAdapter = $container->get(AdapterInterface::class);
-                    $resultSetPrototype = new ResultSet();
-                    $resultSetPrototype->setArrayObjectPrototype(new Model\Grado());
-                    return new TableGateway('grado', $dbAdapter, null, $resultSetPrototype);
-                },
-                Model\Seccion::class => function($container) {
-                    $tableGateway = $container->get(Model\SeccionTable::class);
-                    
-                    return new Model\SeccionTable($tableGateway);
-                },
-                Model\SeccionTable::class => function ($container) {
-                    $dbAdapter = $container->get(AdapterInterface::class);
-                    $resultSetPrototype = new ResultSet();
-                    $resultSetPrototype->setArrayObjectPrototype(new Model\Seccion());
-                    return new TableGateway('seccion', $dbAdapter, null, $resultSetPrototype);
-                },
-                Model\Salon::class => function($container) {
-                    $tableGateway = $container->get(Model\SalonTable::class);
-                    $fk = [
-                        'nivel' => $container->get(Model\NivelTable::class),
-                        'grado' => $container->get(Model\GradoTable::class),
-                        'seccion' => $container->get(Model\SeccionTable::class),
-                        'colegio' => $container->get(Model\ColegioTable::class),
-                    ];
-                    
-                    return new Model\SalonTable($tableGateway, $fk);
-                },
-                Model\SalonTable::class => function ($container) {
-                    $dbAdapter = $container->get(AdapterInterface::class);
-                    $resultSetPrototype = new ResultSet();
-                    $resultSetPrototype->setArrayObjectPrototype(new Model\Salon());
-                    return new TableGateway('salon', $dbAdapter, null, $resultSetPrototype);
-                },
-                Model\TipoViaje::class => function($container) {
-                    $tableGateway = $container->get(Model\TipoViajeTable::class);
-                    
-                    return new Model\TipoViajeTable($tableGateway);
-                },
-                Model\TipoViajeTable::class => function ($container) {
-                    $dbAdapter = $container->get(AdapterInterface::class);
-                    $resultSetPrototype = new ResultSet();
-                    $resultSetPrototype->setArrayObjectPrototype(new Model\TipoViaje());
-                    return new TableGateway('tipo_viaje', $dbAdapter, null, $resultSetPrototype);
-                },
-                Model\PaqueteTuristico::class => function($container) {
-                    $tableGateway = $container->get(Model\PaqueteTuristicoTable::class);
-                    $fk = [
-                        'nacionalidad' => $container->get(Model\NacionalidadTable::class),
-                        'tipo_documento' => $container->get(Model\TipoDocumentoTable::class),
-                        'categoria' => $container->get(Model\CategoriaTable::class),
-                        'tipo_viaje' => $container->get(Model\TipoViajeTable::class),
-                        'colegio' => $container->get(Model\ColegioTable::class),
-                        'salon' => $container->get(Model\SalonTable::class),
-                        'cta_bancaria' => $container->get(Model\CtaBancariaTable::class),
-                        'moneda' => $container->get(Model\MonedaTable::class),
-                    ];
-                    
-                    return new Model\PaqueteTuristicoTable($tableGateway, $fk);
-                },
-                Model\PaqueteTuristicoTable::class => function ($container) {
-                    $dbAdapter = $container->get(AdapterInterface::class);
-                    $resultSetPrototype = new ResultSet();
-                    $resultSetPrototype->setArrayObjectPrototype(new Model\PaqueteTuristico());
-                    return new TableGateway('paquete_turistico', $dbAdapter, null, $resultSetPrototype);
-                },
-                Model\Pasajero::class => function($container) {
-                    $tableGateway = $container->get(Model\PasajeroTable::class);
-                    $fk = [
-                        'nacionalidad' => $container->get(Model\NacionalidadTable::class),
-                        'tipo_documento' => $container->get(Model\TipoDocumentoTable::class),
-                        'categoria' => $container->get(Model\CategoriaTable::class),
-                    ];
-                    
-                    return new Model\PasajeroTable($tableGateway, $fk);
-                },
-                Model\PasajeroTable::class => function ($container) {
-                    $dbAdapter = $container->get(AdapterInterface::class);
-                    $resultSetPrototype = new ResultSet();
-                    $resultSetPrototype->setArrayObjectPrototype(new Model\Pasajero());
-                    return new TableGateway('pasajero', $dbAdapter, null, $resultSetPrototype);
-                },
                 Model\Rol::class => function($container) {
                     $tableGateway = $container->get(Model\RolTable::class);
                     
@@ -215,43 +117,6 @@ class Module implements AutoloaderProviderInterface, ConfigProviderInterface
                     $resultSetPrototype->setArrayObjectPrototype(new Model\Rol());
                     return new TableGateway('role', $dbAdapter, null, $resultSetPrototype);
                 },
-                Model\Nacionalidad::class => function($container) {
-                    $tableGateway = $container->get(Model\NacionalidadTable::class);
-                    
-                    return new Model\NacionalidadTable($tableGateway);
-                },
-                Model\NacionalidadTable::class => function ($container) {
-                    $dbAdapter = $container->get(AdapterInterface::class);
-                    $resultSetPrototype = new ResultSet();
-                    $resultSetPrototype->setArrayObjectPrototype(new Model\Nacionalidad());
-                    return new TableGateway('nacionalidad', $dbAdapter, null, $resultSetPrototype);
-                },
-                Model\TipoDocumento::class => function($container) {
-                    $tableGateway = $container->get(Model\TipoDocumentoTable::class);
-                    
-                    return new Model\TipoDocumentoTable($tableGateway);
-                },
-                Model\TipoDocumentoTable::class => function ($container) {
-                    $dbAdapter = $container->get(AdapterInterface::class);
-                    $resultSetPrototype = new ResultSet();
-                    $resultSetPrototype->setArrayObjectPrototype(new Model\TipoDocumento());
-                    return new TableGateway('tipo_documento', $dbAdapter, null, $resultSetPrototype);
-                },
-                Model\CtaBancaria::class => function($container) {
-                    $tableGateway = $container->get(Model\CtaBancariaTable::class);
-                    $fk = array (
-                        'banco' => $container->get(Model\BancoTable::class),
-                        'moneda' => $container->get(Model\MonedaTable::class)
-                    );
-                    
-                    return new Model\CtaBancariaTable($tableGateway, $fk);
-                },
-                Model\CtaBancariaTable::class => function ($container) {
-                    $dbAdapter = $container->get(AdapterInterface::class);
-                    $resultSetPrototype = new ResultSet();
-                    $resultSetPrototype->setArrayObjectPrototype(new Model\CtaBancaria());
-                    return new TableGateway('cta_bancaria', $dbAdapter, null, $resultSetPrototype);
-                },
                 Model\User::class => function($container) {
                     $tableGateway = $container->get(Model\UserTable::class);
                     return new Model\UserTable($tableGateway);
@@ -261,46 +126,6 @@ class Module implements AutoloaderProviderInterface, ConfigProviderInterface
                     $resultSetPrototype = new ResultSet();
                     $resultSetPrototype->setArrayObjectPrototype(new Model\User());
                     return new TableGateway('user', $dbAdapter, null, $resultSetPrototype);
-                },
-                Model\Colegio::class => function($container) {
-                    $tableGateway = $container->get(Model\ColegioTable::class);
-                    return new Model\ColegioTable($tableGateway);
-                },
-                Model\ColegioTable::class => function ($container) {
-                    $dbAdapter = $container->get(AdapterInterface::class);
-                    $resultSetPrototype = new ResultSet();
-                    $resultSetPrototype->setArrayObjectPrototype(new Model\Colegio());
-                    return new TableGateway('colegio', $dbAdapter, null, $resultSetPrototype);
-                },
-                Model\Moneda::class => function($container) {
-                    $tableGateway = $container->get(Model\MonedaTable::class);
-                    return new Model\MonedaTable($tableGateway);
-                },
-                Model\MonedaTable::class => function ($container) {
-                    $dbAdapter = $container->get(AdapterInterface::class);
-                    $resultSetPrototype = new ResultSet();
-                    $resultSetPrototype->setArrayObjectPrototype(new Model\Moneda());
-                    return new TableGateway('moneda', $dbAdapter, null, $resultSetPrototype);
-                },
-                Model\Banco::class => function($container) {
-                    $tableGateway = $container->get(Model\BancoTable::class);
-                    return new Model\BancoTable($tableGateway);
-                },
-                Model\BancoTable::class => function ($container) {
-                    $dbAdapter = $container->get(AdapterInterface::class);
-                    $resultSetPrototype = new ResultSet();
-                    $resultSetPrototype->setArrayObjectPrototype(new Model\Banco());
-                    return new TableGateway('banco', $dbAdapter, null, $resultSetPrototype);
-                },
-                Model\Categoria::class => function($container) {
-                    $tableGateway = $container->get(Model\CategoriaTable::class);
-                    return new Model\CategoriaTable($tableGateway);
-                },
-                Model\CategoriaTable::class => function ($container) {
-                    $dbAdapter = $container->get(AdapterInterface::class);
-                    $resultSetPrototype = new ResultSet();
-                    $resultSetPrototype->setArrayObjectPrototype(new Model\Categoria());
-                    return new TableGateway('categoria', $dbAdapter, null, $resultSetPrototype);
                 },
             ],
         ];

@@ -35,4 +35,5 @@ return [
     'Zend\Router',
     'Zend\Validator',
     'Business',
+    'Dashboard',
 ];
