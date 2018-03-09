@@ -26,6 +26,26 @@ $routes = [
       'controller' => Dcontroller\IndexController::class,
       'action'     => 'index',
    ],
+   'dashboard-rol-listar' => [
+      'route' => '/dashboard/mantenimiento/rol',
+      'controller' => Dcontroller\RolController::class,
+      'action'     => 'listar',
+   ],
+   'dashboard-rol-agregar' => [
+      'route' => '/dashboard/mantenimiento/rol/agregar',
+      'controller' => Dcontroller\RolController::class,
+      'action'     => 'agregar',
+   ],
+   'dashboard-rol-editar' => [
+      'route' => '/dashboard/mantenimiento/rol/listar',
+      'controller' => Dcontroller\RolController::class,
+      'action'     => 'editar',
+   ],
+   'dashboard-rol-eliminar' => [
+      'route' => '/dashboard/mantenimiento/rol/eliminar',
+      'controller' => Dcontroller\RolController::class,
+      'action'     => 'eliminar',
+   ],
 
 ];
 $arrRoutes = [];
@@ -42,8 +62,6 @@ foreach ($routes as $key => $route) {
       ],
    ];
 }
-
-
 
 return [
    'router' => [

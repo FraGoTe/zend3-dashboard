@@ -236,7 +236,7 @@ abstract class ControllerCRUD extends AbstractActionController
             
             $this->flashMessenger()->addWarningMessage(['El formulario no es válido', $mensajeValidacion]);
             
-            return $viewData;
+            return null;
         }
 
         $setValues = $request->getPost()->toArray();
