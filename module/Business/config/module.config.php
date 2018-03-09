@@ -13,13 +13,13 @@ use Zend\Router\Http\Literal;
 return [
    'router' => [
       'routes' => [
-         'login' => [
+         'dashboard-login' => [
             'type' => Literal::class,
             'options' => [
                'route'    => '/',
                'defaults' => [
                   'controller' => Dcontroller\LoginController::class,
-                  'action'     => 'index',
+                  'action'     => 'login',
                ],
             ],
          ],
