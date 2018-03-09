@@ -35,10 +35,8 @@ class LoginController extends AbstractActionController
          $dataForm = $request->getPost();
          if (!empty($dataForm->usuario) && !empty($dataForm->clave)) {
             $authAdapter = new AuthAdapter($this->mysqlAdp, 'user', 'username', 'password', 'sha1(?) AND active = 1');
-
             $auth->setAdapter($authAdapter);
-
-            $auth->getAdapter()->setIdentity(strtoupper($dataForm->usuario))->setCredential(strtoupper($dataForm->clave));
+            $auth->getAdapter()->setIdentity(strtolower($dataForm->usuario))->setCredential(strtolower($dataForm->clave));
             $result = $auth->authenticate();
 
             switch ($result->getCode()) {
@@ -46,31 +44,6 @@ class LoginController extends AbstractActionController
                   $storage = $auth->getStorage();
                   $userData = $authAdapter->getResultRowObject();
                   $storage->write($userData);
-                  //var_dump($userData);exit;
-                  /*
-                  $objMenu = $sm->get('Panel\Model\GePrivilegioTable');
-                  $objRol = $sm->get('Panel\Model\GeRolTable');
-                  $objLogAcceso = $sm->get('Application\Model\AudAccesoTable');
-                  $dataMenu = $objMenu->getMenuByUser($userData['codigo_usuario']);
-
-                  $userSession = new Container('usuario');
-                  $userMenu = new Container('menu');
-                  $userMenuAcceso = new Container('menu_acceso');
-                  $userSession->codigo = !empty($userData['codigo_usuario']) ? $userData['codigo_usuario'] : '';
-                  $userSession->apellidoPaterno = !empty($userData['apellido_paterno']) ? $userData['apellido_paterno'] : '';
-                  $userSession->apellidoMaterno = !empty($userData['apellido_materno']) ? $userData['apellido_materno'] : '';
-                  $userSession->nombre = !empty($userData['nombre_usuario']) ? $userData['nombre_usuario'] : '';
-                  $userSession->dni = !empty($userData['dni']) ? $userData['dni'] : '';
-                  $userSession->rolId = !empty($dataMenu[0]['rol_id']) ? (int)$dataMenu[0]['rol_id'] : 0;
-                  $userSession->rol = !empty($dataMenu[0]['descripcion']) ? $dataMenu[0]['descripcion'] : '';
-                  $userSession->codigoAgencia = !empty($userData['codigo_agencia']) ? $userData['codigo_agencia'] : '';
-                  $userSession->esAdministrador = (!empty($userData['administrador']) && $userData['administrador'] == '1') ? true : false;
-                  //$userSession->codigoAgencia
-                  //$sessionUsuario->codigoEstacion
-                  $userMenu->data = serialize($dataMenu);
-                  $userMenuAcceso->data = serialize($objRol->obtenerAccesosPorRol($userSession->rolId));
-                  $objLogAcceso->logAcceso();
-                  */
                   return $this->redirect()->toRoute('dashboard-index');
                   break;
                case Result::FAILURE_UNCATEGORIZED:
@@ -82,8 +55,7 @@ class LoginController extends AbstractActionController
             }
          }
 
-         $this->flashMessenger()->addErrorMessage([':Atención:', $message]);
-
+         $this->flashMessenger()->addWarningMessage(['Atención', $message]);
       }
 
       return $viewmodel;

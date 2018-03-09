@@ -16,6 +16,7 @@
       ->prependStylesheet($this->basePath('css/lib/bootstrap/bootstrap.min.css'))
       ->prependStylesheet($this->basePath('css/helper.css'))
       ->prependStylesheet($this->basePath('css/style.css'))
+      ->prependStylesheet($this->basePath('css/lib/sweetalert/sweetalert.css'))
    ?>
 </head>
 <body class="fix-header fix-sidebar">
@@ -36,7 +37,7 @@
                             <form method="POST">
                                 <div class="form-group">
                                     <label>Usuario</label>
-                                    <input name="usuario" class="form-control" placeholder="Usuario">
+                                    <input type="text" name="usuario" class="form-control" placeholder="Usuario">
                                 </div>
                                 <div class="form-group">
                                     <label>Password</label>
@@ -70,6 +71,8 @@ $this->headScript()
    ->appendFile($this->basePath('js/sidebarmenu.js'))
    ->appendFile($this->basePath('js/lib/sticky-kit-master/dist/sticky-kit.min.js'))
    ->appendFile($this->basePath('js/custom.min.js'))
+   ->appendFile($this->basePath('js/lib/sweetalert/sweetalert.min.js'))
+   ->appendFile($this->basePath('js/lib/sweetalert/sweetalert.init.js'))
 ?>
 <?php $this->FlashMsg(); ?>
 <?= $this->inlineScript() ?>

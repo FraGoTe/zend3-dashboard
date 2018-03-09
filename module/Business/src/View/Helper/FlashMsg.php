@@ -35,25 +35,25 @@ class FlashMsg extends AbstractHelper
 
         if ($flashMsg->hasCurrentSuccessMessages()) {
             $this->inlineScript->captureStart();
-            echo "showStackContext('success', '" . $plugin->getCurrentSuccessMessages()[0][0] . "', '" . $plugin->getCurrentSuccessMessages()[0][1] . "');";
+            echo "swal('" . $plugin->getCurrentSuccessMessages()[0][0] . "', '" . $plugin->getCurrentSuccessMessages()[0][1] . "', 'success');";
             $this->inlineScript->captureEnd();
         }
         
         if ($flashMsg->hasCurrentInfoMessages()) {
             $this->inlineScript->captureStart();
-            echo "showStackContext('info', '" . $plugin->getCurrentInfoMessages()[0][0] . "', '" . $plugin->getCurrentInfoMessages()[0][1] . "');";
+            echo "swal('" . $plugin->getCurrentInfoMessages()[0][0] . "', '" . $plugin->getCurrentInfoMessages()[0][1] . "', 'info');";
             $this->inlineScript->captureEnd();
         }
         
         if ($flashMsg->hasCurrentWarningMessages()) {
             $this->inlineScript->captureStart();
-            echo "showStackContext('warning', '" . $plugin->getCurrentWarningMessages()[0][0] . "', '" . $plugin->getCurrentWarningMessages()[0][1] . "');";
+            echo "swal('" . $plugin->getCurrentWarningMessages()[0][0] . "', '" . $plugin->getCurrentWarningMessages()[0][1] . "', 'warning');";
             $this->inlineScript->captureEnd();
         }
         
         if ($flashMsg->hasCurrentErrorMessages()) {
             $this->inlineScript->captureStart();
-            echo "showStackContext('error', '" . $plugin->getCurrentErrorMessages()[0][0] . "', '" . $plugin->getCurrentErrorMessages()[0][1] . "');";
+            echo "sweetAlert('" . $plugin->getCurrentErrorMessages()[0][0] . "', '" . $plugin->getCurrentErrorMessages()[0][1] . "', 'error');";
             $this->inlineScript->captureEnd();
         }
         
