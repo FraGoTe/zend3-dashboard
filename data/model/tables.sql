@@ -35,20 +35,12 @@ CREATE TABLE IF NOT EXISTS `user` (
   `full_name` VARCHAR(300) NULL COMMENT '',
   `email` VARCHAR(300) NULL COMMENT '',
   `active` INT(1) NULL COMMENT '',
-  `role_id` INT NOT NULL COMMENT '',
-  `pasajero_id` INT NOT NULL COMMENT '',
   PRIMARY KEY (`id`)  COMMENT '',
   UNIQUE INDEX `id_UNIQUE` (`id` ASC)  COMMENT '',
   INDEX `fk_user_role_idx` (`role_id` ASC)  COMMENT '',
-  INDEX `fk_user_pasajero1_idx` (`pasajero_id` ASC)  COMMENT '',
   CONSTRAINT `fk_user_role`
     FOREIGN KEY (`role_id`)
     REFERENCES `role` (`id`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION,
-  CONSTRAINT `fk_user_pasajero1`
-    FOREIGN KEY (`pasajero_id`)
-    REFERENCES `pasajero` (`id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
