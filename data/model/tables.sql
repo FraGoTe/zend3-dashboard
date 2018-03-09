@@ -35,6 +35,7 @@ CREATE TABLE IF NOT EXISTS `user` (
   `full_name` VARCHAR(300) NULL COMMENT '',
   `email` VARCHAR(300) NULL COMMENT '',
   `active` INT(1) NULL COMMENT '',
+  `role_id` INT NULL COMMENT '',
   PRIMARY KEY (`id`)  COMMENT '',
   UNIQUE INDEX `id_UNIQUE` (`id` ASC)  COMMENT '',
   INDEX `fk_user_role_idx` (`role_id` ASC)  COMMENT '',
