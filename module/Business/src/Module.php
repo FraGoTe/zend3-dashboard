@@ -7,6 +7,7 @@
 
 namespace Business;
 
+use Dashboard\Navigation\MenuFactory;
 use Zend\Mvc\MvcEvent;
 use Zend\Db\Adapter\AdapterInterface;
 use Zend\Db\ResultSet\ResultSet;
@@ -27,7 +28,7 @@ class Module implements AutoloaderProviderInterface, ConfigProviderInterface
         $application = $e->getApplication();
         $sm = $application->getServiceManager();
         $sharedManager = $eventManager->getSharedManager();
-        
+
         //Setting View Helper
         $viewHelperManager = $e->getApplication()->getServiceManager()->get('ViewHelperManager');
         $e->getApplication()->getServiceManager()->get('ViewHelperManager')->setFactory('FlashMsg', function() use ($viewHelperManager) {
@@ -37,10 +38,10 @@ class Module implements AutoloaderProviderInterface, ConfigProviderInterface
                 $viewHelperManager->get('HeadLink'),
                 $viewHelperManager->get('url')
             );
-                
+
             return $viewHelper;
         });
-        
+
         //Setting layouts
         $sharedManager->attach('Zend\Mvc\Controller\AbstractController', 'dispatch', function($e) {
             $controller = $e->getTarget();
@@ -52,7 +53,7 @@ class Module implements AutoloaderProviderInterface, ConfigProviderInterface
                 $controller->layout($config['module_layouts'][$moduleNamespace]);
             }
         }, 100);
-        
+
         $router = $sm->get('router');
         $request = $sm->get('request');
         $matchedRoute = $router->match($request);
@@ -67,8 +68,8 @@ class Module implements AutoloaderProviderInterface, ConfigProviderInterface
             }, 2);
         }
     }
-    
-    public function getControllerPluginConfig() 
+
+    public function getControllerPluginConfig()
     {
         return [
             'factories' => [
@@ -85,7 +86,7 @@ class Module implements AutoloaderProviderInterface, ConfigProviderInterface
             ]
         ];
     }
-    
+
     public function getAutoloaderConfig()
     {
         return array(
@@ -96,19 +97,19 @@ class Module implements AutoloaderProviderInterface, ConfigProviderInterface
             ),
         );
     }
-    
+
     public function getConfig()
     {
         return include __DIR__ . '/../config/module.config.php';
     }
-    
+
     public function getServiceConfig()
     {
         return [
             'factories' => [
                 Model\Rol::class => function($container) {
                     $tableGateway = $container->get(Model\RolTable::class);
-                    
+
                     return new Model\RolTable($tableGateway);
                 },
                 Model\RolTable::class => function ($container) {

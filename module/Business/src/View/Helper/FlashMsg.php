@@ -2,10 +2,8 @@
 
 namespace Business\View\Helper;
 use Zend\View\Helper\AbstractHelper;
-use Zend\View\Helper\FlashMessenger;
 use Zend\View\Helper\InlineScript;
 use Zend\View\Helper\HeadLink;
-use Zend\View\Helper\BasePath;
 use Zend\View\Helper\Url;
 
 class FlashMsg extends AbstractHelper
@@ -15,7 +13,7 @@ class FlashMsg extends AbstractHelper
     private $Url;
     private $headLink;
     
-    public function __construct(FlashMessenger $flashMessenger, InlineScript $inlineScript,HeadLink $headLink,Url $Url)
+    public function __construct(AbstractHelper $flashMessenger, InlineScript $inlineScript,HeadLink $headLink,Url $Url)
     {
         $this->flashMessenger = $flashMessenger;
         $this->inlineScript = $inlineScript;
