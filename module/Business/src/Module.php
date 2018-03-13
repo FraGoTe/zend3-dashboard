@@ -7,6 +7,7 @@
 
 namespace Business;
 
+use Dashboard\Navigation\MenuFactory;
 use Zend\Mvc\MvcEvent;
 use Zend\Db\Adapter\AdapterInterface;
 use Zend\Db\ResultSet\ResultSet;
@@ -18,6 +19,21 @@ use Zend\ModuleManager\Feature\AutoloaderProviderInterface;
 
 class Module implements AutoloaderProviderInterface, ConfigProviderInterface
 {
+/*
+   public function onBootstrap(MvcEvent $e)
+   {
+      $eventManager = $e->getApplication()->getEventManager();
+      $eventManager->attach('route', array($this, 'onRouteFinish'), -100);
+   }
+
+   public function onRouteFinish($e)
+   {
+      $matches    = $e->getRouteMatch();
+      $controller = $matches->getParam('controller');
+      var_dump($matches);die();
+   }
+   */
+
     public function onBootstrap(MvcEvent $e)
     {
         $eventManager = $e->getApplication()->getEventManager();
@@ -27,7 +43,7 @@ class Module implements AutoloaderProviderInterface, ConfigProviderInterface
         $application = $e->getApplication();
         $sm = $application->getServiceManager();
         $sharedManager = $eventManager->getSharedManager();
-        
+
         //Setting View Helper
         $viewHelperManager = $e->getApplication()->getServiceManager()->get('ViewHelperManager');
         $e->getApplication()->getServiceManager()->get('ViewHelperManager')->setFactory('FlashMsg', function() use ($viewHelperManager) {
@@ -37,10 +53,10 @@ class Module implements AutoloaderProviderInterface, ConfigProviderInterface
                 $viewHelperManager->get('HeadLink'),
                 $viewHelperManager->get('url')
             );
-                
+
             return $viewHelper;
         });
-        
+
         //Setting layouts
         $sharedManager->attach('Zend\Mvc\Controller\AbstractController', 'dispatch', function($e) {
             $controller = $e->getTarget();
@@ -52,7 +68,7 @@ class Module implements AutoloaderProviderInterface, ConfigProviderInterface
                 $controller->layout($config['module_layouts'][$moduleNamespace]);
             }
         }, 100);
-        
+
         $router = $sm->get('router');
         $request = $sm->get('request');
         $matchedRoute = $router->match($request);
@@ -67,8 +83,8 @@ class Module implements AutoloaderProviderInterface, ConfigProviderInterface
             }, 2);
         }
     }
-    
-    public function getControllerPluginConfig() 
+
+    public function getControllerPluginConfig()
     {
         return [
             'factories' => [
@@ -85,7 +101,7 @@ class Module implements AutoloaderProviderInterface, ConfigProviderInterface
             ]
         ];
     }
-    
+
     public function getAutoloaderConfig()
     {
         return array(
@@ -96,19 +112,30 @@ class Module implements AutoloaderProviderInterface, ConfigProviderInterface
             ),
         );
     }
-    
+
     public function getConfig()
     {
         return include __DIR__ . '/../config/module.config.php';
     }
-    
+
     public function getServiceConfig()
     {
         return [
             'factories' => [
+               Model\Privilege::class => function($container) {
+                  $tableGateway = $container->get(Model\PrivilegeTable::class);
+
+                  return new Model\PrivilegeTable($tableGateway);
+               },
+               Model\PrivilegeTable::class => function ($container) {
+                  $dbAdapter = $container->get(AdapterInterface::class);
+                  $resultSetPrototype = new ResultSet();
+                  $resultSetPrototype->setArrayObjectPrototype(new Model\Privilege());
+                  return new TableGateway('privilege', $dbAdapter, null, $resultSetPrototype);
+               },
                 Model\Rol::class => function($container) {
                     $tableGateway = $container->get(Model\RolTable::class);
-                    
+
                     return new Model\RolTable($tableGateway);
                 },
                 Model\RolTable::class => function ($container) {

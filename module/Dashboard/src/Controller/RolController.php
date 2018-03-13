@@ -24,18 +24,18 @@ class RolController extends ControllerCRUD
             ],
         );
             
-        $columnasListar = array(
+        $columnasListar = [
             'id' => 'ID',
             'name' => 'Descripción',
-        );
+        ];
         
-        $indexRedirect = 'cobranza-rol-listar';
+        $indexRedirect = 'dashboard-rol-listar';
         
-        $tableId = array('id');
+        $tableId = ['id'];
         
-        $dscEliminar = array(
+        $dscEliminar = [
             'id', 'name'
-        );
+        ];
         
         $this->setTitulo('Roles');
         $this->setColumnasListar($columnasListar);

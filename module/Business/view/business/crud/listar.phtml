@@ -44,6 +44,7 @@ $this->headTitle($title);
                                 <?php foreach ($this->columnas as $id => $cabecera) { ?>
                                 <th><?= $cabecera; ?></th>
                                 <?php } ?>
+
                                 <th></th>
                             </thead>
                             <?php if ($this->paginator->getTotalItemCount() > 0) { ?>
@@ -63,6 +64,7 @@ $this->headTitle($title);
                                                 ?>
                                             </td>
                                         <?php } ?>
+
                                         <td>
                                             <a class="btn btn-warning btn-sm"
                                                href="<?= $this->url($this->urlPrefix . 'editar', ['id' => $fila->id]) ?>"><i

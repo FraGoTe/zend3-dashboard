@@ -46,6 +46,17 @@ CREATE TABLE IF NOT EXISTS `user` (
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
 
+-- -----------------------------------------------------
+-- Table `module`
+-- -----------------------------------------------------
+DROP TABLE IF EXISTS `module` ;
+
+CREATE TABLE IF NOT EXISTS `module` (
+  `id` INT NOT NULL AUTO_INCREMENT COMMENT '',
+  `name` VARCHAR(100) NULL COMMENT '',
+  PRIMARY KEY (`id`)  COMMENT '',
+  UNIQUE INDEX `idmodule_UNIQUE` (`id` ASC)  COMMENT '')
+ENGINE = InnoDB;
 
 -- -----------------------------------------------------
 -- Table `menu`
@@ -54,13 +65,17 @@ DROP TABLE IF EXISTS `menu` ;
 
 CREATE TABLE IF NOT EXISTS `menu` (
   `id` INT NOT NULL AUTO_INCREMENT COMMENT '',
-  `module` VARCHAR(100) NULL COMMENT '',
-  `controller` VARCHAR(100) NULL COMMENT '',
-  `action` VARCHAR(100) NULL COMMENT '',
+  `url` VARCHAR(100) NULL COMMENT '',
   `label` VARCHAR(150) NULL COMMENT '',
   `parent` INT(11) NULL COMMENT '',
+  `module_id` INT(11),
   PRIMARY KEY (`id`)  COMMENT '',
-  UNIQUE INDEX `idmenu_UNIQUE` (`id` ASC)  COMMENT '')
+  UNIQUE INDEX `idmenu_UNIQUE` (`id` ASC)  COMMENT '',
+   CONSTRAINT `fk_menu_module`
+    FOREIGN KEY (`module_id`)
+    REFERENCES `module` (`id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
 ENGINE = InnoDB;
 
 

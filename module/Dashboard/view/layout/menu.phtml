@@ -1,0 +1,42 @@
+<div class="left-sidebar">
+   <!-- Sidebar scroll-->
+   <div class="slimScrollDiv" style="position: relative; overflow: hidden; width: auto; height: 100%;"><div class="scroll-sidebar" style="overflow: hidden; width: auto; height: 100%;">
+         <!-- Sidebar navigation-->
+         <nav class="sidebar-nav active">
+            <ul id="sidebarnav" class="in">
+               <li class="nav-devider"></li>
+               <li class="nav-label">Menu</li>
+               <?php
+               foreach ($this->container as $page) {
+                  $hasChildren = $page->hasPages();
+                  if (!$hasChildren) {
+                     ?>
+                     <li><a class="no-children" href="<?php echo $page->getHref(); ?>"><?php echo $page->getLabel(); ?></a></li>
+                     <?php
+                  } else {
+                     ?>
+                     <li>
+                        <a class="has-arrow" href="#" aria-expanded="false">
+                           <span class="hide-menu">
+                              <?php echo $page->getLabel(); ?>
+                           </span>
+                        </a>
+                        <ul aria-expanded="false" class="collapse">
+                           <?php
+                           foreach($page->getPages() as $child) {
+                              ?>
+                              <li><a href="<?php echo $child->getHref(); ?>"><?php echo $child->getLabel(); ?></a></li>
+                              <?php
+                           }
+                           ?>
+                        </ul>
+                     </li>
+                     <?php
+                  }
+               }
+               ?>
+         </nav>
+         <!-- End Sidebar navigation -->
+      </div><div class="slimScrollBar" style="background: rgb(220, 220, 220); width: 5px; position: absolute; top: 18px; opacity: 0.4; display: none; border-radius: 7px; z-index: 99; left: 1px; height: 419.236px;"></div><div class="slimScrollRail" style="width: 5px; height: 100%; position: absolute; top: 0px; display: none; border-radius: 7px; background: rgb(51, 51, 51); opacity: 0.2; z-index: 90; left: 1px;"></div></div>
+   <!-- End Sidebar scroll-->
+</div>
