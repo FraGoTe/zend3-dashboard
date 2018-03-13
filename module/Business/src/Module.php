@@ -19,6 +19,21 @@ use Zend\ModuleManager\Feature\AutoloaderProviderInterface;
 
 class Module implements AutoloaderProviderInterface, ConfigProviderInterface
 {
+/*
+   public function onBootstrap(MvcEvent $e)
+   {
+      $eventManager = $e->getApplication()->getEventManager();
+      $eventManager->attach('route', array($this, 'onRouteFinish'), -100);
+   }
+
+   public function onRouteFinish($e)
+   {
+      $matches    = $e->getRouteMatch();
+      $controller = $matches->getParam('controller');
+      var_dump($matches);die();
+   }
+   */
+
     public function onBootstrap(MvcEvent $e)
     {
         $eventManager = $e->getApplication()->getEventManager();

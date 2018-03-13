@@ -12,7 +12,6 @@ use Business\Model\PrivilegeTable;
 use Interop\Container\ContainerInterface;
 use Zend\Db\TableGateway\TableGateway;
 use Zend\Navigation\AbstractContainer;
-use Zend\Navigation\Page;
 use Zend\Authentication\AuthenticationService;
 
 
@@ -32,12 +31,12 @@ class Menu extends AbstractContainer
       $dashboardMenu = [];
       foreach ($dataMenu as $menu) {
          if (empty($menu['parent'])) {
-            $dashboardMenu[$menu['id']] = [
+            $dashboardMenu[$menu['menu_id']] = [
                'label' => $menu['label'],
                'uri' => $menu['url']
             ];
          } else {
-            $dashboardMenu[$menu['parent']]['pages'][$menu['id']] = [
+            $dashboardMenu[$menu['parent']]['pages'][$menu['menu_id']] = [
                'label' => $menu['label'],
                'uri' => $menu['url']
             ];

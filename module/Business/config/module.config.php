@@ -9,6 +9,7 @@ namespace Business;
 
 use Dashboard\Controller as Dcontroller;
 use Zend\Router\Http\Literal;
+use Zend\Router\Http\Segment;
 
 $routes = [
    'dashboard-login' => [
@@ -37,14 +38,20 @@ $routes = [
       'action'     => 'agregar',
    ],
    'dashboard-rol-editar' => [
-      'route' => '/dashboard/mantenimiento/rol/listar',
+      'route' => '/dashboard/mantenimiento/rol/editar/id/:id',
       'controller' => Dcontroller\RolController::class,
       'action'     => 'editar',
+      'constraints' => [
+         'id'     => '[0-9]+',
+      ],
    ],
    'dashboard-rol-eliminar' => [
-      'route' => '/dashboard/mantenimiento/rol/eliminar',
+      'route' => '/dashboard/mantenimiento/rol/eliminar/id/:id',
       'controller' => Dcontroller\RolController::class,
       'action'     => 'eliminar',
+      'constraints' => [
+         'id'     => '[0-9]+',
+      ],
    ],
 
 ];
@@ -52,7 +59,7 @@ $arrRoutes = [];
 
 foreach ($routes as $key => $route) {
    $arrRoutes[$key] = [
-      'type' => Literal::class,
+      'type' => Segment::class,
       'options' => [
          'route'    => $route['route'],
          'defaults' => [
@@ -61,6 +68,10 @@ foreach ($routes as $key => $route) {
          ],
       ],
    ];
+
+   if (!empty($route['constraints'])) {
+      $arrRoutes[$key]['options']['constraints'] = $route['constraints'];
+   }
 }
 
 return [

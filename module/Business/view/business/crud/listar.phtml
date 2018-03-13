@@ -45,7 +45,8 @@ $this->headTitle($title);
                             </tr>
                         </thead>
                         <?php if ($this->paginator->getTotalItemCount() > 0) { ?>
-                            <?php foreach ($this->paginator as $fila) : ?>
+                            <?php foreach ($this->paginator as $fila) :
+                              ?>
                                 <tr>
                                     <?php foreach ($this->columnas as $id => $cabecera) { ?>
                                         <td>
