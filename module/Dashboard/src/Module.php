@@ -35,6 +35,21 @@ class Module
         return [
             'factories' => [
                // Controllers
+                Controller\MenuController::class => function($container) {
+                    return new Controller\MenuController  (
+                        $container->get(Model\Menu::class)
+                    );
+                },
+                Controller\UserController::class => function($container) {
+                    return new Controller\UserController  (
+                        $container->get(Model\User::class)
+                    );
+                },
+                Controller\ModuloController::class => function($container) {
+                    return new Controller\ModuloController  (
+                        $container->get(Model\Modulo::class)
+                    );
+                },
                Controller\RolController::class => function($container) {
                     return new Controller\RolController(
                         $container->get(Model\Rol::class)

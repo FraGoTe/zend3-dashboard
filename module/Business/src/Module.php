@@ -122,6 +122,17 @@ class Module implements AutoloaderProviderInterface, ConfigProviderInterface
     {
         return [
             'factories' => [
+                Model\Modulo::class => function($container) {
+                    $tableGateway = $container->get(Model\ModuloTable::class);
+
+                    return new Model\ModuloTable($tableGateway);
+                },
+                Model\ModuloTable::class => function ($container) {
+                    $dbAdapter = $container->get(AdapterInterface::class);
+                    $resultSetPrototype = new ResultSet();
+                    $resultSetPrototype->setArrayObjectPrototype(new Model\Modulo());
+                    return new TableGateway('module', $dbAdapter, null, $resultSetPrototype);
+                },
                Model\Privilege::class => function($container) {
                   $tableGateway = $container->get(Model\PrivilegeTable::class);
 
@@ -153,6 +164,16 @@ class Module implements AutoloaderProviderInterface, ConfigProviderInterface
                     $resultSetPrototype = new ResultSet();
                     $resultSetPrototype->setArrayObjectPrototype(new Model\User());
                     return new TableGateway('user', $dbAdapter, null, $resultSetPrototype);
+                },
+                Model\Menu::class => function($container) {
+                    $tableGateway = $container->get(Model\MenuTable::class);
+                    return new Model\MenuTable($tableGateway);
+                },
+                Model\MenuTable::class => function ($container) {
+                    $dbAdapter = $container->get(AdapterInterface::class);
+                    $resultSetPrototype = new ResultSet();
+                    $resultSetPrototype->setArrayObjectPrototype(new Model\Menu());
+                    return new TableGateway('menu', $dbAdapter, null, $resultSetPrototype);
                 },
             ],
         ];

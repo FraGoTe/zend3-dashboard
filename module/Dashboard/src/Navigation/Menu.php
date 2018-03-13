@@ -29,6 +29,7 @@ class Menu extends AbstractContainer
       $identity = $auth->getIdentity();
       $dataMenu = $privilege->getMenuByUser($identity->id);
       $dashboardMenu = [];
+
       foreach ($dataMenu as $menu) {
          if (empty($menu['parent'])) {
             $dashboardMenu[$menu['menu_id']] = [
