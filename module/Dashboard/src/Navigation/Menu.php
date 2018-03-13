@@ -7,55 +7,43 @@
  */
 namespace Dashboard\Navigation;
 
-use Zend\Navigation\Service\DefaultNavigationFactory;
+use Business\Model\Privilege;
+use Business\Model\PrivilegeTable;
+use Interop\Container\ContainerInterface;
+use Zend\Db\TableGateway\TableGateway;
+use Zend\Navigation\AbstractContainer;
+use Zend\Navigation\Page;
 use Zend\Authentication\AuthenticationService;
-use Zend\ServiceManager\ServiceLocatorInterface;
 
 
-class Menu extends DefaultNavigationFactory
+class Menu extends AbstractContainer
 {
-   protected function getPages(ServiceLocatorInterface $serviceLocator)
+   public function __construct(ContainerInterface $container)
    {
-      if (null == $this->pages) {
-         $auth = new AuthenticationService();
-         $mvcEvent = $serviceLocator->get('Application')->getMvcEvent();
-         $privilegeMenu = $serviceLocator->get('Dashboard\Model\PrivilegeTable');
-
-         $identity = $auth->getIdentity();
-         $dataMenu = $privilegeMenu->getMenuByUser($identity->id);
-         $menu = $this->menuFormat($dataMenu);
-
-         $routeMatch = $mvcEvent->getRouteMatch();
-         $router = $mvcEvent->getRouter();
-         $pages = $this->getPagesFromConfig($menu);
-         $this->pages = $this->injectComponents($pages, $routeMatch, $router);
-      }
-
-      return $this->pages;
+      $this->addPrivilegedPages($container->get(Privilege::class));
+      $this->addPage(['label' => 'Logout', 'uri' => '/dashboard/logout']);
    }
 
-   public function menuFormat($dataMenu)
+   public function addPrivilegedPages(PrivilegeTable $privilege)
    {
-      $menu = [];
-      foreach ($dataMenu as $opt) {
-         if (empty($opt['parent'])) {
-            $menu[$opt['menu_id']] = array(
-               'label' => $opt['label'],
-               'uri' => $routHelper->formUrl($opt['module'], $opt['controller'], $opt['action'])
-            );
-         }else {
-            $menu[$opt['parent']]['pages'][] = array(
-               'label' => $opt['label'],
-               'uri' => $routHelper->formUrl($opt['module'], $opt['controller'], $opt['action'])
-            );
+      $auth = new AuthenticationService();
+      $identity = $auth->getIdentity();
+      $dataMenu = $privilege->getMenuByUser($identity->id);
+      $dashboardMenu = [];
+      foreach ($dataMenu as $menu) {
+         if (empty($menu['parent'])) {
+            $dashboardMenu[$menu['id']] = [
+               'label' => $menu['label'],
+               'uri' => $menu['url']
+            ];
+         } else {
+            $dashboardMenu[$menu['parent']]['pages'][$menu['id']] = [
+               'label' => $menu['label'],
+               'uri' => $menu['url']
+            ];
          }
       }
-      //Logout
-      $menu[] = array(
-         'label' => 'Logout',
-         'uri' => '/dashboard/logout'
-      );
 
-      return $menu;
+      $this->addPages($dashboardMenu);
    }
 }

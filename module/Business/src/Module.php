@@ -107,6 +107,17 @@ class Module implements AutoloaderProviderInterface, ConfigProviderInterface
     {
         return [
             'factories' => [
+               Model\Privilege::class => function($container) {
+                  $tableGateway = $container->get(Model\PrivilegeTable::class);
+
+                  return new Model\PrivilegeTable($tableGateway);
+               },
+               Model\PrivilegeTable::class => function ($container) {
+                  $dbAdapter = $container->get(AdapterInterface::class);
+                  $resultSetPrototype = new ResultSet();
+                  $resultSetPrototype->setArrayObjectPrototype(new Model\Privilege());
+                  return new TableGateway('privilege', $dbAdapter, null, $resultSetPrototype);
+               },
                 Model\Rol::class => function($container) {
                     $tableGateway = $container->get(Model\RolTable::class);
 

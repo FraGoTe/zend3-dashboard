@@ -8,7 +8,9 @@
 namespace Dashboard;
 
 use Business\Model;
+use Dashboard\Navigation\Menu;
 use Zend\Db\Adapter\Adapter;
+use Zend\View\Helper\Navigation;
 
 class Module
 {
@@ -16,12 +18,24 @@ class Module
     {
         return include __DIR__ . '/../config/module.config.php';
     }
+
+    public function getServiceConfig()
+    {
+       return [
+          'factories' => [
+             'Dashboard\Menu' => function($container) {
+                return new Menu($container);
+             }
+          ]
+       ];
+    }
     
     public function getControllerConfig()
     {
         return [
             'factories' => [
-                Controller\RolController::class => function($container) {
+               // Controllers
+               Controller\RolController::class => function($container) {
                     return new Controller\RolController(
                         $container->get(Model\Rol::class)
                     );
