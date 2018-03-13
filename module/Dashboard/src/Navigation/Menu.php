@@ -21,7 +21,7 @@ class Menu extends AbstractContainer
    public function __construct(ContainerInterface $container)
    {
       $this->addPrivilegedPages($container->get(Privilege::class));
-      $this->addPage(['label' => 'Logout', 'uri' => '/dashboard/logout']);
+      $this->addPage(['label' => '<i class="fa fa-power-off"></i> Logout', 'uri' => '/dashboard/logout']);
    }
 
    public function addPrivilegedPages(PrivilegeTable $privilege)
