@@ -35,6 +35,11 @@ class Module
         return [
             'factories' => [
                // Controllers
+                Controller\PrivilegeController::class => function($container) {
+                    return new Controller\PrivilegeController  (
+                        $container->get(Model\Privilege::class)
+                    );
+                },
                 Controller\MenuController::class => function($container) {
                     return new Controller\MenuController  (
                         $container->get(Model\Menu::class)

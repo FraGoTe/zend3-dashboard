@@ -131,6 +131,32 @@ $routes = [
             'id'     => '[0-9]+',
         ],
     ],
+    'dashboard-privilege-listar' => [
+        'route' => '/dashboard/mantenimiento/privilege',
+        'controller' => Dcontroller\PrivilegeController::class,
+        'action'     => 'listar',
+    ],
+    'dashboard-privilege-agregar' => [
+        'route' => '/dashboard/mantenimiento/privilege/agregar',
+        'controller' => Dcontroller\PrivilegeController::class,
+        'action'     => 'agregar',
+    ],
+    'dashboard-privilege-editar' => [
+        'route' => '/dashboard/mantenimiento/privilege/editar/id/:id',
+        'controller' => Dcontroller\PrivilegeController::class,
+        'action'     => 'editar',
+        'constraints' => [
+            'id'     => '[0-9]+',
+        ],
+    ],
+    'dashboard-privilege-eliminar' => [
+        'route' => '/dashboard/mantenimiento/privilege/eliminar/id/:id',
+        'controller' => Dcontroller\PrivilegeController::class,
+        'action'     => 'eliminar',
+        'constraints' => [
+            'id'     => '[0-9]+',
+        ],
+    ],
 
 ];
 $arrRoutes = [];
