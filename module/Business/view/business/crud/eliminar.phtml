@@ -6,6 +6,11 @@ $url   = ''/*$this->url('album', ['action' => 'delete', 'id' => $id])*/;
 
 $this->headTitle($title);
 ?>
+<div style="margin-left: 200px;">
+<div class="col-lg-8">
+
+    <div class="card">
+        <div class="card-body">
 <h1><?= $this->escapeHtml($title) ?></h1>
 
 <p>
@@ -14,6 +19,9 @@ $this->headTitle($title);
 </p>
 
 <form action="<?= $url ?>" method="post">
+    <br>
+
+    <div style="margin-left: 170px;">
 <div class="form-group">
     <?php
         $campos = $this->campos;
@@ -31,3 +39,6 @@ $this->headTitle($title);
     <input type="submit" class="btn btn-success" name="del" value="No" />
 </div>
 </form>
+        </div>
+    </div>
+</div>

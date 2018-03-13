@@ -1,4 +1,4 @@
-<?php 
+<?php
 
 $title = $this->titulo;
 $this->headTitle($title);
@@ -14,26 +14,27 @@ $descripciones = $this->camposDescripcion;
 
 foreach ($campos as $keyField => $field) {
     $showField = false;
-    
+
     if ((((empty($field['AI']) || $field['AI'] == 0) && !$isEdit) || $isEdit) && empty($field['FK'])) {
         $form->add([
             'name' => $keyField,
             'type' => 'text',
             'attributes' => [
-               'class' => 'form-control col-md-7 col-xs-12 ' . (!empty($field['DATE'])? 'date-picker' : ''),
+                'class' => 'form-control col-md-40 col-xs-40 ' . (!empty($field['DATE']) ? 'date-picker' : ''),
                 'maxlength' => (!empty($field['LENGHT']) ? $field['LENGHT'] : null),
                 'required' => 'required',
-                'value' => (!empty($this->defaultValue[$keyField])? $this->defaultValue[$keyField]: ''),
-                'readonly' => (!empty($field['PK'])? $field['PK']: ''),
+                'value' => (!empty($this->defaultValue[$keyField]) ? $this->defaultValue[$keyField] : ''),
+                'placeholder' => 'Inserte aquí',
+                'readonly' => (!empty($field['PK']) ? $field['PK'] : ''),
             ],
             'options' => [
                 'label' => $descripciones[$keyField],
                 'label_attributes' => array(
-                    'class' => 'control-label col-md-3 col-sm-3 col-xs-12',
+                    'class' => 'control-label col-md-6 col-sm-12 col-xs-12',
                 ),
             ],
         ]);
-        
+
         $showField = true;
     }
 
@@ -42,22 +43,23 @@ foreach ($campos as $keyField => $field) {
             'name' => $keyField,
             'type' => 'select',
             'attributes' => [
-               'class' => 'form-control col-md-7 col-xs-12',
+                'class' => 'form-control col-md-7 col-xs-12',
                 'required' => 'required',
-                'value' => (!empty($this->defaultValue[$keyField])? $this->defaultValue[$keyField]: ''),
+                'value' => (!empty($this->defaultValue[$keyField]) ? $this->defaultValue[$keyField] : ''),
             ],
             'options' => [
                 'label' => $descripciones[$keyField],
                 'label_attributes' => array(
                     'class' => 'control-label col-md-3 col-sm-3 col-xs-12',
+                    'class' => 'text-danger'
                 ),
                 'value_options' => !empty($field['FUNC']) ? $this->fk[$field['FUNC']] : []
             ],
         ]);
-        
+
         $showField = true;
     }
-    
+
     if ($showField) {
         $formFields[] = $form->get($keyField);
     }
@@ -81,59 +83,68 @@ $reset = $form->get('reset');
 
 $form->prepare();
 ?>
-<div class="row">
 
-<div class="page-title col-md-12 col-sm-12 col-xs-12">
-    <div class="title_left">
-        <h3><?= $this->escapeHtml($title); ?></h3>
-    </div>
+<ul class="nav navbar-right panel_toolbox">
 
-    <div class="title_right">
-        <div class="col-md-5 col-sm-5 col-xs-12 form-group pull-right top_search">
-            <div class="input-group">
-                <input type="text" class="form-control" placeholder="Buscar ...">
-                <span class="input-group-btn">
-                    <button class="btn btn-default" type="button">Ir!</button>
-                </span>
-            </div>
-        </div>
-    </div>
+</ul>
+<div class="clearfix"></div>
 </div>
 
-<div class="clearfix"></div>
-<div class="col-md-12 col-sm-12 col-xs-12">
-    <div class="x_panel">
-      <div class="x_title">
-        <h2>Agregar</h2>
-        <ul class="nav navbar-right panel_toolbox">
-          <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
-          </li>
-        </ul>
-        <div class="clearfix"></div>
-      </div>
-      <div class="x_content">
-        <br>
-        <?= $this->form()->openTag($form); ?>
-        <?php foreach ($formFields as $field): ?>
-        <div class="form-group">
-            <?= $this->formLabel($field) ?>
-            <div class="col-md-6 col-sm-6 col-xs-12">
-                <?= $this->formElement($field) ?>
+<div style="margin-left: 200px;">
+<div class="col-lg-8">
+
+    <div class="card">
+        <div class="card-body">
+            <div class="form-validation">
+
+            <div class="x_content">
+                <div class="row">
+
+                    <div class="page-title col-md-12 col-sm-12 col-xs-12">
+                        <div class="title_left">
+                            <h1 class="card-title"><?= $this->escapeHtml($title); ?></h1>
+                            <h2 class="card-subtitle">Agregar</h2>
+                        </div>
+                    </div>
+                    <br>
+                    <?= $this->form()->openTag($form); ?>
+                    <?php foreach ($formFields as $field): ?>
+
+                        <div class="form-group row">
+
+                            <?= $this->formLabel($field) ?>
+                            <div class="col-md-40 col-sm-6 col-xs-12">
+
+                                <?= $this->formElement($field) ?>
+                            </div>
+                            <?= $this->formElementErrors()->render($field, ['class' => 'help-block']) ?>
+                        </div>
+                        </div>
+                    <?php endforeach; ?>
+
+                <br>
+
+                    <div class="ln_solid"></div>
+                    <div style="margin-left: 150px;">
+                    <div class="form-group row">
+                        <div class="col-md-20 col-sm-12 col-xs-12 col-md-offset-3">
+                            <?= $this->formSubmit($submit); ?>
+                            <?= $this->formReset($reset); ?>
+
+                        </div>
+                    </div>
+                </div>
             </div>
-            <?= $this->formElementErrors()->render($field, ['class' => 'help-block']) ?>
-        </div>
-        <?php endforeach; ?>
-        <div class="ln_solid"></div>
-        <div class="form-group">
-            <div class="col-md-6 col-sm-6 col-xs-12 col-md-offset-3">
-              <?= $this->formSubmit($submit); ?>
-              <?= $this->formReset($reset); ?>
+                <?php
+
+                echo $this->form()->closeTag();
+                ?>
             </div>
         </div>
-        <?php
-        echo $this->form()->closeTag();
-        ?>
-      </div>
     </div>
-  </div>
+    </div>
+
+
+</div>
+</div>
 </div>
