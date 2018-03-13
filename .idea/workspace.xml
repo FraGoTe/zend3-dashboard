@@ -2,13 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="5f37c534-03cf-41d1-a2b0-69a35dc9415a" name="Default" comment="">
+      <change beforePath="$PROJECT_DIR$/.gitignore" afterPath="$PROJECT_DIR$/.gitignore" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change beforePath="$PROJECT_DIR$/module/Business/config/module.config.php" afterPath="$PROJECT_DIR$/module/Business/config/module.config.php" />
-      <change beforePath="$PROJECT_DIR$/module/Business/src/Module.php" afterPath="$PROJECT_DIR$/module/Business/src/Module.php" />
-      <change beforePath="$PROJECT_DIR$/module/Business/view/business/crud/listar.phtml" afterPath="$PROJECT_DIR$/module/Business/view/business/crud/listar.phtml" />
-      <change beforePath="$PROJECT_DIR$/module/Dashboard/src/Controller/RolController.php" afterPath="$PROJECT_DIR$/module/Dashboard/src/Controller/RolController.php" />
-      <change beforePath="$PROJECT_DIR$/module/Dashboard/src/Navigation/Menu.php" afterPath="$PROJECT_DIR$/module/Dashboard/src/Navigation/Menu.php" />
-      <change beforePath="$PROJECT_DIR$/module/Dashboard/view/layout/dashboard.phtml" afterPath="$PROJECT_DIR$/module/Dashboard/view/layout/dashboard.phtml" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -22,6 +17,16 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
+      <file leaf-file-name=".gitignore" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/.gitignore">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="162">
+              <caret line="9" column="9" lean-forward="false" selection-start-line="9" selection-start-column="9" selection-end-line="9" selection-end-column="9" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
       <file leaf-file-name="Menu.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/module/Dashboard/src/Navigation/Menu.php">
           <provider selected="true" editor-type-id="text-editor">
@@ -30,19 +35,6 @@
               <folding>
                 <element signature="e#7#68#0#PHP" expanded="true" />
                 <element signature="e#102#131#0#PHP" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="PrivilegeTable.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/module/Business/src/Model/PrivilegeTable.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="384">
-              <caret line="38" column="0" lean-forward="false" selection-start-line="38" selection-start-column="0" selection-end-line="38" selection-end-column="0" />
-              <folding>
-                <element signature="e#7#89#0#PHP" expanded="true" />
-                <element signature="e#118#138#0#PHP" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -58,31 +50,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Breadcrumbs.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/vendor/zendframework/zend-view/src/Helper/Navigation/Breadcrumbs.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="235">
-              <caret line="99" column="33" lean-forward="false" selection-start-line="99" selection-start-column="33" selection-end-line="99" selection-end-column="33" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="AbstractHelper.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/vendor/zendframework/zend-view/src/Helper/Navigation/AbstractHelper.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="715">
-              <caret line="217" column="39" lean-forward="false" selection-start-line="217" selection-start-column="39" selection-end-line="217" selection-end-column="39" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="module.config.php" pinned="false" current-in-tab="true">
+      <file leaf-file-name="module.config.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/module/Business/config/module.config.php">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="377">
-              <caret line="70" column="0" lean-forward="true" selection-start-line="70" selection-start-column="0" selection-end-line="70" selection-end-column="0" />
+              <caret line="70" column="0" lean-forward="false" selection-start-line="70" selection-start-column="0" selection-end-line="70" selection-end-column="0" />
               <folding>
                 <element signature="e#301#341#0#PHP" expanded="true" />
               </folding>
@@ -115,19 +87,42 @@
       <file leaf-file-name="ControllerCRUD.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/module/Business/src/Abstraction/ControllerCRUD.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="357">
-              <caret line="203" column="21" lean-forward="false" selection-start-line="203" selection-start-column="21" selection-end-line="203" selection-end-column="21" />
+            <state relative-caret-position="301">
+              <caret line="197" column="15" lean-forward="false" selection-start-line="197" selection-start-column="15" selection-end-line="197" selection-end-column="15" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="listar.phtml" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/module/Business/view/business/crud/listar.phtml">
+      <file leaf-file-name="ModelTable.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/module/Business/src/Abstraction/ModelTable.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="438">
-              <caret line="66" column="91" lean-forward="true" selection-start-line="66" selection-start-column="91" selection-end-line="66" selection-end-column="91" />
+            <state relative-caret-position="0">
+              <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
               <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Model.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/module/Business/src/Abstraction/Model.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="-2414">
+              <caret line="27" column="8" lean-forward="false" selection-start-line="27" selection-start-column="7" selection-end-line="27" selection-end-column="8" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="README.md" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/README.md">
+          <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
+            <state split_layout="SPLIT">
+              <first_editor relative-caret-position="449">
+                <caret line="33" column="31" lean-forward="false" selection-start-line="33" selection-start-column="0" selection-end-line="34" selection-end-column="0" />
+                <folding />
+              </first_editor>
+              <second_editor />
             </state>
           </provider>
         </entry>
@@ -163,8 +158,8 @@
       <find>breadcrumb</find>
       <find>bread</find>
       <find>editar</find>
-      <find>url</find>
       <find>breadc</find>
+      <find>url</find>
     </findStrings>
     <dirStrings>
       <dir>$PROJECT_DIR$/module</dir>
@@ -178,7 +173,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/.gitignore" />
         <option value="$PROJECT_DIR$/module/Dashboard/src/Navigation/MenuFactory.php" />
         <option value="$PROJECT_DIR$/config/autoload/global.php" />
         <option value="$PROJECT_DIR$/vendor/zendframework/zend-developer-tools/view/zend-developer-tools/toolbar/style.phtml" />
@@ -199,6 +193,7 @@
         <option value="$PROJECT_DIR$/module/Business/view/business/crud/listar.phtml" />
         <option value="$PROJECT_DIR$/module/Dashboard/view/layout/dashboard.phtml" />
         <option value="$PROJECT_DIR$/module/Business/config/module.config.php" />
+        <option value="$PROJECT_DIR$/.gitignore" />
       </list>
     </option>
   </component>
@@ -391,6 +386,14 @@
               <item name="zend3-dashboard" type="2a2b976b:PhpTreeStructureProvider$1" />
               <item name="module" type="2a2b976b:PhpTreeStructureProvider$1" />
               <item name="Business" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="src" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="Abstraction" type="2a2b976b:PhpTreeStructureProvider$1" />
+            </path>
+            <path>
+              <item name="zend3-dashboard" type="b2602c69:ProjectViewProjectNode" />
+              <item name="zend3-dashboard" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="module" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="Business" type="2a2b976b:PhpTreeStructureProvider$1" />
               <item name="view" type="2a2b976b:PhpTreeStructureProvider$1" />
             </path>
             <path>
@@ -567,21 +570,6 @@
               <item name="Helper" type="2a2b976b:PhpTreeStructureProvider$1" />
               <item name="Navigation" type="2a2b976b:PhpTreeStructureProvider$1" />
             </path>
-            <path>
-              <item name="zend3-dashboard" type="b2602c69:ProjectViewProjectNode" />
-              <item name="External Libraries" type="bcb0276e:PhpExternalLibrariesNodePatcher$PatchedExternalLibrariesNode" />
-            </path>
-            <path>
-              <item name="zend3-dashboard" type="b2602c69:ProjectViewProjectNode" />
-              <item name="External Libraries" type="bcb0276e:PhpExternalLibrariesNodePatcher$PatchedExternalLibrariesNode" />
-              <item name="PHP Runtime" type="20ee2d1f:SyntheticLibraryElementNode" />
-            </path>
-            <path>
-              <item name="zend3-dashboard" type="b2602c69:ProjectViewProjectNode" />
-              <item name="External Libraries" type="bcb0276e:PhpExternalLibrariesNodePatcher$PatchedExternalLibrariesNode" />
-              <item name="PHP Runtime" type="20ee2d1f:SyntheticLibraryElementNode" />
-              <item name="Core" type="2a2b976b:PhpTreeStructureProvider$1" />
-            </path>
           </expand>
           <select />
         </subPane>
@@ -623,12 +611,12 @@
       <option name="presentableId" value="Default" />
       <updated>1520836608875</updated>
       <workItem from="1520836609935" duration="47000" />
-      <workItem from="1520836660366" duration="19017000" />
+      <workItem from="1520836660366" duration="19703000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="19064000" />
+    <option name="totallyTimeSpent" value="19750000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="23" width="1680" height="1027" extended-state="0" />
@@ -665,14 +653,6 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/.gitignore">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="144">
-          <caret line="8" column="5" lean-forward="false" selection-start-line="8" selection-start-column="5" selection-end-line="8" selection-end-column="5" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/config/development.config.php.dist">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
@@ -791,22 +771,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="108">
           <caret line="6" column="20" lean-forward="true" selection-start-line="6" selection-start-column="20" selection-end-line="7" selection-end-column="31" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/module/Business/src/Abstraction/ModelTable.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/module/Business/src/Abstraction/Model.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="252">
-          <caret line="27" column="8" lean-forward="false" selection-start-line="27" selection-start-column="7" selection-end-line="27" selection-end-column="8" />
           <folding />
         </state>
       </provider>
@@ -946,7 +910,7 @@
         <state relative-caret-position="129">
           <caret line="94" column="24" lean-forward="false" selection-start-line="94" selection-start-column="24" selection-end-line="94" selection-end-column="24" />
           <folding>
-            <element signature="e#338#352#0#PHP" expanded="true" />
+            <element signature="e#338#352#0#PHP" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -964,8 +928,8 @@
         <state relative-caret-position="384">
           <caret line="38" column="0" lean-forward="false" selection-start-line="38" selection-start-column="0" selection-end-line="38" selection-end-column="0" />
           <folding>
-            <element signature="e#7#89#0#PHP" expanded="true" />
-            <element signature="e#118#138#0#PHP" expanded="true" />
+            <element signature="e#7#89#0#PHP" expanded="false" />
+            <element signature="e#118#138#0#PHP" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -982,14 +946,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="715">
           <caret line="217" column="39" lean-forward="false" selection-start-line="217" selection-start-column="39" selection-end-line="217" selection-end-column="39" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/module/Business/src/Abstraction/ControllerCRUD.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="357">
-          <caret line="203" column="21" lean-forward="false" selection-start-line="203" selection-start-column="21" selection-end-line="203" selection-end-column="21" />
           <folding />
         </state>
       </provider>
@@ -1050,10 +1006,53 @@
     <entry file="file://$PROJECT_DIR$/module/Business/config/module.config.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="377">
-          <caret line="70" column="0" lean-forward="true" selection-start-line="70" selection-start-column="0" selection-end-line="70" selection-end-column="0" />
+          <caret line="70" column="0" lean-forward="false" selection-start-line="70" selection-start-column="0" selection-end-line="70" selection-end-column="0" />
           <folding>
             <element signature="e#301#341#0#PHP" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/module/Business/src/Abstraction/ControllerCRUD.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="301">
+          <caret line="197" column="15" lean-forward="false" selection-start-line="197" selection-start-column="15" selection-end-line="197" selection-end-column="15" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/module/Business/src/Abstraction/ModelTable.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/module/Business/src/Abstraction/Model.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-2414">
+          <caret line="27" column="8" lean-forward="false" selection-start-line="27" selection-start-column="7" selection-end-line="27" selection-end-column="8" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/README.md">
+      <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
+        <state split_layout="SPLIT">
+          <first_editor relative-caret-position="449">
+            <caret line="33" column="31" lean-forward="false" selection-start-line="33" selection-start-column="0" selection-end-line="34" selection-end-column="0" />
+            <folding />
+          </first_editor>
+          <second_editor />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/.gitignore">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="162">
+          <caret line="9" column="9" lean-forward="false" selection-start-line="9" selection-start-column="9" selection-end-line="9" selection-end-column="9" />
+          <folding />
         </state>
       </provider>
     </entry>
