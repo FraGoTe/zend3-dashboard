@@ -125,7 +125,7 @@ $routes = [
     ],
     'dashboard-menu-eliminar' => [
         'route' => '/dashboard/mantenimiento/menu/eliminar/id/:id',
-        'controller' => Dcontroller\menuController::class,
+        'controller' => Dcontroller\MenuController::class,
         'action'     => 'eliminar',
         'constraints' => [
             'id'     => '[0-9]+',
