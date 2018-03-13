@@ -20,7 +20,7 @@ foreach ($campos as $keyField => $field) {
             'name' => $keyField,
             'type' => 'text',
             'attributes' => [
-                'class' => 'form-control col-md-40 col-xs-40 ' . (!empty($field['DATE']) ? 'date-picker' : ''),
+                'class' => 'form-control col-md-12 col-xs-12 ' . (!empty($field['DATE']) ? 'date-picker' : ''),
                 'maxlength' => (!empty($field['LENGHT']) ? $field['LENGHT'] : null),
                 'required' => 'required',
                 'value' => (!empty($this->defaultValue[$keyField]) ? $this->defaultValue[$keyField] : ''),
@@ -30,7 +30,7 @@ foreach ($campos as $keyField => $field) {
             'options' => [
                 'label' => $descripciones[$keyField],
                 'label_attributes' => array(
-                    'class' => 'control-label col-md-6 col-sm-12 col-xs-12',
+                    'class' => 'control-label col-md-3 col-sm-3 col-xs-3',
                 ),
             ],
         ]);
@@ -50,7 +50,7 @@ foreach ($campos as $keyField => $field) {
             'options' => [
                 'label' => $descripciones[$keyField],
                 'label_attributes' => array(
-                    'class' => 'control-label col-md-3 col-sm-3 col-xs-12',
+                    'class' => 'control-label col-md-3 col-sm-3 col-xs-3',
                     'class' => 'text-danger'
                 ),
                 'value_options' => !empty($field['FUNC']) ? $this->fk[$field['FUNC']] : []
@@ -99,12 +99,14 @@ $form->prepare();
 
             <div class="x_content">
                 <div class="row">
-
-                    <div class="page-title col-md-12 col-sm-12 col-xs-12">
+                    <div style="margin-left: 45px;">
+                    <div class="page-title col-md-9 col-sm-9 col-xs-9">
+                    </div>
                         <div class="title_left">
                             <h1 class="card-title"><?= $this->escapeHtml($title); ?></h1>
                             <h2 class="card-subtitle">Agregar</h2>
                         </div>
+                    </div>
                     </div>
                     <br>
                     <?= $this->form()->openTag($form); ?>
@@ -113,7 +115,7 @@ $form->prepare();
                         <div class="form-group row">
 
                             <?= $this->formLabel($field) ?>
-                            <div class="col-md-40 col-sm-6 col-xs-12">
+                            <div class="col-md-9 col-sm-9 col-xs-9">
 
                                 <?= $this->formElement($field) ?>
                             </div>
@@ -127,7 +129,7 @@ $form->prepare();
                     <div class="ln_solid"></div>
                     <div style="margin-left: 150px;">
                     <div class="form-group row">
-                        <div class="col-md-20 col-sm-12 col-xs-12 col-md-offset-3">
+                        <div class="col-md-20 col-sm    -12 col-xs-12 col-md-offset-3">
                             <?= $this->formSubmit($submit); ?>
                             <?= $this->formReset($reset); ?>
 
