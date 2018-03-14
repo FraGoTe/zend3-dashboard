@@ -157,7 +157,10 @@ class Module implements AutoloaderProviderInterface, ConfigProviderInterface
                 },
                 Model\User::class => function($container) {
                     $tableGateway = $container->get(Model\UserTable::class);
-                    return new Model\UserTable($tableGateway);
+                    $fktable = [
+                        'rol' => $container->get(Model\RolTable::class)
+                    ];
+                    return new Model\UserTable($tableGateway, $fktable);
                 },
                 Model\UserTable::class => function ($container) {
                     $dbAdapter = $container->get(AdapterInterface::class);
@@ -167,7 +170,10 @@ class Module implements AutoloaderProviderInterface, ConfigProviderInterface
                 },
                 Model\Menu::class => function($container) {
                     $tableGateway = $container->get(Model\MenuTable::class);
-                    return new Model\MenuTable($tableGateway);
+                    $fktable = [
+                        'modulo' => $container->get(Model\ModuloTable::class)
+                    ];
+                    return new Model\MenuTable($tableGateway, $fktable);
                 },
                 Model\MenuTable::class => function ($container) {
                     $dbAdapter = $container->get(AdapterInterface::class);
@@ -177,7 +183,10 @@ class Module implements AutoloaderProviderInterface, ConfigProviderInterface
                 },
                 Model\Privilege::class => function($container) {
                     $tableGateway = $container->get(Model\PrivilegeTable::class);
-                    return new Model\PrivilegeTable($tableGateway);
+                    $fktable = [
+                        'menu' => $container->get(Model\MenuTable::class)
+                        ];
+                    return new Model\PrivilegeTable($tableGateway, $fktable);
                 },
                 Model\PrivilegeTable::class => function ($container) {
                     $dbAdapter = $container->get(AdapterInterface::class);

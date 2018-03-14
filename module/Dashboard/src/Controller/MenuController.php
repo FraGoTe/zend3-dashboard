@@ -36,16 +36,18 @@ class MenuController extends ControllerCRUD
             ],
             'module_id' => [
                 'PK' => 1,
-                'AI' => 0
+                'AI' => 0,
+                'FK' => 1,
+                'FUNC' => 'obtenerModulo'
             ],
         );
             
         $columnasListar = [
             'id' => 'ID',
-            'url' => 'Descripción',
-            'label' => 'nose',
-            'parent' => 'nose tmb',
-            'module_id' => 'menos',
+            'url' => 'URL',
+            'label' => 'Label',
+            'parent' => 'Parent',
+            'module_id' => 'Modulo',
         ];
         
         $indexRedirect = 'dashboard-menu-listar';

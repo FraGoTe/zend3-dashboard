@@ -12,4 +12,13 @@ use Business\Abstraction\Model;
  */
 class MenuTable extends Model
 {
+    public function obtenerModulo()
+    {
+        $arrModulo = [];
+        $modulos = $this->fkTable['modulo']->select()->toArray();
+        foreach ($modulos as $modulo) {
+            $arrModulo[$modulo['id']] = $modulo['name'];
+        }
+        return $arrModulo;
+    }
 }

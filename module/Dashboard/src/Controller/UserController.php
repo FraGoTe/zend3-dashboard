@@ -52,13 +52,16 @@ class UserController extends ControllerCRUD
             ],
             'role_id' => [
                 'PK' => 1,
-                'AI' => 0
+                'AI' => 0,
+                'FK' => 1,
+                'FUNC' => 'obtenerRoles'
             ],
+
         );
             
         $columnasListar = [
             'id' => 'ID',
-            'username' => 'Descripción',
+            'username' => 'Username',
             'full_name' =>'Nombre completo',
             'email' =>'Correo',
             'password' => 'Contraseña',
