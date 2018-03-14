@@ -30,7 +30,7 @@ foreach ($campos as $keyField => $field) {
             'options' => [
                 'label' => $descripciones[$keyField],
                 'label_attributes' => array(
-                    'class' => 'control-label col-md-3 col-sm-3 col-xs-3',
+                    'class' => 'control-label col-md-5 col-sm-5 col-xs-5',
                 ),
             ],
         ]);
@@ -50,8 +50,7 @@ foreach ($campos as $keyField => $field) {
             'options' => [
                 'label' => $descripciones[$keyField],
                 'label_attributes' => array(
-                    'class' => 'control-label col-md-6 col-sm-6 col-xs-6',
-                    'class' => 'text-danger'
+                    'class' => 'text-danger control-label col-md-5 col-sm-5 col-xs-5',
                 ),
                 'value_options' => !empty($field['FUNC']) ? $this->fk[$field['FUNC']] : []
             ],
@@ -100,14 +99,13 @@ $form->prepare();
                         <br>
                         <?= $this->form()->openTag($form); ?>
                         <?php foreach ($formFields as $field): ?>
-
                             <div class="form-group row">
-                            <?= $this->formLabel($field) ?>
-                            <div class="col-md-6 col-sm-6 col-xs-6">
-                                <?= $this->formElement($field) ?>
-                                <?= $this->formElementErrors()->render($field, ['class' => 'help-block']) ?>
+                                <?= $this->formLabel($field) ?>
+                                <div class="col-md-7 col-sm-7 col-xs-7">
+                                    <?= $this->formElement($field) ?>
+                                    <?= $this->formElementErrors()->render($field, ['class' => 'help-block']) ?>
+                                </div>
                             </div>
-                        </div>
                         <?php endforeach; ?>
                     </div>
                         <div style="margin-left: 150px;">

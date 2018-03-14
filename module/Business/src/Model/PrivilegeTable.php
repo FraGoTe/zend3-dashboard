@@ -51,4 +51,13 @@ class PrivilegeTable  extends Model
         }
         return $arrMenu;
     }
+    public function obtenerRoles()
+    {
+        $arrRol = [];
+        $roles = $this->fkTable['role']->select()->toArray();
+        foreach ($roles as $rol) {
+            $arrRol[$rol['id']] = $rol['name'];
+        }
+        return $arrRol;
+    }
 }

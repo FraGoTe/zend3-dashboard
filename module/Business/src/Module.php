@@ -184,7 +184,8 @@ class Module implements AutoloaderProviderInterface, ConfigProviderInterface
                 Model\Privilege::class => function($container) {
                     $tableGateway = $container->get(Model\PrivilegeTable::class);
                     $fktable = [
-                        'menu' => $container->get(Model\MenuTable::class)
+                        'menu' => $container->get(Model\MenuTable::class),
+                        'role' => $container->get(Model\RolTable::class)
                         ];
                     return new Model\PrivilegeTable($tableGateway, $fktable);
                 },
