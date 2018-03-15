@@ -6921,3 +6921,7 @@ tbody tr td:last-child {
     display: inline-block !important;
   }
 }
+
+.login-background {
+  background-image: linear-gradient(to top, #4481eb 0%, #04befe 100%);
+}

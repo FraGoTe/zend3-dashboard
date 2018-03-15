@@ -19,7 +19,7 @@
       ->prependStylesheet($this->basePath('css/lib/sweetalert/sweetalert.css'))
    ?>
 </head>
-<body class="fix-header fix-sidebar">
+<body class="fix-header fix-sidebar login-background">
 <!-- Preloader - style you can find in spinners.css -->
 <div class="preloader">
     <svg class="circular" viewBox="25 25 50 50">
@@ -48,7 +48,10 @@
                                         <input type="checkbox"> Remember Me
                                     </label>
                                 </div>
-                                <button type="submit" class="btn btn-primary btn-flat m-b-30 m-t-30">Sign in</button>
+                                <button type="submit" class="btn btn-primary btn-flat m-b-30 m-t-30">
+                                    <i class="fa fa-sign-in"></i>
+                                    Ingresar
+                                </button>
                                 <div class="register-link m-t-15 text-center">
                                     <h2><i class="fa fa-globe"></i> <?= \Business\Settings::BusinessName ?></h2>
                                     <small>©<?= date('Y') ?> Todos los Derechos Reservados</small>
