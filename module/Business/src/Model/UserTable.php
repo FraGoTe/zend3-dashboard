@@ -91,4 +91,14 @@ class UserTable extends Model
         $rs = $this->tableGateway->delete($where);
         return $rs;
     }
+
+    public function obtenerRoles()
+    {
+        $arrRol = [];
+        $roles = $this->fkTable['rol']->select()->toArray();
+        foreach ($roles as $rol) {
+            $arrRol[$rol['id']] = $rol['name'];
+        }
+        return $arrRol;
+    }
 }

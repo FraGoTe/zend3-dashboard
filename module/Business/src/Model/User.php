@@ -12,9 +12,10 @@ class User
     public $id;
     public $username;
     public $password;
-    public $fullName;
+    public $full_name;
     public $email;
-    public $roleId;
+    public $role_id;
+    public $active;
     
     public function getId()
     {
@@ -30,7 +31,7 @@ class User
     }
     public function getFullName()
     {
-        return $this->fullName;
+        return $this->full_name;
     }
     public function getEmail()
     {
@@ -38,8 +39,13 @@ class User
     }
     public function getRoleId()
     {
-        return $this->roleId;
+        return $this->role_id;
     }
+    public function getActive()
+    {
+        return $this->active;
+    }
+
     public function setId($id)
     {
         $this->id = $id;
@@ -54,7 +60,7 @@ class User
     }
     public function setFullName($fullName)
     {
-        $this->fullName = $fullName;
+        $this->full_name = $fullName;
     }
     public function setEmail($email)
     {
@@ -62,7 +68,11 @@ class User
     }
     public function setRoleId($roleId)
     {
-        $this->roleId = $roleId;
+        $this->role_id = $roleId;
+    }
+    public function setActive($active)
+    {
+        $this->active = $active;
     }
         
     public function exchangeArray($data)
@@ -70,9 +80,10 @@ class User
         $this->id = (isset($data['id'])) ? $data['id'] : null;
         $this->username = (isset($data['username'])) ? $data['username'] : null;
         $this->password = (isset($data['password'])) ? $data['password'] : null;
-        $this->fullName = (isset($data['full_name'])) ? $data['full_name'] : null;
+        $this->full_name = (isset($data['full_name'])) ? $data['full_name'] : null;
         $this->email = (isset($data['email'])) ? $data['email'] : null;
-        $this->roleId = (isset($data['role_id'])) ? $data['role_id'] : null;
+        $this->role_id = (isset($data['role_id'])) ? $data['role_id'] : null;
+        $this->active = (isset($data['active'])) ? $data['active'] : null;
     }
  
     public function getArrayCopy()

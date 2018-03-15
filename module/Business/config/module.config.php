@@ -53,6 +53,110 @@ $routes = [
          'id'     => '[0-9]+',
       ],
    ],
+    'dashboard-modulo-listar' => [
+        'route' => '/dashboard/mantenimiento/modulo',
+        'controller' => Dcontroller\ModuloController::class,
+        'action'     => 'listar',
+    ],
+    'dashboard-modulo-agregar' => [
+        'route' => '/dashboard/mantenimiento/modulo/agregar',
+        'controller' => Dcontroller\ModuloController::class,
+        'action'     => 'agregar',
+    ],
+    'dashboard-modulo-editar' => [
+        'route' => '/dashboard/mantenimiento/modulo/editar/id/:id',
+        'controller' => Dcontroller\ModuloController::class,
+        'action'     => 'editar',
+        'constraints' => [
+            'id'     => '[0-9]+',
+        ],
+    ],
+    'dashboard-modulo-eliminar' => [
+        'route' => '/dashboard/mantenimiento/modulo/eliminar/id/:id',
+        'controller' => Dcontroller\ModuloController::class,
+        'action'     => 'eliminar',
+        'constraints' => [
+            'id'     => '[0-9]+',
+        ],
+    ],
+    'dashboard-user-listar' => [
+        'route' => '/dashboard/mantenimiento/user',
+        'controller' => Dcontroller\UserController::class,
+        'action'     => 'listar',
+    ],
+    'dashboard-user-agregar' => [
+        'route' => '/dashboard/mantenimiento/usuer/agregar',
+        'controller' => Dcontroller\UserController::class,
+        'action'     => 'agregar',
+    ],
+    'dashboard-user-editar' => [
+        'route' => '/dashboard/mantenimiento/user/editar/id/:id',
+        'controller' => Dcontroller\UserController::class,
+        'action'     => 'editar',
+        'constraints' => [
+            'id'     => '[0-9]+',
+        ],
+    ],
+    'dashboard-user-eliminar' => [
+        'route' => '/dashboard/mantenimiento/user/eliminar/id/:id',
+        'controller' => Dcontroller\UserController::class,
+        'action'     => 'eliminar',
+        'constraints' => [
+            'id'     => '[0-9]+',
+        ],
+    ],
+    'dashboard-menu-listar' => [
+        'route' => '/dashboard/mantenimiento/menu',
+        'controller' => Dcontroller\MenuController::class,
+        'action'     => 'listar',
+    ],
+    'dashboard-menu-agregar' => [
+        'route' => '/dashboard/mantenimiento/menu/agregar',
+        'controller' => Dcontroller\MenuController::class,
+        'action'     => 'agregar',
+    ],
+    'dashboard-menu-editar' => [
+        'route' => '/dashboard/mantenimiento/menu/editar/id/:id',
+        'controller' => Dcontroller\MenuController::class,
+        'action'     => 'editar',
+        'constraints' => [
+            'id'     => '[0-9]+',
+        ],
+    ],
+    'dashboard-menu-eliminar' => [
+        'route' => '/dashboard/mantenimiento/menu/eliminar/id/:id',
+        'controller' => Dcontroller\MenuController::class,
+        'action'     => 'eliminar',
+        'constraints' => [
+            'id'     => '[0-9]+',
+        ],
+    ],
+    'dashboard-privilege-listar' => [
+        'route' => '/dashboard/mantenimiento/privilege',
+        'controller' => Dcontroller\PrivilegeController::class,
+        'action'     => 'listar',
+    ],
+    'dashboard-privilege-agregar' => [
+        'route' => '/dashboard/mantenimiento/privilege/agregar',
+        'controller' => Dcontroller\PrivilegeController::class,
+        'action'     => 'agregar',
+    ],
+    'dashboard-privilege-editar' => [
+        'route' => '/dashboard/mantenimiento/privilege/editar/id/:id',
+        'controller' => Dcontroller\PrivilegeController::class,
+        'action'     => 'editar',
+        'constraints' => [
+            'id'     => '[0-9]+',
+        ],
+    ],
+    'dashboard-privilege-eliminar' => [
+        'route' => '/dashboard/mantenimiento/privilege/eliminar/id/:id',
+        'controller' => Dcontroller\PrivilegeController::class,
+        'action'     => 'eliminar',
+        'constraints' => [
+            'id'     => '[0-9]+',
+        ],
+    ],
 
 ];
 $arrRoutes = [];

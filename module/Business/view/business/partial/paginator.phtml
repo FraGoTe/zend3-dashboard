@@ -1,50 +1,73 @@
 <?php if ($this->pageCount): ?>
-<div>
-  <ul class="pagination">
-  <!-- Previous page link -->
-  <?php if (isset($this->previous)): ?>
-    <li>
-      <a href="<?= $this->url($this->route, [], ['query' => ['page' => $this->previous]]) ?>">
-        &lt;&lt;
-      </a>
-    </li>
-  <?php else: ?>
-    <li class="disabled">
-      <a href="#">
-        &lt;&lt;
-      </a>
-    </li>
-  <?php endif ?>
 
-  <!-- Numbered page links -->
-  <?php foreach ($this->pagesInRange as $page): ?>
-    <?php if ($page !== $this->current): ?>
-      <li>
-        <a href="<?= $this->url($this->route, [], ['query' => ['page' => $page]]) ?>">
-          <?= $page ?>
-        </a>
-      </li>
-    <?php else: ?>
-      <li class="active">
-        <a href="#"><?= $page ?></a>
-      </li>
-    <?php endif ?>
-  <?php endforeach ?>
+    <div class="dataTables_paginate paging_simple_numbers" id="myTable_paginate"
 
-  <!-- Next page link -->
-  <?php if (isset($this->next)): ?>
-    <li>
-      <a href="<?= $this->url($this->route, [], ['query' => ['page' => $this->next]]) ?>">
-        &gt;&gt;
-      </a>
-    </li>
-  <?php else: ?>
-    <li class="disabled">
-      <a href="#">
-        &gt;&gt;
-      </a>
-    </li>
-  <?php endif ?>
-  </ul>
-</div>
+
+    <ul class="pagination">
+        <!-- Previous page link -->
+
+        <?php if (isset($this->previous)): ?>
+
+
+            <a href="<?= $this->url($this->route, [], ['query' => ['page' => $this->previous]]) ?>"
+               class="paginate_button previous " aria-controls="myTable" data-dt-idx="0" tabindex="0"
+               id="myTable_previous">
+                &lt;&lt;
+            </a>
+
+        <?php else: ?>
+
+                <a href="#"
+                   class="paginate_button previous disabled" aria-controls="myTable" data-dt-idx="0" tabindex="0"
+                   id="myTable_previous">
+                    &lt;&lt;
+                </a>
+
+
+        <?php endif ?>
+
+
+        <!-- Numbered page links -->
+        <span>
+                <?php foreach ($this->pagesInRange as $page): ?>
+                    <?php if ($page !== $this->current): ?>
+
+
+                        <a href="<?= $this->url($this->route, [], ['query' => ['page' => $page]]) ?>"
+                           class="paginate_button " aria-controls="myTable" data-dt-idx="1" tabindex="0">
+              <?= $page ?>
+          </a>
+
+
+                    <?php else: ?>
+                        <a href="<?= $this->url($this->route, [], ['query' => ['page' => $page]]) ?>"
+                           class="paginate_button current" aria-controls="myTable" data-dt-idx="1" tabindex="0">
+              <?= $page ?>
+          </a>
+
+                    <?php endif ?>
+                <?php endforeach ?>
+        </span>
+
+
+
+        <!-- Next page link -->
+        <?php if (isset($this->next)): ?>
+
+            <a href="<?= $this->url($this->route, [], ['query' => ['page' => $this->next]]) ?>"
+               class="paginate_button next" aria-controls="myTable" data-dt-idx="7" tabindex="0" id="myTable_next">
+                &gt;&gt;
+            </a>
+
+        <?php else: ?>
+
+                <a href="#" class="paginate_button next disabled" aria-controls="myTable" data-dt-idx="7" tabindex="0" id="myTable_next">
+                    &gt;&gt;
+                </a>
+
+        <?php endif ?>
+
+    </ul>
+    </div>
+
 <?php endif ?>
